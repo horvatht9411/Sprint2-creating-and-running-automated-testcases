@@ -1,0 +1,1 @@
+24-10-2022 11:54:22 INFO  App:13 - Logger is cool!
