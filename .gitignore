@@ -39,5 +39,5 @@ build/
 empty.txt
 /.idea
 
-*.properties
+init.properties
 *.xml
