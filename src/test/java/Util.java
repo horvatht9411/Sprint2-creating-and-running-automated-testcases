@@ -5,14 +5,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 public class Util {
-    static boolean isVisible = true;
-
-
+    static boolean isVisible = false;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
         executor.executeScript("arguments[0].click();", webElement);
     }
+
+
+
+    static Properties read() throws IOException {
+        Properties appProps = new Properties();
+//        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        String appConfigPath = "src/main/resources/init.properties";
+        appProps.load(new FileInputStream(appConfigPath));
+        return appProps;
+    }
+
 
     static boolean checkModalVisibility(WebDriver webDriver){
         var modal = webDriver.findElements(By.cssSelector("body > div.fade.modal.show > div > div"));
