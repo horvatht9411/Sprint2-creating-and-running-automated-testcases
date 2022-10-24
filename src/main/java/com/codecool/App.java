@@ -1,10 +1,7 @@
 package com.codecool;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class Main {
+public class App {
 
 
     public static void main(String[] args) {
