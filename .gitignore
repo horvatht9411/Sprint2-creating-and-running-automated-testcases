@@ -37,6 +37,7 @@ build/
 ### Mac OS ###
 .DS_Store
 empty.txt
+/.idea
 
 *.properties
 *.xml
