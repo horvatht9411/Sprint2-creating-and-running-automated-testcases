@@ -1,16 +1,20 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class Util {
     static boolean isVisible = false;
+    private static int seconds = 10;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
         executor.executeScript("arguments[0].click();", webElement);
@@ -38,8 +42,13 @@ public class Util {
         return exist;
     }
 
-    static WebDriver visibilitySetup(){
+    static WebDriverWait initWebdriverWait(WebDriver webDriver){
+        return new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
+    }
+
+    static WebDriver setup(String url){
         WebDriver webDriver;
+        WebDriverManager.chromedriver().setup();
         if (!isVisible) {
             // Run in background
             ChromeOptions options = new ChromeOptions();
@@ -48,7 +57,9 @@ public class Util {
         } else {
             //Open browse
             webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
         }
+        webDriver.get(url);
         return webDriver;
     }
 
