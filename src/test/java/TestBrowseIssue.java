@@ -83,49 +83,104 @@ public class TestBrowseIssue {
     }
 
 
-    @ParameterizedTest
-    @EnumSource(Issue.class)
-    @DisplayName("Browse issues for TOUCAN project")
-    public void browseToucanIssues(Issue issue) {
-//        for (Issue issue : issues.values()) {
-            webDriver.get(issue.getUrl());
+    @Test
+    @DisplayName("Browse issues 1 for TOUCAN project")
+    public void browseToucanIssues1() {
+            webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = issue.getId();
+            String expectedIssueId = "TOUCAN-1";
             String issueId = webDriver.findElement(By.id("key-val")).getText();
 
             assertEquals(expectedIssueId, issueId);
-//        }
-
     }
-//
-//
-//    @Test
-//    @DisplayName("Browse COALA project")
-//    public void browseCoalaProject() {
-//        webDriver.get("https://jira-auto.codecool.metastage.net/projects/COALA/summary");
-//        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-//        String expectedProjectName = "COALA project";
-//        String expectedProjectKey = "COALA";
-//        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
-//        String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(4)")).getText();
-//
-//        assertEquals(expectedProjectName, projectName);
-//        assertEquals(expectedProjectKey, projectKey);
-//    }
-//
-//    @Test
-//    @DisplayName("Browse JETI project")
-//    public void browseJetiProject() {
-//        webDriver.get("https://jira-auto.codecool.metastage.net/projects/JETI/summary");
-//        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-//        String expectedProjectName = "JETI project";
-//        String expectedProjectKey = "JETI";
-//        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
-//        String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(4)")).getText();
-//
-//        assertEquals(expectedProjectName, projectName);
-//        assertEquals(expectedProjectKey, projectKey);
-//    }
+
+    @Test
+    @DisplayName("Browse issues 2 for TOUCAN project")
+    public void browseToucanIssues2() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-2");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "TOUCAN-2";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 3 for TOUCAN project")
+    public void browseToucanIssues3() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-3");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "TOUCAN-3";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 1 for COALA project")
+    public void browseCoalaIssues1() {
+            webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+            String expectedIssueId = "COALA-1";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+            assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 2 for COALA project")
+    public void browseCoalaIssues2() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-2");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "COALA-2";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 3 for COALA project")
+    public void browseCoalaIssues3() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-3");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "COALA-3";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 1 for JETI project")
+    public void browseJetiIssues1() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "JETI-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 2 for JETI project")
+    public void browseJetiIssues2() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-2");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "JETI-2";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
+
+    @Test
+    @DisplayName("Browse issues 3 for JETI project")
+    public void browseJetiIssues3() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-3");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "JETI-3";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+
+        assertEquals(expectedIssueId, issueId);
+    }
 
 }
 
