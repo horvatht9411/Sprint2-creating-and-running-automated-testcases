@@ -21,9 +21,7 @@ public class TestLogOut {
 
     Logger logger = LoggerFactory.getLogger(App.class);
     WebDriver webDriver;
-    WebElement loginButton;
-    WebElement userName;
-    WebElement password;
+
     Properties appProps;
 
     WebDriverWait webDriverWait;

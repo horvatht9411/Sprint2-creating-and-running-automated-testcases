@@ -42,11 +42,8 @@ public class TestLogin {
         loginButton = webDriver.findElement(By.id("login"));
     }
 
-    void setupDifferentLink() throws IOException {
-        webDriver.close();
-        webDriver = Util.setup("https://jira-auto.codecool.metastage.net/login.jsp?");
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        appProps = Util.read();
+    void setupDifferentLink(){
+        webDriver.get("https://jira-auto.codecool.metastage.net/login.jsp?");
         userName = webDriver.findElement(By.id("login-form-username"));
         password = webDriver.findElement(By.id("login-form-password"));
         loginButton = webDriver.findElement(By.id("login-form-submit"));

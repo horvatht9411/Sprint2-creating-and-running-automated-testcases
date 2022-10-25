@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileInputStream;
@@ -13,7 +14,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class Util {
-    static boolean isVisible = false;
+    static boolean isVisible = true;
     private static int seconds = 10;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
@@ -61,6 +62,13 @@ public class Util {
         }
         webDriver.get(url);
         return webDriver;
+    }
+
+    static void login(WebDriver webDriver, Properties appProps, WebDriverWait webDriverWait){
+        webDriver.findElement(By.id("login-form-username")).sendKeys(appProps.getProperty("username"));
+        webDriver.findElement(By.id("login-form-password")).sendKeys(appProps.getProperty("password"));
+        webDriver.findElement(By.id("login")).click();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("header-details-user-fullname")));
     }
 
 }
