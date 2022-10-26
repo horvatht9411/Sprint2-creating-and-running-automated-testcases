@@ -80,26 +80,20 @@ public class TestBrowseProject {
     @DisplayName("Browse TOUCAN project")
     public void browseToucanProject() {
         webDriver.get("https://jira-auto.codecool.metastage.net/projects/TOUCAN/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-        String expectedProjectName = "TOUCAN project";
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary-subnav-title")));
         String expectedProjectKey = "TOUCAN";
-        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
         String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(4)")).getText();
 
-        assertEquals(expectedProjectName, projectName);
         assertEquals(expectedProjectKey, projectKey);
     }
     @Test
     @DisplayName("Browse COALA project")
     public void browseCoalaProject() {
         webDriver.get("https://jira-auto.codecool.metastage.net/projects/COALA/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-        String expectedProjectName = "COALA project";
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary-subnav-title")));
         String expectedProjectKey = "COALA";
-        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
         String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(4)")).getText();
 
-        assertEquals(expectedProjectName, projectName);
         assertEquals(expectedProjectKey, projectKey);
     }
 
@@ -107,13 +101,10 @@ public class TestBrowseProject {
     @DisplayName("Browse JETI project")
     public void browseJetiProject() {
         webDriver.get("https://jira-auto.codecool.metastage.net/projects/JETI/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-        String expectedProjectName = "JETI project";
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary-subnav-title")));
         String expectedProjectKey = "JETI";
-        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
         String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(4)")).getText();
 
-        assertEquals(expectedProjectName, projectName);
         assertEquals(expectedProjectKey, projectKey);
     }
 
