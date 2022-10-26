@@ -1,4 +1,5 @@
 import com.codecool.App;
+import exception.MissingIssueTypeException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -272,11 +273,7 @@ public class TestCreateIssue {
         project.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        }catch (){
-            throw new MissingIssueTypeException("No such issue type found");
-        }
+        type.click();
         type.sendKeys(Keys.BACK_SPACE);
         String expected = "Bug";
         type.sendKeys(expected);
