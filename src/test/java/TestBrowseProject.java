@@ -47,13 +47,10 @@ public class TestBrowseProject {
     @DisplayName("Browse existing project")
     public void browseExistingProject() {
         webDriver.get("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")));
-        String expectedProjectName = "Main Testing Project";
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary-subnav-title")));
         String expectedProjectKey = "MTP";
-        String projectName = webDriver.findElement(By.cssSelector("#sidebar > div > div.aui-sidebar-body > div > div > div:nth-child(2) > h1 > div > div > a")).getText();
         String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(6)")).getText();
 
-        assertEquals(expectedProjectName, projectName);
         assertEquals(expectedProjectKey, projectKey);
     }
 
