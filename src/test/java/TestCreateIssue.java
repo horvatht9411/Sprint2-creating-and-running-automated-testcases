@@ -24,9 +24,6 @@ public class TestCreateIssue {
     Properties appProps;
 
 
-
-
-
     WebDriverWait webDriverWait;
 
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
@@ -264,8 +261,6 @@ public class TestCreateIssue {
     }
 
 
-
-
     @Test
     @DisplayName("Check bug issue type for COALA")
     public void coalaBugIssues() throws InterruptedException {
@@ -277,7 +272,11 @@ public class TestCreateIssue {
         project.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        type.click();
+        try {
+            type.click();
+        }catch (){
+            throw new MissingIssueTypeException("No such issue type found");
+        }
         type.sendKeys(Keys.BACK_SPACE);
         String expected = "Bug";
         type.sendKeys(expected);
@@ -329,23 +328,47 @@ public class TestCreateIssue {
         assertEquals(expected, result);
     }
 
+    @Test
+    @DisplayName("Create subtask for JETI project")
+    public void createJetiSubtask() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "JETI-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+        assertEquals(expectedIssueId, issueId);
+        webDriver.findElement(By.id("opsbar-operations_more")).click();
+        String expected = "Create sub-task";
+        String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
+        assertEquals(expected, result);
+    }
 
+    @Test
+    @DisplayName("Create subtask for COALA project")
+    public void createCoalaSubtask() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "COALA-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+        assertEquals(expectedIssueId, issueId);
+        webDriver.findElement(By.id("opsbar-operations_more")).click();
+        String expected = "Create sub-task";
+        String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
+        assertEquals(expected, result);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Test
+    @DisplayName("Create subtask for TOUCAN project")
+    public void createToucanSubtask() {
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "TOUCAN-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
+        assertEquals(expectedIssueId, issueId);
+        webDriver.findElement(By.id("opsbar-operations_more")).click();
+        String expected = "Create sub-task";
+        String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
+        assertEquals(expected, result);
+    }
 }
 
 
