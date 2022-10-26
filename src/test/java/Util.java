@@ -12,10 +12,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class Util {
     static boolean isVisible = true;
-    private static int seconds = 10;
+    private static int seconds = 15;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
         executor.executeScript("arguments[0].click();", webElement);
@@ -60,6 +61,7 @@ public class Util {
             webDriver = new ChromeDriver();
             webDriver.manage().window().maximize();
         }
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         webDriver.get(url);
         return webDriver;
     }
