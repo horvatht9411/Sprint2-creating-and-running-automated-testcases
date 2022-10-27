@@ -95,13 +95,9 @@ public class TestEditIssue {
         summaryField.click();
         summaryField.sendKeys(Keys.BACK_SPACE, "B");
         webDriver.findElement(By.cssSelector("#edit-issue-dialog > footer > div > div > button")).click();
-//        webDriverWait.until(ExpectedConditions.alertIsPresent());
-        try {
-            Alert alert = webDriver.switchTo().alert();
-            alert.accept();
-        } catch (NoAlertPresentException e){
-            Assertions.fail("Exception " + e);
-        }
+        webDriverWait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = webDriver.switchTo().alert();
+        alert.accept();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         String id = webDriver.findElement(By.id("key-val")).getText();
         String editedText = webDriver.findElement(By.id("summary-val")).getText();
