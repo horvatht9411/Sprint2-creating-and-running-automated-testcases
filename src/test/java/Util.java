@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class Util {
-    static boolean isVisible = false;
+    static boolean isVisible = true;
     private final static int SECONDS = 15;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {

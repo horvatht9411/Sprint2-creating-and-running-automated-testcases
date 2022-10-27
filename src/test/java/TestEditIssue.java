@@ -7,8 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestEditIssue {
@@ -54,7 +53,9 @@ public class TestEditIssue {
             assertEquals("Test Edit B", editedText);
         }
         String id = webDriver.findElement(By.id("key-val")).getText();
+        String editedText = webDriver.findElement(By.id("summary-val")).getText();
         assertEquals(expectedIssueId, id);
+        assertEquals("Test Edit B", editedText);
         webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
         WebElement summaryField2 = webDriver.findElement(By.id("summary"));
@@ -98,7 +99,8 @@ public class TestEditIssue {
         assertTrue(issueId.contains(expectedIssueId));
         WebElement summaryField = webDriver.findElement(By.id("summary"));
         summaryField.click();
-        summaryField.sendKeys(Keys.BACK_SPACE, "B");
+        summaryField.clear();
+        summaryField.sendKeys("Edited but canceling");
         webDriver.findElement(By.cssSelector("#edit-issue-dialog > footer > div > div > button")).click();
         webDriverWait.until(ExpectedConditions.alertIsPresent());
         Alert alert = webDriver.switchTo().alert();
@@ -107,7 +109,7 @@ public class TestEditIssue {
         String id = webDriver.findElement(By.id("key-val")).getText();
         String editedText = webDriver.findElement(By.id("summary-val")).getText();
         assertEquals(expectedIssueId, id);
-        assertEquals("Test Edit A", editedText);
+        assertNotEquals(editedText, "Edited but canceling");
     }
 
     @Test
@@ -117,7 +119,7 @@ public class TestEditIssue {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
             assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (Exception e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
     }
@@ -129,7 +131,7 @@ public class TestEditIssue {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
             assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (Exception e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
     }
@@ -141,7 +143,7 @@ public class TestEditIssue {
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
             assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (Exception e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
     }
@@ -150,10 +152,10 @@ public class TestEditIssue {
     @DisplayName("Edit issues 1 for COALA project")
     public void editCoalaIssues1() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
             assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (NoSuchElementException e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
     }
@@ -162,10 +164,10 @@ public class TestEditIssue {
     @DisplayName("Edit issues 2 for COALA project")
     public void editCoalaIssues2() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-2");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
             assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (NoSuchElementException e) {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
     }
@@ -176,10 +178,10 @@ public class TestEditIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-3");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
+            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
-        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
     }
 
     @Test
