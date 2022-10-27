@@ -1,32 +1,24 @@
-import com.codecool.App;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestBrowseProject {
 
-    Logger logger = LoggerFactory.getLogger(App.class);
     WebDriver webDriver;
-    WebElement loginButton;
-    WebElement userName;
-    WebElement password;
     Properties appProps;
-
     WebDriverWait webDriverWait;
-
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -36,7 +28,6 @@ public class TestBrowseProject {
         appProps = Util.read();
         Util.login(webDriver, appProps, webDriverWait);
     }
-
 
     @AfterEach
     void close() {
@@ -86,6 +77,7 @@ public class TestBrowseProject {
 
         assertEquals(expectedProjectKey, projectKey);
     }
+
     @Test
     @DisplayName("Browse COALA project")
     public void browseCoalaProject() {
@@ -107,7 +99,4 @@ public class TestBrowseProject {
 
         assertEquals(expectedProjectKey, projectKey);
     }
-
 }
-
-

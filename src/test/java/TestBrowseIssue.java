@@ -3,36 +3,26 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EnumSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestBrowseIssue {
 
     Logger logger = LoggerFactory.getLogger(App.class);
     WebDriver webDriver;
     Properties appProps;
-
-
-
-
     WebDriverWait webDriverWait;
-
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -42,7 +32,6 @@ public class TestBrowseIssue {
         appProps = Util.read();
         Util.login(webDriver, appProps, webDriverWait);
     }
-
 
     @AfterEach
     void close() {
@@ -82,16 +71,15 @@ public class TestBrowseIssue {
         assertEquals(expectedErrorMessage, errorMessage);
     }
 
-
     @Test
     @DisplayName("Browse issues 1 for TOUCAN project")
     public void browseToucanIssues1() {
-            webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = "TOUCAN-1";
-            String issueId = webDriver.findElement(By.id("key-val")).getText();
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "TOUCAN-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
 
-            assertEquals(expectedIssueId, issueId);
+        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -119,12 +107,12 @@ public class TestBrowseIssue {
     @Test
     @DisplayName("Browse issues 1 for COALA project")
     public void browseCoalaIssues1() {
-            webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = "COALA-1";
-            String issueId = webDriver.findElement(By.id("key-val")).getText();
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        String expectedIssueId = "COALA-1";
+        String issueId = webDriver.findElement(By.id("key-val")).getText();
 
-            assertEquals(expectedIssueId, issueId);
+        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -181,7 +169,4 @@ public class TestBrowseIssue {
 
         assertEquals(expectedIssueId, issueId);
     }
-
 }
-
-

@@ -1,9 +1,9 @@
 import com.codecool.App;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestLogin {
 
     Logger logger = LoggerFactory.getLogger(App.class);
@@ -27,9 +27,7 @@ public class TestLogin {
     WebElement userName;
     WebElement password;
     Properties appProps;
-
     WebDriverWait webDriverWait;
-
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -42,7 +40,7 @@ public class TestLogin {
         loginButton = webDriver.findElement(By.id("login"));
     }
 
-    void setupDifferentLink(){
+    void setupDifferentLink() {
         webDriver.get("https://jira-auto.codecool.metastage.net/login.jsp?");
         userName = webDriver.findElement(By.id("login-form-username"));
         password = webDriver.findElement(By.id("login-form-password"));
