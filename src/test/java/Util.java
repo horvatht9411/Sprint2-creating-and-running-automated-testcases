@@ -12,40 +12,24 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 public class Util {
-    static boolean isVisible = true;
-    private static int seconds = 15;
+    static boolean isVisible = false;
+    private final static int SECONDS = 15;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
         executor.executeScript("arguments[0].click();", webElement);
     }
 
-
-
     static Properties read() throws IOException {
         Properties appProps = new Properties();
-//        String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
         String appConfigPath = "src/main/resources/init.properties";
         appProps.load(new FileInputStream(appConfigPath));
         return appProps;
     }
 
-
-    static boolean checkModalVisibility(WebDriver webDriver){
-        var modal = webDriver.findElements(By.cssSelector("body > div.fade.modal.show > div > div"));
-        boolean exist = false;
-        if (!modal.isEmpty()){
-            if (modal.get(0).isDisplayed()) {
-                String modalHeader = webDriver.findElement(By.id("example-modal-sizes-title-lg")).getText();
-                if("Thanks for submitting the form".equals(modalHeader)) exist = true;
-            }}
-        return exist;
-    }
-
     static WebDriverWait initWebdriverWait(WebDriver webDriver){
-        return new WebDriverWait(webDriver, Duration.ofSeconds(seconds));
+        return new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
     static WebDriver setup(String url){
