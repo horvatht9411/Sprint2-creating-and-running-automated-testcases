@@ -1,10 +1,8 @@
 import com.codecool.App;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -130,7 +128,13 @@ public class TestBrowseIssue {
     @DisplayName("Browse issues 3 for COALA project")
     public void browseCoalaIssues3() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-3");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        }
+        catch (TimeoutException e)
+        {
+            Assertions.fail("Exception " + e);
+        }
         String expectedIssueId = "COALA-3";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
 
@@ -141,7 +145,13 @@ public class TestBrowseIssue {
     @DisplayName("Browse issues 1 for JETI project")
     public void browseJetiIssues1() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        }
+        catch (TimeoutException e)
+        {
+            Assertions.fail("Exception " + e);
+        }
         String expectedIssueId = "JETI-1";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
 
@@ -152,7 +162,13 @@ public class TestBrowseIssue {
     @DisplayName("Browse issues 2 for JETI project")
     public void browseJetiIssues2() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-2");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        }
+        catch (TimeoutException e)
+        {
+            Assertions.fail("Exception " + e);
+        }
         String expectedIssueId = "JETI-2";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
 
@@ -166,7 +182,13 @@ public class TestBrowseIssue {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         String expectedIssueId = "JETI-3";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
+        try {
+            assertEquals(expectedIssueId, issueId);
+        }
+        catch (TimeoutException e)
+        {
+            Assertions.fail("Exception " + e);
+        }
 
-        assertEquals(expectedIssueId, issueId);
     }
 }
