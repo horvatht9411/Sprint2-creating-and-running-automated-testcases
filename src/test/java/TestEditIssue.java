@@ -1,32 +1,24 @@
-import com.codecool.App;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestEditIssue {
 
-    Logger logger = LoggerFactory.getLogger(App.class);
     WebDriver webDriver;
     Properties appProps;
-
-
-
-
     WebDriverWait webDriverWait;
-
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -36,7 +28,6 @@ public class TestEditIssue {
         appProps = Util.read();
         Util.login(webDriver, appProps, webDriverWait);
     }
-
 
     @AfterEach
     void close() {
@@ -64,7 +55,7 @@ public class TestEditIssue {
         assertEquals("Test Edit B", editedText);
         webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
-        WebElement summaryField2 =  webDriver.findElement(By.id("summary"));
+        WebElement summaryField2 = webDriver.findElement(By.id("summary"));
         summaryField2.click();
         summaryField2.sendKeys(Keys.BACK_SPACE, "A");
         webDriver.findElement(By.id("edit-issue-submit")).click();
@@ -117,13 +108,12 @@ public class TestEditIssue {
         assertEquals("Test Edit A", editedText);
     }
 
-
     @Test
     @DisplayName("Edit issues 1 for TOUCAN project")
     public void editToucanIssues1() {
-            webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
     }
 
     @Test
@@ -189,7 +179,4 @@ public class TestEditIssue {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
     }
-
 }
-
-

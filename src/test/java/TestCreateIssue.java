@@ -1,31 +1,24 @@
-import com.codecool.App;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Properties;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@ExtendWith(TestResultLoggerExtension.class)
 public class TestCreateIssue {
 
-    Logger logger = LoggerFactory.getLogger(App.class);
     WebDriver webDriver;
     Properties appProps;
-
-
     WebDriverWait webDriverWait;
-
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -35,7 +28,6 @@ public class TestCreateIssue {
         appProps = Util.read();
         Util.login(webDriver, appProps, webDriverWait);
     }
-
 
     @AfterEach
     void close() {
