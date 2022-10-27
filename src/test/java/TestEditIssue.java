@@ -86,7 +86,7 @@ public class TestEditIssue {
 
     @Test
     @DisplayName("Cancel Issue Screen Before Updating")
-    public void cancelIssueScreenBeforeUpdating() throws InterruptedException {
+    public void cancelIssueScreenBeforeUpdating()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-2507");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         String expectedIssueId = "MTP-2507";
@@ -98,7 +98,7 @@ public class TestEditIssue {
         summaryField.click();
         summaryField.sendKeys(Keys.BACK_SPACE, "B");
         webDriver.findElement(By.cssSelector("#edit-issue-dialog > footer > div > div > button")).click();
-        webDriverWait.until(ExpectedConditions.alertIsPresent());
+//        webDriverWait.until(ExpectedConditions.alertIsPresent());
         Alert alert = webDriver.switchTo().alert();
         alert.accept();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));

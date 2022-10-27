@@ -36,16 +36,14 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Create new issue successfully")
-    public void createNewIssue() throws InterruptedException {
+    public void createNewIssue()  {
         webDriver.findElement(By.id("create_link")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-dialog")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.click();
         project.sendKeys(Keys.BACK_SPACE);
         project.sendKeys("Main Testing Project");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         String value = UUID.randomUUID().toString();
         webDriver.findElement(By.id("summary")).sendKeys(value);
         webDriver.findElement(By.id("create-issue-submit")).click();
@@ -61,19 +59,15 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Create new issue in a new tab successfully")
-    public void createNewIssueII() throws InterruptedException {
+    public void createNewIssueII()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("Main Testing Project");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         project.sendKeys("Story");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         webDriver.findElement(By.id("issue-create-submit")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary")));
         String value = UUID.randomUUID().toString();
@@ -104,16 +98,14 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Cancel creating new issue")
-    public void cancel() throws InterruptedException {
+    public void cancel()  {
         webDriver.findElement(By.id("create_link")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-dialog")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.click();
         project.sendKeys(Keys.BACK_SPACE);
         project.sendKeys("Main Testing Project");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         String value = UUID.randomUUID().toString();
         webDriver.findElement(By.id("summary")).sendKeys(value);
         webDriver.findElement(By.cssSelector("#create-issue-dialog > footer > div > div > button")).click();
@@ -128,14 +120,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check bug issue type for JETI")
-    public void jetiBugIssues() throws InterruptedException {
+    public void jetiBugIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("JETI");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -149,14 +139,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check task issue type for JETI")
-    public void jetiTaskIssues() throws InterruptedException {
+    public void jetiTaskIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("JETI");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -170,14 +158,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check story issue type for JETI")
-    public void jetiStoryIssues() throws InterruptedException {
+    public void jetiStoryIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("JETI");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -191,14 +177,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check bug issue type for TOUCAN")
-    public void toucanBugIssues() throws InterruptedException {
+    public void toucanBugIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("TOUCAN");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -212,14 +196,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check task issue type for TOUCAN")
-    public void toucanTaskIssues() throws InterruptedException {
+    public void toucanTaskIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("TOUCAN");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -233,14 +215,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check story issue type for TOUCAN")
-    public void toucanStoryIssues() throws InterruptedException {
+    public void toucanStoryIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("TOUCAN");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -255,14 +235,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check bug issue type for COALA")
-    public void coalaBugIssues() throws InterruptedException {
+    public void coalaBugIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("COALA");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -276,14 +254,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check task issue type for COALA")
-    public void coalaTaskIssues() throws InterruptedException {
+    public void coalaTaskIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("COALA");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);
@@ -297,14 +273,12 @@ public class TestCreateIssue {
 
     @Test
     @DisplayName("Check story issue type for COALA")
-    public void coalaStoryIssues() throws InterruptedException {
+    public void coalaStoryIssues()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
         WebElement project = webDriver.findElement(By.id("project-field"));
         project.sendKeys("COALA");
-        Thread.sleep(1000);
         project.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
         WebElement type = webDriver.findElement(By.id("issuetype-field"));
         type.click();
         type.sendKeys(Keys.BACK_SPACE);

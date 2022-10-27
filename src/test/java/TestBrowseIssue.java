@@ -40,7 +40,7 @@ public class TestBrowseIssue {
 
     @Test
     @DisplayName("Browse existing issue")
-    public void browseExistingIssue() throws InterruptedException {
+    public void browseExistingIssue()  {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-1");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         String expectedIssueId = "MTP-1";
