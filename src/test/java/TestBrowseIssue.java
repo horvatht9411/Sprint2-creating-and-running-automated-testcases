@@ -2,6 +2,7 @@ import com.codecool.App;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,7 +39,7 @@ public class TestBrowseIssue {
 
     @Test
     @DisplayName("Browse existing issue")
-    public void browseExistingIssue()  {
+    public void browseExistingIssue() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-1");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         String expectedIssueId = "MTP-1";
@@ -75,12 +76,12 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
-            Assertions.fail("Exception" + e);
+            String expectedIssueId = "TOUCAN-1";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+            assertEquals(expectedIssueId, issueId);
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
-        String expectedIssueId = "TOUCAN-1";
-        String issueId = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -89,12 +90,12 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-2");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
-            Assertions.fail("Exception" + e);
+            String expectedIssueId = "TOUCAN-2";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+            assertEquals(expectedIssueId, issueId);
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
-        String expectedIssueId = "TOUCAN-2";
-        String issueId = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -103,13 +104,12 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-3");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
-            Assertions.fail("Exception" + e);
+            String expectedIssueId = "TOUCAN-3";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+            assertEquals(expectedIssueId, issueId);
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
-        String expectedIssueId = "TOUCAN-3";
-        String issueId = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, issueId);
-
     }
 
     @Test
@@ -118,12 +118,12 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
-            Assertions.fail("Exception" + e);
+            String expectedIssueId = "COALA-1";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+            assertEquals(expectedIssueId, issueId);
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
-        String expectedIssueId = "COALA-1";
-        String issueId = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -132,12 +132,12 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-2");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        } catch (TimeoutException e) {
-            Assertions.fail("Exception" + e);
+            String expectedIssueId = "COALA-2";
+            String issueId = webDriver.findElement(By.id("key-val")).getText();
+            assertEquals(expectedIssueId, issueId);
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
-        String expectedIssueId = "COALA-2";
-        String issueId = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, issueId);
     }
 
     @Test
@@ -146,9 +146,7 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-3");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        }
-        catch (TimeoutException e)
-        {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
         String expectedIssueId = "COALA-3";
@@ -163,14 +161,11 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        }
-        catch (TimeoutException e)
-        {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
         String expectedIssueId = "JETI-1";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
-
         assertEquals(expectedIssueId, issueId);
     }
 
@@ -180,14 +175,11 @@ public class TestBrowseIssue {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-2");
         try {
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        }
-        catch (TimeoutException e)
-        {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
         String expectedIssueId = "JETI-2";
         String issueId = webDriver.findElement(By.id("key-val")).getText();
-
         assertEquals(expectedIssueId, issueId);
     }
 
@@ -200,9 +192,7 @@ public class TestBrowseIssue {
             String expectedIssueId = "JETI-3";
             String issueId = webDriver.findElement(By.id("key-val")).getText();
             assertEquals(expectedIssueId, issueId);
-        }
-        catch (TimeoutException e)
-        {
+        } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
 
