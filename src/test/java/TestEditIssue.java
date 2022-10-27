@@ -47,6 +47,7 @@ public class TestEditIssue {
         String newSummary = UUID.randomUUID().toString();
         summaryField.sendKeys(newSummary);
         webDriver.findElement(By.id("edit-issue-submit")).click();
+        Thread.sleep(1000);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         try {
             String editedText = webDriver.findElement(By.id("summary-val")).getText();
