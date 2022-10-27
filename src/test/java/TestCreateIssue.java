@@ -332,5 +332,3 @@ public class TestCreateIssue {
         assertEquals(expected, result);
     }
 }
-
-

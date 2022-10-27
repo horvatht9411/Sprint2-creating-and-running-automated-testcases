@@ -113,24 +113,36 @@ public class TestEditIssue {
     @DisplayName("Edit issues 1 for TOUCAN project")
     public void editToucanIssues1() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        }catch (Exception e){
+            Assertions.fail("Exception " + e);
+        }
     }
 
     @Test
     @DisplayName("Edit issues 2 for TOUCAN project")
     public void editToucanIssues2() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-2");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        }catch (Exception e){
+            Assertions.fail("Exception " + e);
+        }
     }
 
     @Test
     @DisplayName("Edit issues 3 for TOUCAN project")
     public void editToucanIssues3() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-3");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        }catch (Exception e){
+            Assertions.fail("Exception " + e);
+        }
     }
 
     @Test
@@ -197,7 +209,11 @@ public class TestEditIssue {
     @DisplayName("Edit issues 3 for JETI project")
     public void editJetiIssues3() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-3");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        try {
+            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
+            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+        }catch (Exception e){
+            Assertions.fail("Exception " + e);
+        }
     }
 }
