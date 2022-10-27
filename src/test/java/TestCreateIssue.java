@@ -66,12 +66,22 @@ public class TestCreateIssue {
     public void createNewIssueII() {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("Main Testing Project");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        project.sendKeys("Story");
-        project.sendKeys(Keys.ENTER);
+
+        try {
+            WebElement project = webDriver.findElement(By.id("project-field"));
+            project.sendKeys("Main Testing Project");
+            project.sendKeys(Keys.ENTER);
+            WebElement type = webDriver.findElement(By.id("issuetype-field"));
+            project.sendKeys("Story");
+            project.sendKeys(Keys.ENTER);
+        }catch (StaleElementReferenceException | ElementNotInteractableException e){
+            WebElement project = webDriver.findElement(By.id("project-field"));
+            project.sendKeys("Main Testing Project");
+            project.sendKeys(Keys.ENTER);
+            WebElement type = webDriver.findElement(By.id("issuetype-field"));
+            project.sendKeys("Story");
+            project.sendKeys(Keys.ENTER);
+        }
         webDriver.findElement(By.id("issue-create-submit")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary")));
         String value = UUID.randomUUID().toString();

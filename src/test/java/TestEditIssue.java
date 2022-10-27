@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,26 +43,20 @@ public class TestEditIssue {
         assertTrue(issueId.contains(expectedIssueId));
         WebElement summaryField = webDriver.findElement(By.id("summary"));
         summaryField.click();
-        summaryField.sendKeys(Keys.BACK_SPACE, "B");
+        summaryField.clear();
+        String newSummary = UUID.randomUUID().toString();
+        summaryField.sendKeys(newSummary);
         webDriver.findElement(By.id("edit-issue-submit")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         try {
             String editedText = webDriver.findElement(By.id("summary-val")).getText();
-            assertEquals("Test Edit B", editedText);
+            assertEquals(newSummary, editedText);
         }catch (StaleElementReferenceException | ElementNotInteractableException e){
             String editedText = webDriver.findElement(By.id("summary-val")).getText();
-            assertEquals("Test Edit B", editedText);
+            assertEquals(newSummary, editedText);
         }
         String id = webDriver.findElement(By.id("key-val")).getText();
-        String editedText = webDriver.findElement(By.id("summary-val")).getText();
         assertEquals(expectedIssueId, id);
-        assertEquals("Test Edit B", editedText);
-        webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
-        WebElement summaryField2 = webDriver.findElement(By.id("summary"));
-        summaryField2.click();
-        summaryField2.sendKeys(Keys.BACK_SPACE, "A");
-        webDriver.findElement(By.id("edit-issue-submit")).click();
     }
 
     @Test
