@@ -47,15 +47,13 @@ public class TestEditIssue {
         String newSummary = UUID.randomUUID().toString();
         summaryField.sendKeys(newSummary);
         webDriver.findElement(By.id("edit-issue-submit")).click();
-        Thread.sleep(1000);
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
         try {
-            String editedText = webDriver.findElement(By.id("summary-val")).getText();
-            assertEquals(newSummary, editedText);
-        }catch (StaleElementReferenceException | ElementNotInteractableException e){
-            String editedText = webDriver.findElement(By.id("summary-val")).getText();
-            assertEquals(newSummary, editedText);
+            webDriverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("summary-val"), newSummary));
+        } catch (TimeoutException | NoSuchElementException e) {
+            Assertions.fail("Exception " + e);
         }
+        String editedText = webDriver.findElement(By.id("summary-val")).getText();
+        assertEquals(newSummary, editedText);
         String id = webDriver.findElement(By.id("key-val")).getText();
         assertEquals(expectedIssueId, id);
     }
