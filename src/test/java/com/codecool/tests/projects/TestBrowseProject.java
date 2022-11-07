@@ -2,6 +2,8 @@ package com.codecool.tests.projects;
 
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
+import com.codecool.pages.LoginPage;
+import com.codecool.pages.ProjectPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,18 +21,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestBrowseProject {
-
     WebDriver webDriver;
-    Properties appProps;
     WebDriverWait webDriverWait;
+    ProjectPage projectPage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
     void init() throws IOException {
         webDriver = Util.setup(url);
         webDriverWait = Util.initWebdriverWait(webDriver);
-        appProps = Util.read();
-        Util.login(webDriver, appProps, webDriverWait);
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loginSuccessfully();
+        projectPage = new ProjectPage(webDriver);
     }
 
     @AfterEach
@@ -41,34 +43,25 @@ public class TestBrowseProject {
     @Test
     @DisplayName("Browse existing project")
     public void browseExistingProject() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/projects/MTP/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary-subnav-title")));
-        String expectedProjectKey = "MTP";
-        String projectKey = webDriver.findElement(By.cssSelector("#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(6)")).getText();
-
-        assertEquals(expectedProjectKey, projectKey);
+        webDriver.get("https://jira-auto.codecool.metastage.net/projects/MTP/summary"); //TODO read out from Excel the url
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated((By) projectPage.projectSummary));
+        assertEquals("MTP", projectPage.getProjectKey()); //TODO read out from Excel the expected projectname
     }
 
     @Test
     @DisplayName("Browse non existing project")
     public void browseNonExistingProject() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/projects/ANIMAL/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        String expectedMessage = "You can't view this project";
-        String message = webDriver.findElement(By.cssSelector("#main > h1")).getText();
-
-        assertEquals(expectedMessage, message);
+        webDriver.get("https://jira-auto.codecool.metastage.net/projects/ANIMAL/summary"); //TODO read out from Excel the url
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated((By) projectPage.errorMessage));
+        assertEquals("You can't view this project", projectPage.getErrorMessage());
     }
 
     @Test
     @DisplayName("Browse existing project without permission")
     public void browseProjectWithoutPermission() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/projects/MTP-1/summary");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("main")));
-        String expectedMessage = "You can't view this project";
-        String message = webDriver.findElement(By.cssSelector("#main > h1")).getText();
-
-        assertEquals(expectedMessage, message);
+        webDriver.get("https://jira-auto.codecool.metastage.net/projects/MTP-1/summary"); //TODO read out from Excel the url
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated((By) projectPage.errorMessage));
+        assertEquals("You can't view this project", projectPage.getErrorMessage());
     }
 
     @Test
