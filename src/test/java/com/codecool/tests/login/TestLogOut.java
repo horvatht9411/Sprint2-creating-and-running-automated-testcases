@@ -1,3 +1,9 @@
+package com.codecool.tests.login;
+
+import com.codecool.TestResultLoggerExtension;
+import com.codecool.Util;
+import com.codecool.pages.DashboardPage;
+import com.codecool.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,23 +22,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestLogOut {
 
+    private static final String ERRORMESSAGE = "Sorry, your username and password are incorrect - please try again.";
     WebDriver webDriver;
     Properties appProps;
     WebDriverWait webDriverWait;
+    LoginPage loginPage;
+    DashboardPage dashboardPage;
+
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
     void init() throws IOException {
         webDriver = Util.setup(url);
         webDriverWait = Util.initWebdriverWait(webDriver);
+        loginPage = new LoginPage(webDriver);
+        dashboardPage = new DashboardPage(webDriver);
         appProps = Util.read();
     }
 
-    private void loginSuccessfully() {
-        webDriver.findElement(By.id("login-form-username")).sendKeys(appProps.getProperty("username"));
-        webDriver.findElement(By.id("login-form-password")).sendKeys(appProps.getProperty("password"));
-        webDriver.findElement(By.id("login")).click();
-    }
 
     @AfterEach
     void close() {
@@ -42,15 +49,11 @@ public class TestLogOut {
     @Test
     @DisplayName("Successfully log out")
     public void logout() {
-        loginSuccessfully();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("header-details-user-fullname")));
-        webDriver.findElement(By.id("header-details-user-fullname")).click();
-        webDriver.findElement(By.id("log_out")).click();
-        String loginText = webDriver.findElement(By.cssSelector("#user-options > a")).getText();
-        assertEquals("Log In", loginText);
+        loginPage.loginSuccessfully();
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated((By) dashboardPage.profileMenu));
+        dashboardPage.logout();
+        assertEquals("Log In", loginPage.getSignInText());
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa");
-        String expectedMessage = "You must log in to access this page.";
-        String errorMessage = webDriver.findElement(By.cssSelector("#login-form > div.form-body > div.aui-message.aui-message-warning > p:nth-child(1)")).getText();
-        assertEquals(expectedMessage, errorMessage);
+        assertEquals("You must log in to access this page.", loginPage.getLoginWarningMessage());
     }
 }
