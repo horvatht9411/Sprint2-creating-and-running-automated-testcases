@@ -1,3 +1,5 @@
+package com.codecool;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,25 +16,25 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class Util {
-    static boolean isVisible = true;
+    static boolean isVisible = false;
     private final static int SECONDS = 15;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
         executor.executeScript("arguments[0].click();", webElement);
     }
 
-    static Properties read() throws IOException {
+    public static Properties read() throws IOException {
         Properties appProps = new Properties();
         String appConfigPath = "src/main/resources/init.properties";
         appProps.load(new FileInputStream(appConfigPath));
         return appProps;
     }
 
-    static WebDriverWait initWebdriverWait(WebDriver webDriver){
+    public static WebDriverWait initWebdriverWait(WebDriver webDriver){
         return new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
-    static WebDriver setup(String url){
+    public static WebDriver setup(String url){
         WebDriver webDriver;
         WebDriverManager.chromedriver().setup();
         if (!isVisible) {

@@ -1,3 +1,7 @@
+package com.codecool.tests.issues;
+
+import com.codecool.TestResultLoggerExtension;
+import com.codecool.Util;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;

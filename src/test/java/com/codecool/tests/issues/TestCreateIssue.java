@@ -1,4 +1,7 @@
-import org.junit.Assert;
+package com.codecool.tests.issues;
+
+import com.codecool.TestResultLoggerExtension;
+import com.codecool.Util;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;
@@ -6,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
 import java.util.UUID;
 

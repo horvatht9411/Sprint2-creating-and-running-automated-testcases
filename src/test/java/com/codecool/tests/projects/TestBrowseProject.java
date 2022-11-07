@@ -1,3 +1,7 @@
+package com.codecool.tests.projects;
+
+import com.codecool.TestResultLoggerExtension;
+import com.codecool.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
