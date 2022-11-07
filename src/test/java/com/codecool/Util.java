@@ -16,7 +16,6 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class Util {
-    static boolean isVisible = false;
     private final static int SECONDS = 15;
 
     static void executeScript(WebElement webElement, JavascriptExecutor executor) {
@@ -30,14 +29,15 @@ public class Util {
         return appProps;
     }
 
-    public static WebDriverWait initWebdriverWait(WebDriver webDriver){
+    public static WebDriverWait initWebdriverWait(WebDriver webDriver) {
         return new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
-    public static WebDriver setup(String url){
+    public static WebDriver setup(String url) throws IOException {
+        Properties appProps = read();
         WebDriver webDriver;
         WebDriverManager.chromedriver().setup();
-        if (!isVisible) {
+        if (appProps.getProperty("headless").equals("true")) {
             // Run in background
             ChromeOptions options = new ChromeOptions();
             options.addArguments("headless");
@@ -52,7 +52,7 @@ public class Util {
         return webDriver;
     }
 
-    static void login(WebDriver webDriver, Properties appProps, WebDriverWait webDriverWait){
+    static void login(WebDriver webDriver, Properties appProps, WebDriverWait webDriverWait) {
         webDriver.findElement(By.id("login-form-username")).sendKeys(appProps.getProperty("username"));
         webDriver.findElement(By.id("login-form-password")).sendKeys(appProps.getProperty("password"));
         webDriver.findElement(By.id("login")).click();

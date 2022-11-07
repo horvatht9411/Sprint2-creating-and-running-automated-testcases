@@ -1,14 +1,19 @@
 package com.codecool.pages;
 
+import com.codecool.Util;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+import java.util.Properties;
+
 public class LoginPage {
 
     WebDriver webDriver;
+    Properties appProps = Util.read();
 
     @FindBy(id = "login-form-username")
     WebElement userName;
@@ -32,35 +37,40 @@ public class LoginPage {
     public WebElement loginWarning;
 
 
-    public LoginPage(WebDriver webDriver) {
+    public LoginPage(WebDriver webDriver) throws IOException {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
 
-    public void login(String userName, String password){
+    public void login(String userName, String password) {
         this.userName.sendKeys(userName);
         this.password.sendKeys(password);
         this.loginButton.click();
     }
 
-    public void loginUsingEnterKey(String userName, String password){
+    public void loginUsingEnterKey(String userName, String password) {
         this.userName.sendKeys(userName);
         this.password.sendKeys(password);
         this.password.sendKeys(Keys.ENTER);
     }
 
-
-    public void loginSuccessfully(){
-        this.userName.sendKeys("Correct");
-        this.password.sendKeys("password");
+    public void loginSuccessfully() {
+        this.userName.sendKeys(appProps.getProperty("username"));
+        this.password.sendKeys(appProps.getProperty("password"));
         this.loginButtonTwo.click();
     }
 
-    public String getErrorMessage(){ return errorMessage.getText(); }
+    public String getErrorMessage() {
+        return errorMessage.getText();
+    }
 
-    public String getSignInText(){ return signIn.getText(); }
+    public String getSignInText() {
+        return signIn.getText();
+    }
 
-    public String getLoginWarningMessage() { return loginWarning.getText(); }
+    public String getLoginWarningMessage() {
+        return loginWarning.getText();
+    }
 }
 
 
