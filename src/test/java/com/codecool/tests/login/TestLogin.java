@@ -84,7 +84,6 @@ public class TestLogin {
 
     }
 
-
     @Test
     @DisplayName("Wrong password")
     public void wrongPassword() {
