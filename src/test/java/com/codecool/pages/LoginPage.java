@@ -57,7 +57,7 @@ public class LoginPage {
     public void loginSuccessfully() {
         this.userName.sendKeys(appProps.getProperty("username"));
         this.password.sendKeys(appProps.getProperty("password"));
-        this.loginButtonTwo.click();
+        this.loginButton.click();
     }
 
     public String getErrorMessage() {

@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestLogOut {
 
-    private static final String ERRORMESSAGE = "Sorry, your username and password are incorrect - please try again.";
     WebDriver webDriver;
     Properties appProps;
     WebDriverWait webDriverWait;

@@ -52,7 +52,7 @@ public class Util {
         return webDriver;
     }
 
-    static void login(WebDriver webDriver, Properties appProps, WebDriverWait webDriverWait) {
+    public static void login(WebDriver webDriver, Properties appProps, WebDriverWait webDriverWait) {
         webDriver.findElement(By.id("login-form-username")).sendKeys(appProps.getProperty("username"));
         webDriver.findElement(By.id("login-form-password")).sendKeys(appProps.getProperty("password"));
         webDriver.findElement(By.id("login")).click();
