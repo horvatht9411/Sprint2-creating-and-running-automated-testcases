@@ -16,7 +16,7 @@ public class ComaSVReader {
         try (CSVReader csvReader = new CSVReader(new FileReader("src/test/resources/" + fileName));) {
             String[] values = null;
             while ((values = csvReader.readNext()) != null) {
-                records.add(Arrays.asList(values));
+                records.add(Arrays.asList(values[0].split(";")));
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
