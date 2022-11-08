@@ -10,13 +10,13 @@ public class DashboardPage {
 
     WebDriver webDriver;
 
-    @FindBy(id = "header-details-user-fullname")
+    @FindBy(xpath = "//*[@id='header-details-user-fullname']")
     public WebElement profileMenu;
 
-    @FindBy(id = "log_out")
+    @FindBy(xpath = "//*[@id='log_out']")
     public WebElement logOutButton;
 
-    @FindBy(id = "view_profile")
+    @FindBy(xpath = "//*[@id='view_profile']")
     public WebElement viewProfileName;
 
 

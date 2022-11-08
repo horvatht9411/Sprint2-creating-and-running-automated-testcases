@@ -10,13 +10,13 @@ public class Login2Page {
     WebDriver webDriver;
 
 
-    @FindBy(id = "login-form-username")
+    @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
 
-    @FindBy(id = "login-form-password")
+    @FindBy(xpath = "//*[@id='login-form-password']")
     WebElement password;
 
-    @FindBy(id = "login-form-submit")
+    @FindBy(xpath = "//*[@id='login-form-submit']")
     WebElement loginButton;
 
 

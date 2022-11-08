@@ -10,7 +10,7 @@ public class UserPage {
 
     WebDriver webDriver;
 
-    @FindBy(id = "up-d-username")
+    @FindBy(xpath = "//*[@id='up-d-username']")
     public WebElement upDUsernameDd;
 
 
