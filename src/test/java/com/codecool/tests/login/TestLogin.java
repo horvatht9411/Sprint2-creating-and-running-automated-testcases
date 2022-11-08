@@ -91,11 +91,18 @@ public class TestLogin {
 
     }
 
-    @ParameterizedTest
-    @DisplayName("Incorrect username and password")
-    @CsvFileSource(resources = "/login.csv", numLinesToSkip = 1, delimiter = ';')
-    public void wrongCredentials(String description, String userName, String password) {
-        loginPage.login(userName, password);
+    @Test
+    @DisplayName("Incorrect Username")
+    public void wrongUsername() {
+        loginPage.login("userName", "password");
+        assertEquals(ERRORMESSAGE, getErrorMessage());
+        loginPage.loginSuccessfully();
+    }
+
+    @Test
+    @DisplayName("Incorrect Password")
+    public void wrongPassword() {
+        loginPage.login(appProps.getProperty("username"), "password");
         assertEquals(ERRORMESSAGE, getErrorMessage());
         loginPage.loginSuccessfully();
     }
@@ -103,7 +110,7 @@ public class TestLogin {
     @Test
     @DisplayName("Login with Enter key")
     public void loginEnter() {
-        loginPage.login(appProps.getProperty("username"), appProps.getProperty("password"));
+        loginPage.loginUsingEnterKey(appProps.getProperty("username"), appProps.getProperty("password"));
         assertTrue(checkLogOutButtonIsVisible());
         assertEquals(appProps.getProperty("username"), getLoggedInUsername());
     }
