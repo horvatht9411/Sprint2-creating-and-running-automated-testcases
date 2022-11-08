@@ -8,13 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 public class ProjectPage {
     WebDriver webDriver;
 
-    @FindBy(id = "summary-subnav-title")
-    public WebElement projectSummary;
-
-    @FindBy(css = "#summary-body > div > div.aui-item.project-meta-column > dl > dd:nth-child(6)")
+    @FindBy(xpath = "//*[text()='Key']/following::*")
     public WebElement projectKey;
 
-    @FindBy(css = "#main > h1")
+    @FindBy(xpath = "//*[@id='main']/child::h1")
     public WebElement errorMessage;
 
     public ProjectPage(WebDriver webDriver) {

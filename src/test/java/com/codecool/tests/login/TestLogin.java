@@ -94,7 +94,7 @@ public class TestLogin {
     @ParameterizedTest
     @DisplayName("Incorrect username and password")
     @CsvFileSource(resources = "/login.csv", numLinesToSkip = 1, delimiter = ';')
-    public void wrongCredentials(String message, String userName, String password) {
+    public void wrongCredentials(String description, String userName, String password) {
         loginPage.login(userName, password);
         assertEquals(ERRORMESSAGE, getErrorMessage());
         loginPage.loginSuccessfully();
