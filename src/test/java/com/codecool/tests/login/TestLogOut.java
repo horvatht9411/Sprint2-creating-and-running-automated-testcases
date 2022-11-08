@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -39,7 +38,6 @@ public class TestLogOut {
         appProps = Util.read();
     }
 
-
     @AfterEach
     void close() {
         webDriver.quit();
@@ -49,7 +47,7 @@ public class TestLogOut {
     @DisplayName("Successfully log out")
     public void logout() {
         loginPage.loginSuccessfully();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated((By) dashboardPage.profileMenu));
+        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         dashboardPage.logout();
         assertEquals("Log In", loginPage.getSignInText());
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa");
