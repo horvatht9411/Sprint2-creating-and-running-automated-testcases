@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Properties;
 
 public class LoginPage {
@@ -16,25 +15,22 @@ public class LoginPage {
     WebDriver webDriver;
     Properties appProps = Util.read();
 
-    @FindBy(id = "login-form-username")
+    @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
 
-    @FindBy(id = "login-form-password")
+    @FindBy(xpath = "//*[@id='login-form-password']")
     WebElement password;
 
-    @FindBy(id = "login")
+    @FindBy(xpath = "//*[@id='login']")
     WebElement loginButton;
 
-    @FindBy(id = "login-form-submit")
-    WebElement loginButtonTwo;
-
-    @FindBy(id = "usernameerror")
+    @FindBy(xpath = "//*[@id='usernameerror']")
     public WebElement errorMessage;
 
-    @FindBy(css = "#user-options > a")
+    @FindBy(xpath = "//*[@id='user-options']/child::a")
     public WebElement signIn;
 
-    @FindBy(css = "#login-form > div.form-body > div.aui-message.aui-message-warning > p:nth-child(1)")
+    @FindBy(xpath = "//*[@id='login-form']/descendant::p")
     public WebElement loginWarning;
 
 
