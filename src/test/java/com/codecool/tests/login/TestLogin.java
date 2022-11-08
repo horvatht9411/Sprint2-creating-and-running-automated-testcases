@@ -1,29 +1,26 @@
 package com.codecool.tests.login;
 
 import com.codecool.ComaSVReader;
-import com.codecool.ReadFromExcel;
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
 import com.codecool.pages.DashboardPage;
 import com.codecool.pages.Login2Page;
 import com.codecool.pages.LoginPage;
 import com.codecool.pages.UserPage;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.By;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -47,14 +44,12 @@ public class TestLogin {
         loginPage = new LoginPage(webDriver);
         appProps = Util.read();
         ComaSVReader reader = new ComaSVReader();
-        dataSource  = reader.readFromCsv("login.csv");
+        dataSource = reader.readFromCsv("login.csv");
     }
 
     void setupDifferentLink() {
         webDriver.get("https://jira-auto.codecool.metastage.net/login.jsp?");
     }
-
-
 
     private String getLoggedInUsername() {
         DashboardPage dashboardPage = new DashboardPage(webDriver);
@@ -83,7 +78,6 @@ public class TestLogin {
     @Test
     @DisplayName("Correct username and password")
     public void correctCredential() {
-        System.out.println(dataSource.get(0).get(0));
         loginPage.login(appProps.getProperty("username"), appProps.getProperty("password"));
         assertTrue(checkLogOutButtonIsVisible());
         assertEquals(appProps.getProperty("username"), getLoggedInUsername());
@@ -98,20 +92,13 @@ public class TestLogin {
     }
 
     @ParameterizedTest
-    @MethodSource(value = "initData")
-    public void wrongCredential(String userName, String password) {
+    @DisplayName("Incorrect username and password")
+    @CsvFileSource(resources = "/login.csv", numLinesToSkip = 1, delimiter = ';')
+    public void wrongCredentials(String message, String userName, String password) {
         loginPage.login(userName, password);
         assertEquals(ERRORMESSAGE, getErrorMessage());
         loginPage.loginSuccessfully();
     }
-
-//    @Test
-//    @DisplayName("Wrong Username")
-//    public void wrongUsername() {
-//        loginPage.login("Wrong", "Wrong");
-//        assertEquals(ERRORMESSAGE, getErrorMessage());
-//        loginPage.loginSuccessfully();
-//    }
 
     @Test
     @DisplayName("Login with Enter key")
@@ -123,13 +110,11 @@ public class TestLogin {
 
     @Test
     @DisplayName("Correct username and password different link")
-    public void correctCredentialII() throws IOException {
+    public void correctCredentialII() {
         setupDifferentLink();
         Login2Page login2Page = new Login2Page(webDriver);
         login2Page.login(appProps.getProperty("username"), appProps.getProperty("password"));
         assertTrue(checkLogOutButtonIsVisible());
         assertEquals(appProps.getProperty("username"), getLoggedInUsername());
     }
-
-
 }
