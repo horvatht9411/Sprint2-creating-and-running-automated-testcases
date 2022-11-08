@@ -1,2 +1,3 @@
-automation34;password
-automationX;password
+name;userName;password
+wrong password;automation34;password
+wrong username;automationX;password
