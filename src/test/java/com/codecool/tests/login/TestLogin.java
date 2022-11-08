@@ -1,5 +1,6 @@
 package com.codecool.tests.login;
 
+import com.codecool.ComaSVReader;
 import com.codecool.ReadFromExcel;
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
@@ -20,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.stream.Stream;
 
@@ -36,25 +38,22 @@ public class TestLogin {
     LoginPage loginPage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
+    List<List<String>> dataSource;
+
     @BeforeEach
     void init() throws IOException {
         webDriver = Util.setup(url);
         webDriverWait = Util.initWebdriverWait(webDriver);
         loginPage = new LoginPage(webDriver);
         appProps = Util.read();
+        ComaSVReader reader = new ComaSVReader();
+        dataSource  = reader.readFromCsv("login.csv");
     }
 
     void setupDifferentLink() {
         webDriver.get("https://jira-auto.codecool.metastage.net/login.jsp?");
     }
 
-    private static String[][] readDataFromExcel() {
-        return ReadFromExcel.get("Login");
-    }
-
-    static Stream<Arguments> initData() {
-        return Arrays.stream(readDataFromExcel()).map(row -> Arguments.of(Named.of(row[0], row[1]), row[2]));
-    }
 
 
     private String getLoggedInUsername() {
@@ -84,6 +83,7 @@ public class TestLogin {
     @Test
     @DisplayName("Correct username and password")
     public void correctCredential() {
+        System.out.println(dataSource.get(0).get(0));
         loginPage.login(appProps.getProperty("username"), appProps.getProperty("password"));
         assertTrue(checkLogOutButtonIsVisible());
         assertEquals(appProps.getProperty("username"), getLoggedInUsername());
