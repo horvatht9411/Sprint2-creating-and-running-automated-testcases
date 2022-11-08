@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestCreateIssue {
 
+    //TODO: refactor DDT and POM
+
     WebDriver webDriver;
     Properties appProps;
     WebDriverWait webDriverWait;

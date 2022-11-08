@@ -2,8 +2,14 @@ package com.codecool.tests.issues;
 
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
+import com.codecool.pages.DashboardPage;
+import com.codecool.pages.IssuePage;
+import com.codecool.pages.LoginPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,16 +24,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestEditIssue {
 
     WebDriver webDriver;
-    Properties appProps;
     WebDriverWait webDriverWait;
+    IssuePage issuePage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
     void init() throws IOException {
         webDriver = Util.setup(url);
         webDriverWait = Util.initWebdriverWait(webDriver);
-        appProps = Util.read();
-        Util.login(webDriver, appProps, webDriverWait);
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loginSuccessfully();
+        DashboardPage dashboardPage = new DashboardPage(webDriver);
+        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
+        issuePage = new IssuePage(webDriver);
     }
 
     @AfterEach
@@ -35,184 +44,64 @@ public class TestEditIssue {
         webDriver.quit();
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Edit Issue Successfully")
-    public void editIssueSuccessfully() throws InterruptedException {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-2507");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        String expectedIssueId = "MTP-2507";
-        webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
-        String issueId = webDriver.findElement(By.cssSelector("#edit-issue-dialog > header > h2\n")).getText();
-        assertTrue(issueId.contains(expectedIssueId));
-        WebElement summaryField = webDriver.findElement(By.id("summary"));
-        summaryField.click();
-        summaryField.clear();
-        String newSummary = UUID.randomUUID().toString();
-        summaryField.sendKeys(newSummary);
-        webDriver.findElement(By.id("edit-issue-submit")).click();
+    @ValueSource(strings = "MTP-2507")
+    public void editIssueSuccessfully(String issueName){
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+        issuePage.openEditIssueModal();
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.editIssueDialog));
+        assertTrue(issuePage.editIssueDialogHeaderText().contains(issueName));
+        String newSummary = issuePage.editIssueSuccessfully();
         try {
-            webDriverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.id("summary-val"), newSummary));
+            webDriverWait.until(ExpectedConditions.textToBePresentInElement(issuePage.summary, newSummary));
         } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
-        String editedText = webDriver.findElement(By.id("summary-val")).getText();
-        assertEquals(newSummary, editedText);
-        String id = webDriver.findElement(By.id("key-val")).getText();
-        assertEquals(expectedIssueId, id);
+        assertEquals(newSummary, issuePage.getSummaryText());
+        assertEquals(issueName, issuePage.getIssueIdText());
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("Edit Issue With Blank Fields")
-    public void editIssueWithBlankFields() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-2507");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        String expectedIssueId = "MTP-2507";
-        webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
-        String issueId = webDriver.findElement(By.cssSelector("#edit-issue-dialog > header > h2\n")).getText();
-        assertTrue(issueId.contains(expectedIssueId));
-        WebElement summaryField = webDriver.findElement(By.id("summary"));
-        summaryField.click();
-        summaryField.clear();
-        webDriver.findElement(By.id("edit-issue-submit")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#dialog-form > div > div > div:nth-child(1) > div")));
-        String errorMessage = webDriver.findElement(By.cssSelector("#dialog-form > div > div > div:nth-child(1) > div")).getText();
-        String expectedErrorMessage = "You must specify a summary of the issue.";
-        assertEquals(errorMessage, expectedErrorMessage);
-        webDriver.findElement(By.cssSelector("#edit-issue-dialog > footer > div > div > button")).click();
-        Alert alert = webDriver.switchTo().alert();
-        alert.accept();
+    @ValueSource(strings = "MTP-2507")
+    public void editIssueWithBlankFields(String issueName) {
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+        issuePage.openEditIssueModal();
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.editIssueDialog));
+        assertTrue(issuePage.editIssueDialogHeaderText().contains(issueName));
+        issuePage.leaveSummaryEmpty();
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.alertBox));
+        assertEquals("You must specify a summary of the issue.", issuePage.getErrorBoxTest());
+        issuePage.cancelEditIssueModal();
     }
 
-    @Test
-    @DisplayName("Cancel Issue Screen Before Updating")
-    public void cancelIssueScreenBeforeUpdating() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-2507");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        String expectedIssueId = "MTP-2507";
-        webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("edit-issue-dialog")));
-        String issueId = webDriver.findElement(By.cssSelector("#edit-issue-dialog > header > h2\n")).getText();
-        assertTrue(issueId.contains(expectedIssueId));
-        WebElement summaryField = webDriver.findElement(By.id("summary"));
-        summaryField.click();
-        summaryField.clear();
-        summaryField.sendKeys("Edited but canceling");
-        webDriver.findElement(By.cssSelector("#edit-issue-dialog > footer > div > div > button")).click();
-        webDriverWait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = webDriver.switchTo().alert();
-        alert.accept();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-        String id = webDriver.findElement(By.id("key-val")).getText();
-        String editedText = webDriver.findElement(By.id("summary-val")).getText();
-        assertEquals(expectedIssueId, id);
-        assertNotEquals(editedText, "Edited but canceling");
+    @ParameterizedTest
+    @DisplayName("Cancel Edit Issue")
+    @ValueSource(strings = "MTP-2507")
+    public void cancelIssueScreenBeforeUpdating(String issueName) {
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+        issuePage.openEditIssueModal();
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.editIssueDialog));
+        assertTrue(issuePage.editIssueDialogHeaderText().contains(issueName));
+        String canceledSummary = issuePage.cancelEditIssue();
+        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+        assertEquals(issueName, issuePage.getIssueIdText());
+        assertNotEquals(canceledSummary, issuePage.getSummaryText());
     }
 
-    @Test
-    @DisplayName("Edit issues 1 for TOUCAN project")
-    public void editToucanIssues1() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
+    @ParameterizedTest
+    @DisplayName("Edit Button Visibility")
+    @CsvFileSource(resources = "/editIssue.csv", numLinesToSkip = 1, delimiter = ';')
+    public void editIssues(String description, String issueName) {
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 2 for TOUCAN project")
-    public void editToucanIssues2() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-2");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 3 for TOUCAN project")
-    public void editToucanIssues3() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-3");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 1 for COALA project")
-    public void editCoalaIssues1() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 2 for COALA project")
-    public void editCoalaIssues2() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-2");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 3 for COALA project")
-    public void editCoalaIssues3() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-3");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("edit issues 1 for JETI project")
-    public void editJetiIssues1() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 2 for JETI project")
-    public void editJetiIssues2() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-2");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Edit issues 3 for JETI project")
-    public void editJetiIssues3() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-3");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            assertTrue(webDriver.findElement(By.cssSelector("#edit-issue > span.trigger-label")).isDisplayed());
+            webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+            assertEquals(issueName, issuePage.getIssueIdText());
+            assertTrue(issuePage.editIssueButtonIsDisplayed());
         } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
