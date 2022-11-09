@@ -1,4 +1,4 @@
-package com.codecool.jira.pages;
+package com.codecool.jira.issuePages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;

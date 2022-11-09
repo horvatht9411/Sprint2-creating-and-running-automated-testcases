@@ -1,10 +1,10 @@
-package com.codecool.jira.tests.issues;
+package com.codecool.jira.issues;
 
 import com.codecool.jira.TestResultLoggerExtension;
 import com.codecool.jira.Util;
-import com.codecool.jira.pages.DashboardPage;
-import com.codecool.jira.pages.IssueDisplayPage;
-import com.codecool.jira.pages.LoginPage;
+import com.codecool.jira.issuePages.IssueDisplayPage;
+import com.codecool.jira.loginPages.DashboardPage;
+import com.codecool.jira.loginPages.LoginPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

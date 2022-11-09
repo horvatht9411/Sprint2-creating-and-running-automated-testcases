@@ -1,4 +1,4 @@
-package com.codecool.jira.pages;
+package com.codecool.jira.loginPages;
 
 import com.codecool.jira.Util;
 import org.openqa.selenium.Keys;
