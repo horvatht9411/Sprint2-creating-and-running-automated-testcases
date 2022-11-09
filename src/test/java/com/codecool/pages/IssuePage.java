@@ -43,10 +43,10 @@ public class IssuePage {
     @FindBy(xpath = "//*[@id='edit-issue-dialog']/header/h2")
     public WebElement editIssueDialogHeader;
 
-    @FindBy(xpath = "//*[@id='dialog-form']/div/div/div[1]/div")
+    @FindBy(xpath = "//*[@id='summary']/following::*")
     public WebElement errorBox;
 
-    @FindBy(xpath = "//*[@id='edit-issue-dialog']/footer/div/div/button")
+    @FindBy(xpath = "//*[@id='edit-issue-submit']/following::*")
     public WebElement cancelButton;
 
 
