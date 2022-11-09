@@ -7,13 +7,11 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -59,7 +57,7 @@ public class TestCreateIssue {
 
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.newIssueLink));
         createIssueModalPage.clickOnNewIssueLink();
-        String actualSummaryText = issueDisplayPage.getSummaryText();
+        String actualSummaryText = issueDisplayPage.getSummaryDisplayText(webDriverWait);
         assertEquals(expectedSummaryText, actualSummaryText);
 
         issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
@@ -74,12 +72,10 @@ public class TestCreateIssue {
         createIssueLinkPage.fillUpIssueType(issueType);
         createIssueLinkPage.clickNextButton();
 
-        createIssueLinkPage.fillUpSummaryField(webDriverWait);
-        String expectedSummaryText = createIssueLinkPage.getSummaryText();
+        String expectedSummaryText = createIssueLinkPage.fillUpSummaryField(webDriverWait);
         createIssueLinkPage.submitNewIssue();
 
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.summary));
-        String actualSummaryText = issueDisplayPage.getSummaryText();
+        String actualSummaryText = issueDisplayPage.getSummaryDisplayText(webDriverWait);
         assertEquals(expectedSummaryText, actualSummaryText);
 
         issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
