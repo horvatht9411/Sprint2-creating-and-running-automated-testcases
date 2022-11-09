@@ -127,7 +127,7 @@ public class IssueDisplayPage {
         return newSummary;
     }
 
-    public String getSummaryText(WebDriverWait wait) {
+    public String getSummaryDisplayText(WebDriverWait wait) {
         wait.until(ExpectedConditions.visibilityOf(summaryDisplay));
         return summaryDisplay.getText();
     }
