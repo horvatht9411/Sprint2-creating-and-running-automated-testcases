@@ -1,6 +1,5 @@
 package com.codecool.tests.login;
 
-import com.codecool.ComaSVReader;
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
 import com.codecool.pages.DashboardPage;
@@ -41,8 +40,6 @@ public class TestLogin {
         webDriverWait = Util.initWebdriverWait(webDriver);
         loginPage = new LoginPage(webDriver);
         appProps = Util.read();
-        ComaSVReader reader = new ComaSVReader();
-        dataSource = reader.readFromCsv("login.csv");
     }
 
     void setupDifferentLink() {
