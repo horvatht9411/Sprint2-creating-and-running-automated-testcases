@@ -60,13 +60,11 @@ public class CreateIssueLinkPage {
         return value;
     }
 
-    public String getSummaryText() {
-        return summary.getText();
-    }
-
     public void submitNewIssue() {
         createNewIssueButton.click();
     }
 
-    public String getSelectedIssueTypeText() {return selectedIssueType.getText() ;}
+    public String getSelectedIssueTypeText() {
+        return selectedIssueType.getText();
+    }
 }
