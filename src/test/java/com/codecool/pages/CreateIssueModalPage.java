@@ -26,7 +26,7 @@ public class CreateIssueModalPage {
     @FindBy(xpath = "//*[@id='aui-flag-container']//a")
     public WebElement newIssueLink;
 
-    @FindBy(xpath = "//*[@id='summary']/following::*")
+    @FindBy(xpath = "//*[@id='summary']/following::div[@class='error']")
     public WebElement warningMessageToFillSummary;
 
     @FindBy(xpath = "//*[@id='create-issue-submit']/following::*")
@@ -56,6 +56,10 @@ public class CreateIssueModalPage {
         return summary.getText();
     }
 
+    public void waitForModal(WebDriverWait wait) {
+        wait.until(ExpectedConditions.elementToBeClickable(issueModal));
+    }
+
     public void submitNewIssue() {
         submitButton.click();
     }
@@ -63,7 +67,6 @@ public class CreateIssueModalPage {
     public void clickOnNewIssueLink() {
         newIssueLink.click();
     }
-
 
     public String getWarningMessageToFillSummary() {
         return warningMessageToFillSummary.getText();
