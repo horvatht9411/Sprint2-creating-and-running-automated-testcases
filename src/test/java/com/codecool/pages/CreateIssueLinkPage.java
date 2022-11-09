@@ -53,10 +53,11 @@ public class CreateIssueLinkPage {
         nextButton.click();
     }
 
-    public void fillUpSummaryField(WebDriverWait wait) {
+    public String fillUpSummaryField(WebDriverWait wait) {
         wait.until(ExpectedConditions.visibilityOf(summary));
         String value = UUID.randomUUID().toString();
         summary.sendKeys(value);
+        return value;
     }
 
     public String getSummaryText() {
