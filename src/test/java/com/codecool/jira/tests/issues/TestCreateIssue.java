@@ -1,8 +1,8 @@
-package com.codecool.tests.issues;
+package com.codecool.jira.tests.issues;
 
-import com.codecool.TestResultLoggerExtension;
-import com.codecool.Util;
-import com.codecool.pages.*;
+import com.codecool.jira.TestResultLoggerExtension;
+import com.codecool.jira.Util;
+import com.codecool.jira.pages.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

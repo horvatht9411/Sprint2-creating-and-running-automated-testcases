@@ -1,11 +1,11 @@
-package com.codecool.tests.login;
+package com.codecool.jira.tests.login;
 
-import com.codecool.TestResultLoggerExtension;
-import com.codecool.Util;
-import com.codecool.pages.DashboardPage;
-import com.codecool.pages.Login2Page;
-import com.codecool.pages.LoginPage;
-import com.codecool.pages.UserPage;
+import com.codecool.jira.TestResultLoggerExtension;
+import com.codecool.jira.Util;
+import com.codecool.jira.pages.DashboardPage;
+import com.codecool.jira.pages.Login2Page;
+import com.codecool.jira.pages.LoginPage;
+import com.codecool.jira.pages.UserPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

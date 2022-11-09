@@ -1,4 +1,4 @@
-package com.codecool.pages;
+package com.codecool.jira.pages;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
