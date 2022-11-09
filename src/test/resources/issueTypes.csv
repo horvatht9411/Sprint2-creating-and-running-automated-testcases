@@ -1,10 +1,10 @@
-description;projectKey
-Check bug issue type for JETI;JETI
-Check task issue type for JETI;JETI
-Check story issue type for JETI;JETI
-Check bug issue type for TOUCAN;TOUCAN
-Check task issue type for TOUCAN;TOUCAN
-Check story issue type for TOUCAN;TOUCAN
-Check bug issue type for COALA;COALA
-Check task issue type for COALA;COALA
-Check story issue type for COALA;COALA
+description;projectKey;issueType
+Check bug issue type for JETI;JETI;Bug
+Check task issue type for JETI;JETI;Task
+Check story issue type for JETI;JETI;Story
+Check bug issue type for TOUCAN;TOUCAN;Bug
+Check task issue type for TOUCAN;TOUCAN;Task
+Check story issue type for TOUCAN;TOUCAN;Story
+Check bug issue type for COALA;COALA;Bug
+Check task issue type for COALA;COALA;Task
+Check story issue type for COALA;COALA;Story

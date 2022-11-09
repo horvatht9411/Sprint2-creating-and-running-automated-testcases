@@ -26,6 +26,8 @@ public class TestCreateIssue {
     CreateIssueModalPage createIssueModalPage;
     CreateIssueLinkPage createIssueLinkPage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
+    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
+    String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
 
     @BeforeEach
     void init() throws IOException {
@@ -52,8 +54,7 @@ public class TestCreateIssue {
         dashboardPage.createNewIssue();
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
-        createIssueModalPage.fillUpSummary();
-        String expectedSummaryText = createIssueModalPage.getSummaryText();
+        String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
         createIssueModalPage.submitNewIssue();
 
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.newIssueLink));
@@ -61,14 +62,14 @@ public class TestCreateIssue {
         String actualSummaryText = issueDisplayPage.getSummaryText();
         assertEquals(expectedSummaryText, actualSummaryText);
 
-        createIssueModalPage.deleteNewlyCreatedIssue(webDriverWait);
+        issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue in a new tab successfully")
     public void createNewIssueII(String projectName, String issueType) {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
+        webDriver.get(CREATE_ISSUE_URL);
         createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
         createIssueLinkPage.fillUpIssueType(issueType);
         createIssueLinkPage.clickNextButton();
@@ -81,7 +82,7 @@ public class TestCreateIssue {
         String actualSummaryText = issueDisplayPage.getSummaryText();
         assertEquals(expectedSummaryText, actualSummaryText);
 
-        createIssueModalPage.deleteNewlyCreatedIssue(webDriverWait);
+        issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
     }
 
     @Test
@@ -105,8 +106,7 @@ public class TestCreateIssue {
         dashboardPage.createNewIssue();
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
-        createIssueModalPage.fillUpSummary();
-        String expectedSummaryText = createIssueModalPage.getSummaryText();
+        String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
         createIssueModalPage.closeCreateModal(webDriverWait);
 
         webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22%s%22", expectedSummaryText));
@@ -115,267 +115,41 @@ public class TestCreateIssue {
         assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
-    @Test
-    @DisplayName("Check bug issue type for JETI")
-    public void jetiBugIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("JETI");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
+    @ParameterizedTest
+    @CsvFileSource(resources = "/issueTypes.csv", numLinesToSkip = 1, delimiter = ';')
+    @DisplayName("Check issue types for existing projects")
+    public void issueTypes(String projectName, String issueType) {
+        webDriver.get(CREATE_ISSUE_URL);
+        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueLinkPage.project));
+        createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
         try {
-            type.click();
+            createIssueLinkPage.fillUpIssueType(issueType);
         } catch (ElementClickInterceptedException e) {
             Assertions.fail("Exception " + e);
         }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Bug";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check task issue type for JETI")
-    public void jetiTaskIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("JETI");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Task";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check story issue type for JETI")
-    public void jetiStoryIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("JETI");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Story";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check bug issue type for TOUCAN")
-    public void toucanBugIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("TOUCAN");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Bug";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check task issue type for TOUCAN")
-    public void toucanTaskIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("TOUCAN");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Task";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check story issue type for TOUCAN")
-    public void toucanStoryIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("TOUCAN");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Story";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
+        createIssueLinkPage.clickNextButton();
+        String actualIssueType = createIssueLinkPage.getSelectedIssueTypeText();
+        assertEquals(issueType, actualIssueType);
     }
 
 
-    @Test
-    @DisplayName("Check bug issue type for COALA")
-    public void coalaBugIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("COALA");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
+    @ParameterizedTest
+    @CsvFileSource(resources = "/issueTypes.csv", numLinesToSkip = 1, delimiter = ';')
+    @DisplayName("Check subtask visibility for projects")
+    public void createJetiSubtask(String description, String projectName, String issueId) {
+        webDriver.get(String.format(BROWSE_ISSUE_URL, issueId));
         try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Bug";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check task issue type for COALA")
-    public void coalaTaskIssues() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("COALA");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Task";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Check story issue type for COALA")
-    public void coalaStoryIssues() throws InterruptedException {
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.sendKeys("COALA");
-        project.sendKeys(Keys.ENTER);
-        WebElement type = webDriver.findElement(By.id("issuetype-field"));
-        try {
-            type.click();
-        } catch (ElementClickInterceptedException e) {
-            Assertions.fail("Exception " + e);
-        }
-        type.sendKeys(Keys.BACK_SPACE);
-        String expected = "Story";
-        type.sendKeys(expected);
-        type.sendKeys(Keys.ENTER);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("issue-create-issue-type")).getText();
-        assertEquals(expected, result);
-    }
-
-    @Test
-    @DisplayName("Create subtask for JETI project")
-    public void createJetiSubtask() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/JETI-1");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = "JETI-1";
-            String issueId = webDriver.findElement(By.id("key-val")).getText();
-            assertEquals(expectedIssueId, issueId);
-            webDriver.findElement(By.id("opsbar-operations_more")).click();
+            webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
+            String actualIssueId = issueDisplayPage.getIssueIdText();
+            assertEquals(issueId, actualIssueId);
+            issueDisplayPage.openMoreMenu();
             String expected = "Create sub-task";
-            String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
-            assertEquals(expected, result);
+            String actual = issueDisplayPage.getCreateSubTaskText();
+            assertEquals(expected, actual);
         } catch (NoSuchElementException | TimeoutException e) {
             Assertions.fail("Exception " + e);
         }
 
     }
 
-    @Test
-    @DisplayName("Create subtask for COALA project")
-    public void createCoalaSubtask() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/COALA-1");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = "COALA-1";
-            String issueId = webDriver.findElement(By.id("key-val")).getText();
-            assertEquals(expectedIssueId, issueId);
-            webDriver.findElement(By.id("opsbar-operations_more")).click();
-            String expected = "Create sub-task";
-            String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
-            assertEquals(expected, result);
-        } catch (NoSuchElementException | TimeoutException e) {
-            Assertions.fail("Exception " + e);
-        }
-    }
-
-    @Test
-    @DisplayName("Create subtask for TOUCAN project")
-    public void createToucanSubtask() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/browse/TOUCAN-1");
-        try {
-            webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("key-val")));
-            String expectedIssueId = "TOUCAN-1";
-            String issueId = webDriver.findElement(By.id("key-val")).getText();
-            assertEquals(expectedIssueId, issueId);
-            webDriver.findElement(By.id("opsbar-operations_more")).click();
-            String expected = "Create sub-task";
-            String result = webDriver.findElement(By.cssSelector("#create-subtask > a > span")).getText();
-            assertEquals(expected, result);
-        } catch (NoSuchElementException | TimeoutException e) {
-            Assertions.fail("Exception " + e);
-        }
-
-    }
 }

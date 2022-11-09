@@ -1,6 +1,5 @@
 package com.codecool.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +27,9 @@ public class CreateIssueLinkPage {
 
     @FindBy(xpath = "//*[@id='issue-create-submit']")
     public WebElement createNewIssueButton;
+
+    @FindBy(xpath = "//*[@id='issue-create-issue-type']")
+    public WebElement selectedIssueType;
 
     public CreateIssueLinkPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -64,4 +66,6 @@ public class CreateIssueLinkPage {
     public void submitNewIssue() {
         createNewIssueButton.click();
     }
+
+    public String getSelectedIssueTypeText() {return selectedIssueType.getText() ;}
 }

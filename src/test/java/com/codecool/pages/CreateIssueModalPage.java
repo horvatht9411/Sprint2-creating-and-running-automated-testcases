@@ -26,22 +26,10 @@ public class CreateIssueModalPage {
     @FindBy(xpath = "//*[@id='aui-flag-container']//a")
     public WebElement newIssueLink;
 
-    @FindBy(xpath = "//*[@id='opsbar-operations_more']")
-    public WebElement moreMenu;
-
-    @FindBy(xpath = "//*[@id='delete-issue']/a/span")
-    public WebElement delete;
-
-    @FindBy(xpath = "//*[@id='delete-issue-dialog']")
-    public WebElement deleteIssueDialog;
-
-    @FindBy(xpath = "//*[@id='delete-issue-submit']")
-    public WebElement deleteIssueSubmit;
-
     @FindBy(xpath = "//*[@id='summary']/following::*")
     public WebElement warningMessageToFillSummary;
 
-    @FindBy(xpath = "//[@id='create-issue-submit']/following::*")
+    @FindBy(xpath = "//*[@id='create-issue-submit']/following::*")
     public WebElement cancelButton;
 
     public CreateIssueModalPage(WebDriver webDriver) {
@@ -56,9 +44,12 @@ public class CreateIssueModalPage {
         projectSelector.sendKeys(Keys.ENTER);
     }
 
-    public void fillUpSummary() {
+    public String fillUpSummary(WebDriverWait wait) {
+        wait.until(ExpectedConditions.elementToBeClickable(summary));
+        summary.click();
         String value = UUID.randomUUID().toString();
         summary.sendKeys(value);
+        return value;
     }
 
     public String getSummaryText() {
@@ -73,12 +64,6 @@ public class CreateIssueModalPage {
         newIssueLink.click();
     }
 
-    public void deleteNewlyCreatedIssue(WebDriverWait wait) {
-        moreMenu.click();
-        delete.click();
-        wait.until(ExpectedConditions.visibilityOf(deleteIssueDialog));
-        deleteIssueSubmit.click();
-    }
 
     public String getWarningMessageToFillSummary() {
         return warningMessageToFillSummary.getText();
