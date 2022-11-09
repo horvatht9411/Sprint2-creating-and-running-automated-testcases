@@ -2,35 +2,42 @@ package com.codecool.tests.issues;
 
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
+import com.codecool.pages.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.util.Properties;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestCreateIssue {
-
-
-
     WebDriver webDriver;
-    Properties appProps;
     WebDriverWait webDriverWait;
+    DashboardPage dashboardPage;
+    IssueDisplayPage issueDisplayPage;
+    CreateIssueModalPage createIssueModalPage;
+    CreateIssueLinkPage createIssueLinkPage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
     void init() throws IOException {
-        //TODO: refactor DDT and POM
         webDriver = Util.setup(url);
         webDriverWait = Util.initWebdriverWait(webDriver);
-        appProps = Util.read();
-        Util.login(webDriver, appProps, webDriverWait);
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.loginSuccessfully();
+        dashboardPage = new DashboardPage(webDriver);
+        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
+        issueDisplayPage = new IssueDisplayPage(webDriver);
+        createIssueModalPage = new CreateIssueModalPage(webDriver);
+        createIssueLinkPage = new CreateIssueLinkPage(webDriver);
     }
 
     @AfterEach
@@ -38,109 +45,74 @@ public class TestCreateIssue {
         webDriver.quit();
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue successfully")
-    public void createNewIssue() throws InterruptedException {
-        webDriver.findElement(By.id("create_link")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-dialog")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.click();
-        project.sendKeys(Keys.BACK_SPACE);
-        project.sendKeys("Main Testing Project");
-        project.sendKeys(Keys.ENTER);
-        String value = UUID.randomUUID().toString();
-        try {
-            webDriver.findElement(By.id("summary")).sendKeys(value);
-            webDriver.findElement(By.id("create-issue-submit")).click();
-        } catch (StaleElementReferenceException | ElementNotInteractableException e){
-            webDriver.findElement(By.id("summary")).sendKeys(value);
-            webDriver.findElement(By.id("create-issue-submit")).click();
-        }
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#aui-flag-container > div > div > a")));
-        webDriver.findElement(By.cssSelector("#aui-flag-container > div > div > a")).click();
-        String result = webDriver.findElement(By.id("summary-val")).getText();
-        assertEquals(value, result);
-        webDriver.findElement(By.id("opsbar-operations_more")).click();
-        webDriver.findElement(By.cssSelector("#delete-issue > a > span")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("delete-issue-dialog")));
-        webDriver.findElement(By.id("delete-issue-submit")).click();
+    public void createNewIssue(String projectName) throws InterruptedException {
+        dashboardPage.createNewIssue();
+        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
+        createIssueModalPage.fillUpProjectName(projectName);
+        createIssueModalPage.fillUpSummary();
+        String expectedSummaryText = createIssueModalPage.getSummaryText();
+        createIssueModalPage.submitNewIssue();
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.newIssueLink));
+        createIssueModalPage.clickOnNewIssueLink();
+        String actualSummaryText = issueDisplayPage.getSummaryText();
+        assertEquals(expectedSummaryText, actualSummaryText);
+
+        createIssueModalPage.deleteNewlyCreatedIssue(webDriverWait);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue in a new tab successfully")
-    public void createNewIssueII() {
+    public void createNewIssueII(String projectName, String issueType) {
         webDriver.get("https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("project-field")));
+        createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
+        createIssueLinkPage.fillUpIssueType(issueType);
+        createIssueLinkPage.clickNextButton();
 
-        try {
-            WebElement project = webDriver.findElement(By.id("project-field"));
-            project.sendKeys("Main Testing Project");
-            project.sendKeys(Keys.ENTER);
-            WebElement type = webDriver.findElement(By.id("issuetype-field"));
-            project.sendKeys("Story");
-            project.sendKeys(Keys.ENTER);
-        }catch (StaleElementReferenceException | ElementNotInteractableException e){
-            WebElement project = webDriver.findElement(By.id("project-field"));
-            project.sendKeys("Main Testing Project");
-            project.sendKeys(Keys.ENTER);
-            WebElement type = webDriver.findElement(By.id("issuetype-field"));
-            project.sendKeys("Story");
-            project.sendKeys(Keys.ENTER);
-        }
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("summary")));
-        String value = UUID.randomUUID().toString();
-        webDriver.findElement(By.id("summary")).sendKeys(value);
-        webDriver.findElement(By.id("issue-create-submit")).click();
-        String result = webDriver.findElement(By.id("summary-val")).getText();
-        assertEquals(value, result);
-        webDriver.findElement(By.id("opsbar-operations_more")).click();
-        webDriver.findElement(By.cssSelector("#delete-issue > a > span")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("delete-issue-dialog")));
-        webDriver.findElement(By.id("delete-issue-submit")).click();
+        createIssueLinkPage.fillUpSummaryField(webDriverWait);
+        String expectedSummaryText = createIssueLinkPage.getSummaryText();
+        createIssueLinkPage.submitNewIssue();
+
+        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.summary));
+        String actualSummaryText = issueDisplayPage.getSummaryText();
+        assertEquals(expectedSummaryText, actualSummaryText);
+
+        createIssueModalPage.deleteNewlyCreatedIssue(webDriverWait);
     }
-
 
     @Test
     @DisplayName("Create new issue with blank mandatory fields")
     public void blankFields() {
-        webDriver.findElement(By.id("create_link")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-dialog")));
-        webDriver.findElement(By.id("create-issue-submit")).click();
+        dashboardPage.createNewIssue();
+        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
+        createIssueModalPage.submitNewIssue();
+
         String expectedErrorMessage = "You must specify a summary of the issue.";
-        String errorMessage = webDriver.findElement(By.cssSelector("#dialog-form > div > div.content > div:nth-child(1) > div")).getText();
-        assertEquals(expectedErrorMessage, errorMessage);
-        webDriver.findElement(By.cssSelector("#create-issue-dialog > footer > div > div > button")).click();
-        Alert alert = webDriver.switchTo().alert();
-        alert.accept();
+        String actualErrorMessage = createIssueModalPage.getWarningMessageToFillSummary();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
+
+        createIssueModalPage.closeCreateModal(webDriverWait);
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Cancel creating new issue")
-    public void cancel() {
-        webDriver.findElement(By.id("create_link")).click();
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("create-issue-dialog")));
-        WebElement project = webDriver.findElement(By.id("project-field"));
-        project.click();
-        project.sendKeys(Keys.BACK_SPACE);
-        project.sendKeys("Main Testing Project");
-        project.sendKeys(Keys.ENTER);
-        String value = UUID.randomUUID().toString();
-        try {
-            webDriver.findElement(By.id("summary")).sendKeys(value);
-            webDriver.findElement(By.cssSelector("#create-issue-dialog > footer > div > div > button")).click();
-        }catch (StaleElementReferenceException | ElementNotInteractableException e){
-            webDriver.findElement(By.id("summary")).sendKeys(value);
-            webDriver.findElement(By.cssSelector("#create-issue-dialog > footer > div > div > button")).click();
-        }
-        webDriverWait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = webDriver.switchTo().alert();
-        alert.accept();
-        String link = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + value + "%22";
-        webDriver.get(link);
+    public void cancel(String projectName) {
+        dashboardPage.createNewIssue();
+        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
+        createIssueModalPage.fillUpProjectName(projectName);
+        createIssueModalPage.fillUpSummary();
+        String expectedSummaryText = createIssueModalPage.getSummaryText();
+        createIssueModalPage.closeCreateModal(webDriverWait);
+
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22%s%22", expectedSummaryText));
         String expectedErrorMessage = "No issues were found to match your search";
-        String errorMessage = webDriver.findElement(By.cssSelector("#main > div > div.navigator-group > div > div > div > div > div > div > h2")).getText();
-        assertEquals(expectedErrorMessage, errorMessage);
+        String actualErrorMessage = issueDisplayPage.getNoIssueErrorMessage();
+        assertEquals(expectedErrorMessage, actualErrorMessage);
     }
 
     @Test
