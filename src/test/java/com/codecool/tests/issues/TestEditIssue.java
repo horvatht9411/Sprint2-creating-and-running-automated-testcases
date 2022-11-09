@@ -53,11 +53,11 @@ public class TestEditIssue {
         assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
         String newSummary = issueDisplayPage.editIssueSuccessfully();
         try {
-            webDriverWait.until(ExpectedConditions.textToBePresentInElement(issueDisplayPage.summary, newSummary));
+            webDriverWait.until(ExpectedConditions.textToBePresentInElement(issueDisplayPage.summaryDisplay, newSummary));
         } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
-        assertEquals(newSummary, issueDisplayPage.getSummaryText());
+        assertEquals(newSummary, issueDisplayPage.getSummaryDisplayText(webDriverWait));
         assertEquals(issueName, issueDisplayPage.getIssueIdText());
     }
 
@@ -88,7 +88,7 @@ public class TestEditIssue {
         String canceledSummary = issueDisplayPage.cancelEditIssue();
         webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
         assertEquals(issueName, issueDisplayPage.getIssueIdText());
-        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryText());
+        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryDisplayText(webDriverWait));
     }
 
     @ParameterizedTest
