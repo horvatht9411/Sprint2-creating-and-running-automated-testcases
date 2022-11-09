@@ -117,7 +117,6 @@ public class TestCreateIssue {
     @DisplayName("Check issue types for existing projects")
     public void issueTypes(String projectName, String issueType) {
         webDriver.get(CREATE_ISSUE_URL);
-        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueLinkPage.project));
         createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
         try {
             createIssueLinkPage.fillUpIssueType(issueType);
