@@ -49,7 +49,7 @@ public class TestCreateIssue {
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue successfully")
     public void createNewIssue(String projectName) throws InterruptedException {
-        dashboardPage.createNewIssue();
+        dashboardPage.clickCreateNewIssueButton();
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
         String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
@@ -84,7 +84,7 @@ public class TestCreateIssue {
     @Test
     @DisplayName("Create new issue with blank mandatory fields")
     public void blankFields() {
-        dashboardPage.createNewIssue();
+        dashboardPage.clickCreateNewIssueButton();
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.submitNewIssue();
 
@@ -99,7 +99,7 @@ public class TestCreateIssue {
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Cancel creating new issue")
     public void cancel(String projectName) {
-        dashboardPage.createNewIssue();
+        dashboardPage.clickCreateNewIssueButton();
         webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
         String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
