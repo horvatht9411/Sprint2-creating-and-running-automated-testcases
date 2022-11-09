@@ -109,7 +109,8 @@ public class TestCreateIssue {
         String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
         createIssueModalPage.closeCreateModal(webDriverWait);
 
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22%s%22", expectedSummaryText));
+        String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + expectedSummaryText + "%22";
+        webDriver.get(issueUrl);
         String expectedErrorMessage = "No issues were found to match your search";
         String actualErrorMessage = issueDisplayPage.getNoIssueErrorMessage();
         assertEquals(expectedErrorMessage, actualErrorMessage);
