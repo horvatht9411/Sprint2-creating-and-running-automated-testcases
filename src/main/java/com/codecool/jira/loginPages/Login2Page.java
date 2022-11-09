@@ -1,14 +1,11 @@
 package com.codecool.jira.loginPages;
 
-import org.openqa.selenium.WebDriver;
+import com.codecool.jira.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-// page_url = about:blank
-public class Login2Page {
-    WebDriver webDriver;
-
+public class Login2Page extends BasePage {
 
     @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
@@ -19,15 +16,10 @@ public class Login2Page {
     @FindBy(xpath = "//*[@id='login-form-submit']")
     WebElement loginButton;
 
-
-    public Login2Page(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
-
-
-    public void login(String userName, String password) {
-        this.userName.sendKeys(userName);
+    public void login(String name, String password) {
+        webDriver.get(SECONDARY_LOGIN_URL);
+        wait.until(ExpectedConditions.visibilityOf(userName));
+        this.userName.sendKeys(name);
         this.password.sendKeys(password);
         this.loginButton.click();
     }

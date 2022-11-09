@@ -1,25 +1,18 @@
 package com.codecool.jira.loginPages;
 
-import org.openqa.selenium.WebDriver;
+import com.codecool.jira.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 // page_url = https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa
-public class UserPage {
-
-    WebDriver webDriver;
+public class UserPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='up-d-username']")
-    public WebElement upDUsernameDd;
-
-
-    public UserPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
+    public WebElement username;
 
     public String getUserName(){
-        return upDUsernameDd.getText();
+        wait.until(ExpectedConditions.visibilityOf(username));
+        return username.getText();
     }
 }

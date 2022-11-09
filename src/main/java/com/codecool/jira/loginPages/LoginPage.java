@@ -1,20 +1,13 @@
 package com.codecool.jira.loginPages;
 
+import com.codecool.jira.BasePage;
 import com.codecool.jira.Util;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.io.IOException;
-import java.util.Properties;
-
-public class LoginPage {
-
-    WebDriver webDriver;
-    Properties appProps = Util.read();
-
+public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
 
@@ -25,40 +18,37 @@ public class LoginPage {
     WebElement loginButton;
 
     @FindBy(xpath = "//*[@id='usernameerror']")
-    public WebElement errorMessage;
+    WebElement errorMessageOfIncorrectCredentials;
 
     @FindBy(xpath = "//*[@id='user-options']/child::a")
-    public WebElement signIn;
+    WebElement signIn;
 
     @FindBy(xpath = "//*[@id='login-form']/descendant::p")
-    public WebElement loginWarning;
+    WebElement loginWarning;
 
-
-    public LoginPage(WebDriver webDriver) throws IOException {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
-
-    public void login(String userName, String password) {
-        this.userName.sendKeys(userName);
+    public void login(String name, String password) {
+        webDriver.get(LOGIN_URL);
+        wait.until(ExpectedConditions.visibilityOf(userName));
+        this.userName.sendKeys(name);
         this.password.sendKeys(password);
         this.loginButton.click();
     }
 
-    public void loginUsingEnterKey(String userName, String password) {
-        this.userName.sendKeys(userName);
+    public void loginUsingEnterKey(String name, String password) {
+        this.userName.sendKeys(name);
         this.password.sendKeys(password);
         this.password.sendKeys(Keys.ENTER);
     }
 
     public void loginSuccessfully() {
-        this.userName.sendKeys(appProps.getProperty("username"));
-        this.password.sendKeys(appProps.getProperty("password"));
+        this.userName.sendKeys(Util.readProperty("username"));
+        this.password.sendKeys(Util.readProperty("password"));
         this.loginButton.click();
     }
 
     public String getErrorMessage() {
-        return errorMessage.getText();
+        wait.until(ExpectedConditions.visibilityOf(errorMessageOfIncorrectCredentials));
+        return errorMessageOfIncorrectCredentials.getText();
     }
 
     public String getSignInText() {
@@ -69,5 +59,3 @@ public class LoginPage {
         return loginWarning.getText();
     }
 }
-
-
