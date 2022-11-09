@@ -7,9 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.UUID;
-import java.util.WeakHashMap;
 
-public class IssuePage {
+public class IssueDisplayPage {
 
     WebDriver webDriver;
 
@@ -49,10 +48,10 @@ public class IssuePage {
     @FindBy(xpath = "//*[@id='edit-issue-submit']/following::*")
     public WebElement cancelButton;
 
+    @FindBy(xpath = "//p[@class='no-results-hint']/preceding-sibling::*")
+    public WebElement noIssueErrorMessage;
 
-
-
-    public IssuePage(WebDriver webDriver) {
+    public IssueDisplayPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
@@ -97,5 +96,9 @@ public class IssuePage {
         editIssueSummary.click();
         editIssueSummary.clear();
         updateButton.click();
+    }
+
+    public String getNoIssueErrorMessage() {
+        return noIssueErrorMessage.getText();
     }
 }
