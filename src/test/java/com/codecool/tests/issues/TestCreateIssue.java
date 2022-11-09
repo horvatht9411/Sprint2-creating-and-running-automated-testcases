@@ -85,7 +85,7 @@ public class TestCreateIssue {
     @DisplayName("Create new issue with blank mandatory fields")
     public void blankFields() {
         dashboardPage.clickCreateNewIssueButton();
-        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
+        createIssueModalPage.waitForModal(webDriverWait);
         createIssueModalPage.submitNewIssue();
 
         String expectedErrorMessage = "You must specify a summary of the issue.";
