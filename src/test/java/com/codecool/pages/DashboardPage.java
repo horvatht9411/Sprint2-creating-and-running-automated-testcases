@@ -1,5 +1,6 @@
 package com.codecool.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,7 +20,8 @@ public class DashboardPage {
     @FindBy(xpath = "//*[@id='view_profile']")
     public WebElement viewProfileName;
 
-
+    @FindBy(xpath = "//*[@id='create_link']")
+    public WebElement createIssueButton;
 
 
     public DashboardPage(WebDriver webDriver) {
@@ -36,5 +38,9 @@ public class DashboardPage {
     public void logout(){
         profileMenu.click();
         logOutButton.click();
+    }
+
+    public void createNewIssue() {
+        createIssueButton.click();
     }
 }
