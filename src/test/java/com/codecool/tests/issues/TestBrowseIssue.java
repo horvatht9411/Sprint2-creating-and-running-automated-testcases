@@ -3,7 +3,7 @@ package com.codecool.tests.issues;
 import com.codecool.TestResultLoggerExtension;
 import com.codecool.Util;
 import com.codecool.pages.DashboardPage;
-import com.codecool.pages.IssuePage;
+import com.codecool.pages.IssueDisplayPage;
 import com.codecool.pages.LoginPage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class TestBrowseIssue {
 
     WebDriver webDriver;
     WebDriverWait webDriverWait;
-    IssuePage issuePage;
+    IssueDisplayPage issueDisplayPage;
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
@@ -35,7 +35,7 @@ public class TestBrowseIssue {
         loginPage.loginSuccessfully();
         DashboardPage dashboardPage = new DashboardPage(webDriver);
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        issuePage = new IssuePage(webDriver);
+        issueDisplayPage = new IssueDisplayPage(webDriver);
     }
 
     @AfterEach
@@ -49,11 +49,11 @@ public class TestBrowseIssue {
     public void browseExistingIssues(String description, String issueName) {
         webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.issueId));
+            webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
         } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
-        assertEquals(issueName, issuePage.getIssueIdText());
+        assertEquals(issueName, issueDisplayPage.getIssueIdText());
     }
 
 
@@ -61,16 +61,16 @@ public class TestBrowseIssue {
     @DisplayName("Browse non existing issue")
     public void browseNonExistingIssue() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/ANIMAL-X");
-        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.alertBox));
-        assertEquals("Cannot open project/issue", issuePage.getNotExistingErrorMessageText());
+        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.alertBox));
+        assertEquals("Cannot open project/issue", issueDisplayPage.getNotExistingErrorMessageText());
     }
 
     @Test
     @DisplayName("Browse existing project without permission")
     public void browseProjectWithoutPermission() {
         webDriver.get("https://jira-auto.codecool.metastage.net/browse/MTP-1-1");
-        webDriverWait.until(ExpectedConditions.visibilityOf(issuePage.alertBox));
-        assertEquals("You can't view this issue", issuePage.getNoPermissionErrorMessage());
+        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.alertBox));
+        assertEquals("You can't view this issue", issueDisplayPage.getNoPermissionErrorMessage());
     }
 
 }
