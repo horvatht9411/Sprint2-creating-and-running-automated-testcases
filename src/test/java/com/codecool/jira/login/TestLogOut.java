@@ -20,37 +20,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestLogOut {
-
-    WebDriver webDriver;
-    Properties appProps;
-    WebDriverWait webDriverWait;
-    LoginPage loginPage;
-    DashboardPage dashboardPage;
-
-    String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
+    LoginPage loginPage = new LoginPage();
+    DashboardPage dashboardPage = new DashboardPage();
 
     @BeforeEach
-    void init() throws IOException {
-        webDriver = Util.setup(url);
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        loginPage = new LoginPage(webDriver);
-        dashboardPage = new DashboardPage(webDriver);
-        appProps = Util.read();
+    void init() {
+        loginPage.loginSuccessfully();
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @Test
-    @DisplayName("Successfully log out")
+    @DisplayName("Log out successfully")
     public void logout() {
-        loginPage.loginSuccessfully();
-        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         dashboardPage.logout();
         assertEquals("Log In", loginPage.getSignInText());
-        webDriver.get("https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa");
+
+        dashboardPage.navigateToProfilePage();
         assertEquals("You must log in to access this page.", loginPage.getLoginWarningMessage());
     }
 }

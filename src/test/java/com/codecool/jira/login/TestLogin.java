@@ -11,13 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,98 +18,83 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestLogin {
 
-    private static final String ERRORMESSAGE = "Sorry, your username and password are incorrect - please try again.";
-    WebDriver webDriver;
-    Properties appProps;
-    WebDriverWait webDriverWait;
+    private static final String ERROR_MESSAGE = "Sorry, your username and password are incorrect - please try again.";
     LoginPage loginPage;
-    String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
-
-    List<List<String>> dataSource;
+    Login2Page login2Page;
+    DashboardPage dashboardPage;
+    UserPage userPage;
 
     @BeforeEach
-    void init() throws IOException {
-        webDriver = Util.setup(url);
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        loginPage = new LoginPage(webDriver);
-        appProps = Util.read();
-    }
-
-    void setupDifferentLink() {
-        webDriver.get("https://jira-auto.codecool.metastage.net/login.jsp?");
-    }
-
-    private String getLoggedInUsername() {
-        DashboardPage dashboardPage = new DashboardPage(webDriver);
-        dashboardPage.viewProfileName.click();
-        UserPage userPage = new UserPage(webDriver);
-        return userPage.getUserName();
-    }
-
-    private boolean checkLogOutButtonIsVisible() {
-        DashboardPage dashboardPage = new DashboardPage(webDriver);
-//        Logout button is contained in the profile menu
-        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        return dashboardPage.checkLogoutButtonVisibility();
-    }
-
-    private String getErrorMessage() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(loginPage.errorMessage));
-        return loginPage.getErrorMessage();
+    void init() {
+        loginPage = new LoginPage();
+        login2Page = new Login2Page();
+        dashboardPage = new DashboardPage();
+        userPage = new UserPage();
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @Test
     @DisplayName("Correct username and password")
-    public void correctCredential() {
-        loginPage.login(appProps.getProperty("username"), appProps.getProperty("password"));
-        assertTrue(checkLogOutButtonIsVisible());
-        assertEquals(appProps.getProperty("username"), getLoggedInUsername());
+    public void correctCredential() throws InterruptedException {
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
+        loginPage.login(userName, password);
+        assertTrue(dashboardPage.isLogoutButtonVisible());
+
+        dashboardPage.navigateToProfilePage();
+        assertEquals(userName, userPage.getUserName());
     }
 
     @Test
     @DisplayName("Empty Credentials")
     public void emptyCredentials() {
         loginPage.login("", "");
-        assertEquals(ERRORMESSAGE, getErrorMessage());
-
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
     }
 
     @Test
     @DisplayName("Incorrect Username")
     public void wrongUsername() {
-        loginPage.login("userName", "password");
-        assertEquals(ERRORMESSAGE, getErrorMessage());
+        loginPage.login("incorrect", Util.readProperty("password"));
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
+
         loginPage.loginSuccessfully();
     }
 
     @Test
     @DisplayName("Incorrect Password")
     public void wrongPassword() {
-        loginPage.login(appProps.getProperty("username"), "password");
-        assertEquals(ERRORMESSAGE, getErrorMessage());
+        loginPage.login(Util.readProperty("username"), "incorrect");
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
+
         loginPage.loginSuccessfully();
     }
 
     @Test
     @DisplayName("Login with Enter key")
     public void loginEnter() {
-        loginPage.loginUsingEnterKey(appProps.getProperty("username"), appProps.getProperty("password"));
-        assertTrue(checkLogOutButtonIsVisible());
-        assertEquals(appProps.getProperty("username"), getLoggedInUsername());
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
+        loginPage.loginUsingEnterKey(userName, password);
+        assertTrue(dashboardPage.isLogoutButtonVisible());
+
+        dashboardPage.navigateToProfilePage();
+        assertEquals(userName, userPage.getUserName());
     }
 
     @Test
-    @DisplayName("Correct username and password different link")
+    @DisplayName("Login on different link with correct credentials")
     public void correctCredentialII() {
-        setupDifferentLink();
-        Login2Page login2Page = new Login2Page(webDriver);
-        login2Page.login(appProps.getProperty("username"), appProps.getProperty("password"));
-        assertTrue(checkLogOutButtonIsVisible());
-        assertEquals(appProps.getProperty("username"), getLoggedInUsername());
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
+        login2Page.login(userName, password);
+        assertTrue(dashboardPage.isLogoutButtonVisible());
+
+        dashboardPage.navigateToProfilePage();
+        assertEquals(userName, userPage.getUserName());
     }
 }
