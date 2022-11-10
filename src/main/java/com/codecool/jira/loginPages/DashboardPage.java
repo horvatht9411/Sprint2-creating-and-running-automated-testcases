@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-// page_url = https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa
+
 public class DashboardPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='header-details-user-fullname']")
