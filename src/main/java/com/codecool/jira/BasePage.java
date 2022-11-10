@@ -14,7 +14,7 @@ public abstract class BasePage {
     public static final String SECONDARY_LOGIN_URL = "https://jira-auto.codecool.metastage.net/login.jsp?";
     public static final String PROFILE_PAGE_URL = "https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa";
     public static final int SECONDS = 15;
-    private final boolean headless = false;
+    private final boolean headless = Boolean.parseBoolean(Util.readProperty("headless"));
     protected WebDriver webDriver;
     protected WebDriverWait wait;
 
