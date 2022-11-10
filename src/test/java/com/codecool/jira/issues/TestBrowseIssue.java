@@ -29,7 +29,7 @@ public class TestBrowseIssue {
     String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
 
     @BeforeEach
-    void init() throws IOException {
+    void init(){
         loginPage = new LoginPage();
         webDriver = loginPage.getWebDriver();
         webDriverWait = loginPage.getWait();

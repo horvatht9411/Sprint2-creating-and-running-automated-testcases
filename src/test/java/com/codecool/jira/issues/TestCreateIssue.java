@@ -30,7 +30,7 @@ public class TestCreateIssue {
     CreateIssueLinkPage createIssueLinkPage;
 
     @BeforeEach
-    void init() throws IOException {
+    void init(){
         loginPage = new LoginPage();
         dashboardPage = new DashboardPage();
         loginPage.loginSuccessfully();
