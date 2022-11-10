@@ -11,9 +11,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 
 import java.io.IOException;
 
@@ -22,15 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestCreateIssue {
 
-
     LoginPage loginPage;
-
     DashboardPage dashboardPage;
-
     IssueDisplayPage issueDisplayPage;
     CreateIssueModalPage createIssueModalPage;
     CreateIssueLinkPage createIssueLinkPage;
-
 
     @BeforeEach
     void init() throws IOException {
@@ -51,14 +48,14 @@ public class TestCreateIssue {
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue successfully")
-    public void createNewIssue(String projectName){
+    public void createNewIssue(String projectName) {
         dashboardPage.clickCreateNewIssueButton();
         String expectedSummaryText = Util.generateRandomSummary();
         createIssueModalPage.fillUpSummary(expectedSummaryText);
         createIssueModalPage.fillUpProjectName(projectName);
         try {
             createIssueModalPage.submitNewIssue();
-        } catch (StaleElementReferenceException e){
+        } catch (StaleElementReferenceException e) {
             createIssueModalPage.submitNewIssue();
         }
         createIssueModalPage.clickOnNewIssueLink();
@@ -106,7 +103,11 @@ public class TestCreateIssue {
         dashboardPage.clickCreateNewIssueButton();
         createIssueModalPage.fillUpProjectName(projectName);
         String expectedSummaryText = Util.generateRandomSummary();
-        createIssueModalPage.fillUpSummary(expectedSummaryText);
+        try {
+            createIssueModalPage.fillUpSummary(expectedSummaryText);
+        } catch (StaleElementReferenceException e) {
+            createIssueModalPage.fillUpSummary(expectedSummaryText);
+        }
         createIssueModalPage.closeCreateModal();
         String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + expectedSummaryText + "%22";
         createIssueModalPage.navigateTo(issueUrl);
@@ -130,12 +131,11 @@ public class TestCreateIssue {
         try {
             String actualIssueType = createIssueLinkPage.getSelectedIssueTypeText();
             assertEquals(issueType, actualIssueType);
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
 
     }
-
 
     @ParameterizedTest
     @CsvFileSource(resources = "/issueSubtask.csv", numLinesToSkip = 1, delimiter = ';')
@@ -152,7 +152,5 @@ public class TestCreateIssue {
         } catch (NoSuchElementException | TimeoutException e) {
             Assertions.fail("Exception " + e);
         }
-
     }
-
 }
