@@ -1,7 +1,6 @@
 package com.codecool.jira.projects;
 
 import com.codecool.jira.TestResultLoggerExtension;
-import com.codecool.jira.Util;
 import com.codecool.jira.loginPages.DashboardPage;
 import com.codecool.jira.loginPages.LoginPage;
 import com.codecool.jira.projectPages.ProjectPage;
@@ -11,41 +10,37 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestBrowseProject {
-    WebDriver webDriver;
-    WebDriverWait webDriverWait;
+
     ProjectPage projectPage;
-    String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
+    LoginPage loginPage;
+
+    DashboardPage dashboardPage;
+
 
     @BeforeEach
-    void init() throws IOException {
-        LoginPage loginPage = new LoginPage();
+    void init() {
+        loginPage = new LoginPage();
+        dashboardPage = new DashboardPage();
         loginPage.loginSuccessfully();
-        DashboardPage dashboardPage = new DashboardPage();
-        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        projectPage = new ProjectPage(webDriver);
+        dashboardPage.waitForSucessfullyLogin();
+        projectPage = new ProjectPage();
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @ParameterizedTest
     @DisplayName("Browse existing projects")
     @CsvFileSource(resources = "/browseProject.csv", numLinesToSkip = 1, delimiter = ';')
-    public void browseExistingProject(String description, String projectKey){
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/projects/%s/summary", projectKey));
-        webDriverWait.until(ExpectedConditions.visibilityOf(projectPage.projectKey));
+    public void browseExistingProject(String description, String projectKey) {
+        projectPage.navigateToProjectPage(projectKey);
         assertEquals(projectKey, projectPage.getProjectKey());
     }
 
@@ -53,8 +48,7 @@ public class TestBrowseProject {
     @DisplayName("Browse non visible projects")
     @CsvFileSource(resources = "/browseProjectWrong.csv", numLinesToSkip = 1, delimiter = ';')
     public void browseOtherProject(String description, String projectKey) {
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/projects/%s/summary", projectKey));
-        webDriverWait.until(ExpectedConditions.visibilityOf(projectPage.errorMessage));
+        projectPage.navigateToProjectPage(projectKey);
         assertEquals("You can't view this project", projectPage.getErrorMessage());
     }
 

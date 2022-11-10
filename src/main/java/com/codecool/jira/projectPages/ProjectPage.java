@@ -1,12 +1,11 @@
 package com.codecool.jira.projectPages;
 
-import org.openqa.selenium.WebDriver;
+import com.codecool.jira.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ProjectPage {
-    WebDriver webDriver;
+public class ProjectPage extends BasePage {
 
     @FindBy(xpath = "//*[text()='Key']/following::*")
     public WebElement projectKey;
@@ -14,16 +13,18 @@ public class ProjectPage {
     @FindBy(xpath = "//*[@id='main']/child::h1")
     public WebElement errorMessage;
 
-    public ProjectPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
 
-    public String getProjectKey(){
+    public String getProjectKey() {
+        wait.until(ExpectedConditions.visibilityOf(projectKey));
         return projectKey.getText();
     }
 
-    public String getErrorMessage(){
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(errorMessage));
         return errorMessage.getText();
+    }
+
+    public void navigateToProjectPage(String projectKey) {
+        this.webDriver.get(String.format("https://jira-auto.codecool.metastage.net/projects/%s/summary", projectKey));
     }
 }
