@@ -29,11 +29,11 @@ public class TestBrowseIssue {
 
     @BeforeEach
     void init() throws IOException {
-        webDriver = Util.setup(url);
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage(webDriver);
+//        webDriver = Util.setup(url);
+//        webDriverWait = Util.initWebdriverWait(webDriver);
+        LoginPage loginPage = new LoginPage();
         loginPage.loginSuccessfully();
-        DashboardPage dashboardPage = new DashboardPage(webDriver);
+        DashboardPage dashboardPage = new DashboardPage();
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         issueDisplayPage = new IssueDisplayPage(webDriver);
     }

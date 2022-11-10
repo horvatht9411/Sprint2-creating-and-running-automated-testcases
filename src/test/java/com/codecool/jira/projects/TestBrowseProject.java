@@ -28,11 +28,9 @@ public class TestBrowseProject {
 
     @BeforeEach
     void init() throws IOException {
-        webDriver = Util.setup(url);
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage();
         loginPage.loginSuccessfully();
-        DashboardPage dashboardPage = new DashboardPage(webDriver);
+        DashboardPage dashboardPage = new DashboardPage();
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         projectPage = new ProjectPage(webDriver);
     }

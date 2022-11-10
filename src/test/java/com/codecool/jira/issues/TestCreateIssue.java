@@ -33,11 +33,11 @@ public class TestCreateIssue {
 
     @BeforeEach
     void init() throws IOException {
-        webDriver = Util.setup(url);
-        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage(webDriver);
+//        webDriver = Util.setup(url);
+//        webDriverWait = Util.initWebdriverWait(webDriver);
+        LoginPage loginPage = new LoginPage();
         loginPage.loginSuccessfully();
-        dashboardPage = new DashboardPage(webDriver);
+        dashboardPage = new DashboardPage();
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         issueDisplayPage = new IssueDisplayPage(webDriver);
         createIssueModalPage = new CreateIssueModalPage(webDriver);
