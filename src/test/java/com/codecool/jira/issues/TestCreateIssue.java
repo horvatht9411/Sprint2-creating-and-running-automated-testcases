@@ -127,8 +127,13 @@ public class TestCreateIssue {
             Assertions.fail("Exception " + e);
         }
         createIssueLinkPage.clickNextButton();
-        String actualIssueType = createIssueLinkPage.getSelectedIssueTypeText();
-        assertEquals(issueType, actualIssueType);
+        try {
+            String actualIssueType = createIssueLinkPage.getSelectedIssueTypeText();
+            assertEquals(issueType, actualIssueType);
+        } catch (NoSuchElementException e){
+            Assertions.fail("Exception " + e);
+        }
+
     }
 
 
