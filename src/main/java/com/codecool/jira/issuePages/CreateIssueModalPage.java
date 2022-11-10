@@ -67,7 +67,6 @@ public class CreateIssueModalPage extends BasePage {
         alert.accept();
     }
 
-
     public void navigateToCreateIssuePage() {
         webDriver.get(CREATE_ISSUE_URL);
     }
