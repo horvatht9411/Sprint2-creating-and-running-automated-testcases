@@ -1,5 +1,6 @@
 package com.codecool.jira.issuePages;
 
+import com.codecool.jira.BasePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.UUID;
 
-public class CreateIssueLinkPage {
-    WebDriver webDriver;
+public class CreateIssueLinkPage extends BasePage {
+
+    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
 
     @FindBy(xpath = "//*[@id='project-field']")
     public WebElement project;
@@ -31,18 +33,15 @@ public class CreateIssueLinkPage {
     @FindBy(xpath = "//*[@id='issue-create-issue-type']")
     public WebElement selectedIssueType;
 
-    public CreateIssueLinkPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
 
-    public void fillUpProjectName(WebDriverWait wait, String projectName) {
+    public void fillUpProjectName(String projectName) {
         wait.until(ExpectedConditions.visibilityOf(project));
         project.sendKeys(projectName);
         project.sendKeys(Keys.ENTER);
     }
 
     public void fillUpIssueType(String issueType) {
+        wait.until(ExpectedConditions.elementToBeClickable(this.issueType));
         this.issueType.click();
         this.issueType.sendKeys(Keys.BACK_SPACE);
         this.issueType.sendKeys(issueType);
@@ -53,7 +52,7 @@ public class CreateIssueLinkPage {
         nextButton.click();
     }
 
-    public String fillUpSummaryField(WebDriverWait wait) {
+    public String fillUpSummaryField() {
         wait.until(ExpectedConditions.visibilityOf(summary));
         String value = UUID.randomUUID().toString();
         summary.sendKeys(value);
@@ -66,5 +65,9 @@ public class CreateIssueLinkPage {
 
     public String getSelectedIssueTypeText() {
         return selectedIssueType.getText();
+    }
+
+    public void navigateToCreateIssueUrl() {
+        webDriver.get(CREATE_ISSUE_URL);
     }
 }

@@ -21,43 +21,41 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestEditIssue {
 
-    WebDriver webDriver;
-    WebDriverWait webDriverWait;
+    LoginPage loginPage;
+
+    DashboardPage dashboardPage;
+
     IssueDisplayPage issueDisplayPage;
-    String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
+
 
     @BeforeEach
-    void init() throws IOException {
-//        webDriver = Util.setup(url);
-//        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage();
+    void init(){
+        loginPage = new LoginPage();
+        dashboardPage = new DashboardPage();
         loginPage.loginSuccessfully();
-        DashboardPage dashboardPage = new DashboardPage();
-        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        issueDisplayPage = new IssueDisplayPage(webDriver);
+        dashboardPage.waitForSucessfullyLogin();
+        issueDisplayPage = new IssueDisplayPage();
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @ParameterizedTest
     @DisplayName("Edit Issue Successfully")
     @ValueSource(strings = "MTP-2507")
     public void editIssueSuccessfully(String issueName){
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
+        issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.editIssueDialog));
         assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
         String newSummary = issueDisplayPage.editIssueSuccessfully();
         try {
-            webDriverWait.until(ExpectedConditions.textToBePresentInElement(issueDisplayPage.summaryDisplay, newSummary));
+            issueDisplayPage.waitForChangingSummary(newSummary);
         } catch (TimeoutException | NoSuchElementException e) {
             Assertions.fail("Exception " + e);
         }
-        assertEquals(newSummary, issueDisplayPage.getSummaryDisplayText(webDriverWait));
+        assertEquals(newSummary, issueDisplayPage.getSummaryDisplayText());
         assertEquals(issueName, issueDisplayPage.getIssueIdText());
     }
 
@@ -65,13 +63,10 @@ public class TestEditIssue {
     @DisplayName("Edit Issue With Blank Fields")
     @ValueSource(strings = "MTP-2507")
     public void editIssueWithBlankFields(String issueName) {
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
+        issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.editIssueDialog));
         assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
         issueDisplayPage.leaveSummaryEmpty();
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.alertBox));
         assertEquals("You must specify a summary of the issue.", issueDisplayPage.getErrorBoxTest());
         issueDisplayPage.cancelEditIssueModal();
     }
@@ -80,24 +75,20 @@ public class TestEditIssue {
     @DisplayName("Cancel Edit Issue")
     @ValueSource(strings = "MTP-2507")
     public void cancelIssueScreenBeforeUpdating(String issueName) {
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
+        issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.editIssueDialog));
         assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
         String canceledSummary = issueDisplayPage.cancelEditIssue();
-        webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
         assertEquals(issueName, issueDisplayPage.getIssueIdText());
-        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryDisplayText(webDriverWait));
+        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryDisplayText());
     }
 
     @ParameterizedTest
     @DisplayName("Edit Button Visibility")
     @CsvFileSource(resources = "/editIssue.csv", numLinesToSkip = 1, delimiter = ';')
     public void editIssues(String description, String issueName) {
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+        issueDisplayPage.navigateTo(issueName);
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
             assertEquals(issueName, issueDisplayPage.getIssueIdText());
             assertTrue(issueDisplayPage.editIssueButtonIsDisplayed());
         } catch (TimeoutException | NoSuchElementException e) {

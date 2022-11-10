@@ -21,96 +21,89 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestCreateIssue {
-    WebDriver webDriver;
-    WebDriverWait webDriverWait;
+
+
+    LoginPage loginPage;
+
     DashboardPage dashboardPage;
+
     IssueDisplayPage issueDisplayPage;
     CreateIssueModalPage createIssueModalPage;
     CreateIssueLinkPage createIssueLinkPage;
-    String url = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
-    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
-    String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
+
 
     @BeforeEach
     void init() throws IOException {
-//        webDriver = Util.setup(url);
-//        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginSuccessfully();
+        loginPage = new LoginPage();
         dashboardPage = new DashboardPage();
-        webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        issueDisplayPage = new IssueDisplayPage(webDriver);
-        createIssueModalPage = new CreateIssueModalPage(webDriver);
-        createIssueLinkPage = new CreateIssueLinkPage(webDriver);
+        loginPage.loginSuccessfully();
+        dashboardPage.waitForSucessfullyLogin();
+        issueDisplayPage = new IssueDisplayPage();
+        createIssueModalPage = new CreateIssueModalPage();
+        createIssueLinkPage = new CreateIssueLinkPage();
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue successfully")
-    public void createNewIssue(String projectName) throws InterruptedException {
+    public void createNewIssue(String projectName) {
         dashboardPage.clickCreateNewIssueButton();
-        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
-        String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
+        String expectedSummaryText = createIssueModalPage.fillUpSummary();
         createIssueModalPage.submitNewIssue();
-
-        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.newIssueLink));
         createIssueModalPage.clickOnNewIssueLink();
-        String actualSummaryText = issueDisplayPage.getSummaryDisplayText(webDriverWait);
+        String actualSummaryText = issueDisplayPage.getSummaryDisplayText();
         assertEquals(expectedSummaryText, actualSummaryText);
 
-        issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
+        issueDisplayPage.deleteNewlyCreatedIssue();
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue in a new tab successfully")
     public void createNewIssueII(String projectName, String issueType) {
-        webDriver.get(CREATE_ISSUE_URL);
-        createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
+        createIssueModalPage.navigateToCreateIssuePage();
+        createIssueLinkPage.fillUpProjectName(projectName);
         createIssueLinkPage.fillUpIssueType(issueType);
         createIssueLinkPage.clickNextButton();
-
-        String expectedSummaryText = createIssueLinkPage.fillUpSummaryField(webDriverWait);
+        String expectedSummaryText = createIssueLinkPage.fillUpSummaryField();
         createIssueLinkPage.submitNewIssue();
 
-        String actualSummaryText = issueDisplayPage.getSummaryDisplayText(webDriverWait);
+        String actualSummaryText = issueDisplayPage.getSummaryDisplayText();
         assertEquals(expectedSummaryText, actualSummaryText);
 
-        issueDisplayPage.deleteNewlyCreatedIssue(webDriverWait);
+        issueDisplayPage.deleteNewlyCreatedIssue();
     }
 
     @Test
     @DisplayName("Create new issue with blank mandatory fields")
     public void blankFields() {
         dashboardPage.clickCreateNewIssueButton();
-        createIssueModalPage.waitForModal(webDriverWait);
+        createIssueModalPage.waitForModal();
         createIssueModalPage.submitNewIssue();
 
         String expectedErrorMessage = "You must specify a summary of the issue.";
         String actualErrorMessage = createIssueModalPage.getWarningMessageToFillSummary();
         assertEquals(expectedErrorMessage, actualErrorMessage);
 
-        createIssueModalPage.closeCreateModal(webDriverWait);
+        createIssueModalPage.closeCreateModal();
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Cancel creating new issue")
-    public void cancel(String projectName) {
+    public void cancel(String description, String projectName) {
         dashboardPage.clickCreateNewIssueButton();
-        webDriverWait.until(ExpectedConditions.visibilityOf(createIssueModalPage.issueModal));
         createIssueModalPage.fillUpProjectName(projectName);
-        String expectedSummaryText = createIssueModalPage.fillUpSummary(webDriverWait);
-        createIssueModalPage.closeCreateModal(webDriverWait);
-
+        String expectedSummaryText = createIssueModalPage.fillUpSummary();
+        createIssueModalPage.closeCreateModal();
         String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + expectedSummaryText + "%22";
-        webDriver.get(issueUrl);
+        createIssueModalPage.navigateTo(issueUrl);
         String expectedErrorMessage = "No issues were found to match your search";
         String actualErrorMessage = issueDisplayPage.getNoIssueErrorMessage();
         assertEquals(expectedErrorMessage, actualErrorMessage);
@@ -119,9 +112,9 @@ public class TestCreateIssue {
     @ParameterizedTest
     @CsvFileSource(resources = "/issueTypes.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Check issue types for existing projects")
-    public void issueTypes(String projectName, String issueType) {
-        webDriver.get(CREATE_ISSUE_URL);
-        createIssueLinkPage.fillUpProjectName(webDriverWait, projectName);
+    public void issueTypes(String description, String projectName, String issueType) {
+        createIssueLinkPage.navigateToCreateIssueUrl();
+        createIssueLinkPage.fillUpProjectName(projectName);
         try {
             createIssueLinkPage.fillUpIssueType(issueType);
         } catch (ElementClickInterceptedException e) {
@@ -134,12 +127,11 @@ public class TestCreateIssue {
 
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/issueTypes.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/issueSubtask.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Check subtask visibility for projects")
     public void createJetiSubtask(String description, String projectName, String issueId) {
-        webDriver.get(String.format(BROWSE_ISSUE_URL, issueId));
+        issueDisplayPage.navigateTo(issueId);
         try {
-            webDriverWait.until(ExpectedConditions.visibilityOf(issueDisplayPage.issueId));
             String actualIssueId = issueDisplayPage.getIssueIdText();
             assertEquals(issueId, actualIssueId);
             issueDisplayPage.openMoreMenu();

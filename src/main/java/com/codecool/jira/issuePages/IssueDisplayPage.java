@@ -1,5 +1,6 @@
 package com.codecool.jira.issuePages;
 
+import com.codecool.jira.BasePage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.UUID;
 
-public class IssueDisplayPage {
+public class IssueDisplayPage extends BasePage {
 
     @FindBy(xpath = "//*[@id='key-val']")
     public WebElement issueId;
@@ -66,14 +67,10 @@ public class IssueDisplayPage {
     @FindBy(xpath = "//*[@id='create-subtask']//span")
     public WebElement createSubTask;
 
-    WebDriver webDriver;
 
-    public IssueDisplayPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
 
     public String getIssueIdText() {
+        wait.until(ExpectedConditions.visibilityOf(issueId));
         return issueId.getText();
     }
 
@@ -82,6 +79,7 @@ public class IssueDisplayPage {
     }
 
     public String getErrorBoxTest() {
+        wait.until(ExpectedConditions.visibilityOf(alertBox));
         return errorBox.getText();
     }
 
@@ -94,10 +92,12 @@ public class IssueDisplayPage {
     }
 
     public String editIssueDialogHeaderText() {
+        wait.until(ExpectedConditions.visibilityOf(editIssueDialog));
         return editIssueDialogHeader.getText();
     }
 
     public void openEditIssueModal() {
+        wait.until(ExpectedConditions.visibilityOf(issueId));
         editIssueButton.click();
     }
 
@@ -127,7 +127,7 @@ public class IssueDisplayPage {
         return newSummary;
     }
 
-    public String getSummaryDisplayText(WebDriverWait wait) {
+    public String getSummaryDisplayText() {
         wait.until(ExpectedConditions.visibilityOf(summaryDisplay));
         return summaryDisplay.getText();
     }
@@ -138,7 +138,7 @@ public class IssueDisplayPage {
         updateButton.click();
     }
 
-    public void deleteNewlyCreatedIssue(WebDriverWait wait) {
+    public void deleteNewlyCreatedIssue() {
         moreMenu.click();
         delete.click();
         wait.until(ExpectedConditions.visibilityOf(deleteIssueDialog));
@@ -155,5 +155,13 @@ public class IssueDisplayPage {
 
     public String getCreateSubTaskText() {
         return createSubTask.getText();
+    }
+
+    public void navigateTo(String issueName) {
+        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+    }
+
+    public void waitForChangingSummary(String newSummary) {
+        wait.until(ExpectedConditions.textToBePresentInElement(summaryDisplay, newSummary));
     }
 }

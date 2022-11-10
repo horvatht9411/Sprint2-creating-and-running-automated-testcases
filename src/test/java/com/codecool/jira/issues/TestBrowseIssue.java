@@ -36,7 +36,7 @@ public class TestBrowseIssue {
         loginPage.loginSuccessfully();
         dashboardPage = new DashboardPage();
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
-        issueDisplayPage = new IssueDisplayPage(webDriver);
+        issueDisplayPage = new IssueDisplayPage();
     }
 
     @AfterEach
