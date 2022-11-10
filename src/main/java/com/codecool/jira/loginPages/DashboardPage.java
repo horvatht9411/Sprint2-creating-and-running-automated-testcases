@@ -27,6 +27,10 @@ public class DashboardPage extends BasePage {
         webDriver.get(PROFILE_PAGE_URL);
     }
 
+    public void waitForSucessfullyLogin() {
+        wait.until(ExpectedConditions.visibilityOf(profileMenu));
+    }
+
     public void logout() {
         wait.until(ExpectedConditions.visibilityOf(profileMenu));
         profileMenu.click();
