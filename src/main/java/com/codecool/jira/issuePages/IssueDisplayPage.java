@@ -153,7 +153,7 @@ public class IssueDisplayPage extends BasePage {
     }
 
     public void navigateTo(String issueName) {
-        webDriver.get(String.format("https://jira-auto.codecool.metastage.net/browse/%s", issueName));
+        webDriver.get(String.format(BROWSE_ISSUE_URL, issueName));
     }
 
     public void waitForChangingSummary(String newSummary) {
