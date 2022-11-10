@@ -24,8 +24,6 @@ public class CreateIssueModalPage extends BasePage {
     public WebElement warningMessageToFillSummary;
     @FindBy(xpath = "//*[@id='create-issue-submit']/following::*")
     public WebElement cancelButton;
-    String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
-    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
 
     public void fillUpProjectName(String projectName) {
         wait.until(ExpectedConditions.visibilityOf(issueModal));
