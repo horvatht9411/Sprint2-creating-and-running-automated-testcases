@@ -13,6 +13,9 @@ public class ProjectPage extends BasePage {
     @FindBy(xpath = "//*[@id='main']/child::h1")
     public WebElement errorMessage;
 
+    public void navigateToProjectPage(String projectKey) {
+        this.webDriver.get(String.format(PROJECT_SUMMARY_URL, projectKey));
+    }
 
     public String getProjectKey() {
         wait.until(ExpectedConditions.visibilityOf(projectKey));
@@ -22,9 +25,5 @@ public class ProjectPage extends BasePage {
     public String getErrorMessage() {
         wait.until(ExpectedConditions.visibilityOf(errorMessage));
         return errorMessage.getText();
-    }
-
-    public void navigateToProjectPage(String projectKey) {
-        this.webDriver.get(String.format("https://jira-auto.codecool.metastage.net/projects/%s/summary", projectKey));
     }
 }
