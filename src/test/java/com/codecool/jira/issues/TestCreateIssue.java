@@ -30,7 +30,7 @@ public class TestCreateIssue {
     CreateIssueLinkPage createIssueLinkPage;
 
     @BeforeEach
-    void init() throws IOException {
+    void init(){
         loginPage = new LoginPage();
         dashboardPage = new DashboardPage();
         loginPage.loginSuccessfully();
@@ -109,7 +109,7 @@ public class TestCreateIssue {
             createIssueModalPage.fillUpSummary(expectedSummaryText);
         }
         createIssueModalPage.closeCreateModal();
-        String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + expectedSummaryText + "%22";
+        String issueUrl = createIssueModalPage.navigateToIssuDisplayPage(expectedSummaryText);
         createIssueModalPage.navigateTo(issueUrl);
         String expectedErrorMessage = "No issues were found to match your search";
         String actualErrorMessage = issueDisplayPage.getNoIssueErrorMessage();

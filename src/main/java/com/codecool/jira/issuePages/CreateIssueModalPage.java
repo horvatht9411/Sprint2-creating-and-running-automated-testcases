@@ -72,4 +72,8 @@ public class CreateIssueModalPage extends BasePage {
     public void navigateTo(String issueUrl) {
         webDriver.get(issueUrl);
     }
+
+    public String navigateToIssuDisplayPage(String expectedSummaryText) {
+        return ISSUE_DISPLAY_FRONT + expectedSummaryText + ISSUE_DISPLAY_BACK;
+    }
 }

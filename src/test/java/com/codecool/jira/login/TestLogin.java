@@ -39,7 +39,7 @@ public class TestLogin {
 
     @Test
     @DisplayName("Correct username and password")
-    public void correctCredential() throws InterruptedException {
+    public void correctCredential(){
         String userName = Util.readProperty("username");
         String password = Util.readProperty("password");
         loginPage.login(userName, password);
