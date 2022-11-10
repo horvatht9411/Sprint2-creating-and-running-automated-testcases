@@ -21,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(TestResultLoggerExtension.class)
 public class TestBrowseIssue {
-
+    LoginPage loginPage;
+    DashboardPage dashboardPage;
     WebDriver webDriver;
     WebDriverWait webDriverWait;
     IssueDisplayPage issueDisplayPage;
@@ -29,18 +30,18 @@ public class TestBrowseIssue {
 
     @BeforeEach
     void init() throws IOException {
-//        webDriver = Util.setup(url);
-//        webDriverWait = Util.initWebdriverWait(webDriver);
-        LoginPage loginPage = new LoginPage();
+        loginPage = new LoginPage();
+        webDriver = loginPage.getWebDriver();
+        webDriverWait = loginPage.getWait();
         loginPage.loginSuccessfully();
-        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage = new DashboardPage();
         webDriverWait.until(ExpectedConditions.visibilityOf(dashboardPage.profileMenu));
         issueDisplayPage = new IssueDisplayPage(webDriver);
     }
 
     @AfterEach
     void close() {
-        webDriver.quit();
+        loginPage.closeWebDriver();
     }
 
     @ParameterizedTest

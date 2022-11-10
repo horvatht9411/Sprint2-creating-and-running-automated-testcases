@@ -25,7 +25,13 @@ public abstract class BasePage {
         PageFactory.initElements(webDriver, this);
     }
 
+    public WebDriver getWebDriver() {
+        return webDriver;
+    }
 
+    public WebDriverWait getWait() {
+        return wait;
+    }
 
     private WebDriverWait initWebdriverWait() {
         return webdriverUtil.getWebDriverWait();
