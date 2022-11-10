@@ -35,6 +35,8 @@ public class LoginPage extends BasePage {
     }
 
     public void loginUsingEnterKey(String name, String password) {
+        webDriver.get(LOGIN_URL);
+        wait.until(ExpectedConditions.visibilityOf(userName));
         this.userName.sendKeys(name);
         this.password.sendKeys(password);
         this.password.sendKeys(Keys.ENTER);
