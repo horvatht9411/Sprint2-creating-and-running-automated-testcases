@@ -2,18 +2,13 @@ package com.codecool.jira.issuePages;
 
 import com.codecool.jira.BasePage;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.UUID;
 
 public class CreateIssueLinkPage extends BasePage {
-
-    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
 
     @FindBy(xpath = "//*[@id='project-field']")
     public WebElement project;
