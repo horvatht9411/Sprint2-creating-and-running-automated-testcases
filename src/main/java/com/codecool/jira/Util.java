@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.UUID;
 
 public class Util {
     public static final String CONFIG_PATH = "src/main/resources/init.properties";
@@ -23,4 +24,7 @@ public class Util {
         return Objects.requireNonNull(readConfig()).getProperty(value);
     }
 
+    public static String generateRandomSummary() {
+        return UUID.randomUUID().toString();
+    }
 }

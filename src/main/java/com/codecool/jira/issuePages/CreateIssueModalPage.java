@@ -1,41 +1,31 @@
 package com.codecool.jira.issuePages;
 
 import com.codecool.jira.BasePage;
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.UUID;
 
 public class CreateIssueModalPage extends BasePage {
 
-    String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
-
-    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
-
     @FindBy(xpath = "//*[@id='create-issue-dialog']")
     public WebElement issueModal;
-
     @FindBy(xpath = "//*[@id='project-field']")
     public WebElement projectSelector;
-
     @FindBy(xpath = "//*[@id='summary']")
     public WebElement summary;
-
     @FindBy(xpath = "//*[@id='create-issue-submit']")
     public WebElement submitButton;
-
     @FindBy(xpath = "//*[@id='aui-flag-container']//a")
     public WebElement newIssueLink;
-
     @FindBy(xpath = "//*[@id='summary']/following::div[@class='error']")
     public WebElement warningMessageToFillSummary;
-
     @FindBy(xpath = "//*[@id='create-issue-submit']/following::*")
     public WebElement cancelButton;
-
+    String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
+    String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
 
     public void fillUpProjectName(String projectName) {
         wait.until(ExpectedConditions.visibilityOf(issueModal));
@@ -45,18 +35,10 @@ public class CreateIssueModalPage extends BasePage {
         projectSelector.sendKeys(Keys.ENTER);
     }
 
-    public String fillUpSummary() {
-        //TODO: repair me!!!
-        String value = UUID.randomUUID().toString();
-        wait.until(ExpectedConditions.elementToBeClickable(summary));
-        summary.click();
-        summary.sendKeys(value);
-        wait.until(ExpectedConditions.textToBePresentInElement(summary, value));
-        return value;
-    }
-
-    public String getSummaryText() {
-        return summary.getText();
+    public void fillUpSummary(String summary) {
+        wait.until(ExpectedConditions.elementToBeClickable(this.summary));
+        this.summary.click();
+        this.summary.sendKeys(summary);
     }
 
     public void waitForModal() {
@@ -64,6 +46,8 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void submitNewIssue() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton));
+        webDriver.findElement(By.xpath("//*[@id=\"labels-textarea\"]")).click();
         submitButton.click();
     }
 

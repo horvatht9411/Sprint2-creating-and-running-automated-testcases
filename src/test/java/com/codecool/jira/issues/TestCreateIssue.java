@@ -51,11 +51,16 @@ public class TestCreateIssue {
     @ParameterizedTest
     @CsvFileSource(resources = "/createIssue.csv", numLinesToSkip = 1, delimiter = ';')
     @DisplayName("Create new issue successfully")
-    public void createNewIssue(String projectName) {
+    public void createNewIssue(String projectName){
         dashboardPage.clickCreateNewIssueButton();
+        String expectedSummaryText = Util.generateRandomSummary();
+        createIssueModalPage.fillUpSummary(expectedSummaryText);
         createIssueModalPage.fillUpProjectName(projectName);
-        String expectedSummaryText = createIssueModalPage.fillUpSummary();
-        createIssueModalPage.submitNewIssue();
+        try {
+            createIssueModalPage.submitNewIssue();
+        } catch (StaleElementReferenceException e){
+            createIssueModalPage.submitNewIssue();
+        }
         createIssueModalPage.clickOnNewIssueLink();
         String actualSummaryText = issueDisplayPage.getSummaryDisplayText();
         assertEquals(expectedSummaryText, actualSummaryText);
@@ -100,7 +105,8 @@ public class TestCreateIssue {
     public void cancel(String description, String projectName) {
         dashboardPage.clickCreateNewIssueButton();
         createIssueModalPage.fillUpProjectName(projectName);
-        String expectedSummaryText = createIssueModalPage.fillUpSummary();
+        String expectedSummaryText = Util.generateRandomSummary();
+        createIssueModalPage.fillUpSummary(expectedSummaryText);
         createIssueModalPage.closeCreateModal();
         String issueUrl = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22" + expectedSummaryText + "%22";
         createIssueModalPage.navigateTo(issueUrl);
