@@ -64,8 +64,6 @@ public class IssueDisplayPage extends BasePage {
     @FindBy(xpath = "//*[@id='create-subtask']//span")
     public WebElement createSubTask;
 
-
-
     public String getIssueIdText() {
         wait.until(ExpectedConditions.visibilityOf(issueId));
         return issueId.getText();
