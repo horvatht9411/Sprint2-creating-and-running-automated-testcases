@@ -1,6 +1,7 @@
 package com.codecool.jira;
 
 import org.junit.jupiter.api.extension.AfterAllCallback;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 
 public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback {
     private final List<TestResultStatus> testResultsStatus = new ArrayList<>();

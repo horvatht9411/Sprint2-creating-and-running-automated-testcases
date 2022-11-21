@@ -49,13 +49,11 @@ public class TestEditIssue {
         issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
         assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
-        String newSummary = issueDisplayPage.editIssueSuccessfully();
-        try {
-            issueDisplayPage.waitForChangingSummary(newSummary);
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
-        assertEquals(newSummary, issueDisplayPage.getSummaryDisplayText());
+        String expectedSummaryText = Util.generateRandomSummary();
+        issueDisplayPage.editIssueSuccessfully(expectedSummaryText);
+        issueDisplayPage.waitForChangingSummary(expectedSummaryText);
+
+        assertEquals(expectedSummaryText, issueDisplayPage.getSummaryDisplayText());
         assertEquals(issueName, issueDisplayPage.getIssueIdText());
     }
 
@@ -88,11 +86,9 @@ public class TestEditIssue {
     @CsvFileSource(resources = "/editIssue.csv", numLinesToSkip = 1, delimiter = ';')
     public void editIssues(String description, String issueName) {
         issueDisplayPage.navigateTo(issueName);
-        try {
-            assertEquals(issueName, issueDisplayPage.getIssueIdText());
-            assertTrue(issueDisplayPage.editIssueButtonIsDisplayed());
-        } catch (TimeoutException | NoSuchElementException e) {
-            Assertions.fail("Exception " + e);
-        }
+        String actualIssueName = issueDisplayPage.getIssueIdText();
+        boolean editIssueButtonVisibile = issueDisplayPage.editIssueButtonIsDisplayed();
+        assertTrue(editIssueButtonVisibile);
+        assertEquals(issueName, actualIssueName);
     }
 }

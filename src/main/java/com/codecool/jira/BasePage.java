@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public abstract class BasePage {
+
+    //TODO: separate base url to properties
     protected static final String LOGIN_URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
     protected static final String SECONDARY_LOGIN_URL = "https://jira-auto.codecool.metastage.net/login.jsp?";
     protected static final String PROFILE_PAGE_URL = "https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa";

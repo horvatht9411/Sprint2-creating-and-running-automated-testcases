@@ -1,10 +1,7 @@
 package com.codecool.jira.issuePages;
 
 import com.codecool.jira.BasePage;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,10 +28,15 @@ public class CreateIssueModalPage extends BasePage {
         projectSelector.sendKeys(Keys.BACK_SPACE);
         projectSelector.sendKeys(projectName);
         projectSelector.sendKeys(Keys.ENTER);
+        try {
+            // TODO: wait for some element change eg: projectname or submit button
+        } catch (StaleElementReferenceException e){
+    }
     }
 
     public void fillUpSummary(String summary) {
-        wait.until(ExpectedConditions.elementToBeClickable(this.summary));
+        // TODO: check
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(this.summary)));
         this.summary.click();
         this.summary.sendKeys(summary);
     }
@@ -44,8 +46,9 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void submitNewIssue() {
-        wait.until(ExpectedConditions.elementToBeClickable(submitButton));
-        webDriver.findElement(By.xpath("//*[@id=\"labels-textarea\"]")).click();
+        //TODO: wait for element not exist
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(submitButton)));
+//        webDriver.findElement(By.xpath("//*[@id=\"labels-textarea\"]")).click();
         submitButton.click();
     }
 
