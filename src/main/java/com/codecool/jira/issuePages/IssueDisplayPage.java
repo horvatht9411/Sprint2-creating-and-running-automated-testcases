@@ -67,6 +67,10 @@ public class IssueDisplayPage extends BasePage {
     @FindBy(xpath = "//*[@id='create-subtask']//span")
     public WebElement createSubTask;
 
+    public void openPage(String issueName){
+        webDriver.get(String.format(BROWSE_ISSUE_URL, issueName));
+    }
+
     public String getIssueIdText() {
         String idText = "";
         try {
@@ -80,6 +84,7 @@ public class IssueDisplayPage extends BasePage {
     }
 
     public String getNotExistingErrorMessageText() {
+        wait.until(ExpectedConditions.visibilityOf(alertBox));
         return notExistingErrorMessage.getText();
     }
 
@@ -89,6 +94,7 @@ public class IssueDisplayPage extends BasePage {
     }
 
     public String getNoPermissionErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(alertBox));
         return noPermissionErrorMessage.getText();
     }
 
