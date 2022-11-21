@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DashboardPage extends BasePage {
 
+    private final String profilePageUrl = baseUrl + "secure/ViewProfile.jspa";
+
     @FindBy(xpath = "//*[@id='header-details-user-fullname']")
     public WebElement profileMenu;
 
@@ -24,7 +26,7 @@ public class DashboardPage extends BasePage {
     }
 
     public void navigateToProfilePage() {
-        webDriver.get(PROFILE_PAGE_URL);
+        webDriver.get(profilePageUrl);
     }
 
     public void waitForSucessfullyLogin() {

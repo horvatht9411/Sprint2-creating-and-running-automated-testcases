@@ -7,21 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
 
-    //TODO: separate base url to properties
-    protected static final String LOGIN_URL = "https://jira-auto.codecool.metastage.net/secure/Dashboard.jspa";
-    protected static final String SECONDARY_LOGIN_URL = "https://jira-auto.codecool.metastage.net/login.jsp?";
-    protected static final String PROFILE_PAGE_URL = "https://jira-auto.codecool.metastage.net/secure/ViewProfile.jspa";
-
-    protected static final String PROJECT_SUMMARY_URL = "https://jira-auto.codecool.metastage.net/projects/%s/summary";
-
-    protected static final String BROWSE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/browse/%s";
-    protected static final String CREATE_ISSUE_URL = "https://jira-auto.codecool.metastage.net/secure/CreateIssue.jspa";
-    protected static final String ISSUE_DISPLAY_FRONT = "https://jira-auto.codecool.metastage.net/browse/MTP-2459?jql=summary%20~%20%22";
-    protected static final String ISSUE_DISPLAY_BACK = "%22";
-
     protected WebDriver webDriver;
     protected WebDriverWait wait;
+
+    protected String baseUrl = Util.readProperty("url");
     private WebdriverUtil webdriverUtil;
+
 
     public BasePage() {
         webdriverUtil = WebdriverUtil.getInstance();

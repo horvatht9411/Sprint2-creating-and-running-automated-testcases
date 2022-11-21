@@ -1,7 +1,6 @@
 package com.codecool.jira.issuePages;
 
 import com.codecool.jira.BasePage;
-import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
@@ -9,9 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.UUID;
-
 public class IssueDisplayPage extends BasePage {
+
+    private final String browseIssueUrl = baseUrl + "browse/%s";
 
     @FindBy(xpath = "//*[@id='key-val']")
     public WebElement issueId;
@@ -49,7 +48,7 @@ public class IssueDisplayPage extends BasePage {
     @FindBy(xpath = "//*[@id='edit-issue-submit']/following::*")
     public WebElement cancelButton;
 
-    @FindBy(xpath = "//p[contains('@class', 'no-results-hint')]/preceding-sibling::*") // TODO: check if its valid
+    @FindBy(xpath = "//p[contains('@class', 'no-results-hint')]/preceding-sibling::*")
     public WebElement noIssueErrorMessage;
 
     @FindBy(xpath = "//*[@id='opsbar-operations_more']")
@@ -68,7 +67,7 @@ public class IssueDisplayPage extends BasePage {
     public WebElement createSubTask;
 
     public void openPage(String issueName){
-        webDriver.get(String.format(BROWSE_ISSUE_URL, issueName));
+        webDriver.get(String.format(browseIssueUrl, issueName));
     }
 
     public String getIssueIdText() {
@@ -188,7 +187,7 @@ public class IssueDisplayPage extends BasePage {
     }
 
     public void navigateTo(String issueName) {
-        webDriver.get(String.format(BROWSE_ISSUE_URL, issueName));
+        webDriver.get(String.format(browseIssueUrl, issueName));
     }
 
     public void waitForChangingSummary(String newSummary) {

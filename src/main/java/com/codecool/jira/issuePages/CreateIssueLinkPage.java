@@ -1,7 +1,6 @@
 package com.codecool.jira.issuePages;
 
 import com.codecool.jira.BasePage;
-import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.UUID;
 
 public class CreateIssueLinkPage extends BasePage {
+
+    private final String createIssueUrl = baseUrl + "secure/CreateIssue.jspa";
 
     @FindBy(xpath = "//*[@id='project-field']")
     public WebElement project;
@@ -78,6 +79,6 @@ public class CreateIssueLinkPage extends BasePage {
     }
 
     public void navigateToCreateIssueUrl() {
-        webDriver.get(CREATE_ISSUE_URL);
+        webDriver.get(createIssueUrl);
     }
 }

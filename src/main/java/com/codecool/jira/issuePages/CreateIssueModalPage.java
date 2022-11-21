@@ -7,6 +7,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreateIssueModalPage extends BasePage {
 
+    private final String createIssueUrl = baseUrl + "secure/CreateIssue.jspa";
+
+    private final String issueDisplayFront = baseUrl + "browse/MTP-2459?jql=summary%20~%20%22";
+    private final String issueDisplayBack = "%22";
+
     @FindBy(xpath = "//*[@id='create-issue-dialog']")
     public WebElement issueModal;
     @FindBy(xpath = "//*[@id='project-field']")
@@ -69,7 +74,7 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void navigateToCreateIssuePage() {
-        webDriver.get(CREATE_ISSUE_URL);
+        webDriver.get(createIssueUrl);
     }
 
     public void navigateTo(String issueUrl) {
@@ -77,6 +82,6 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public String navigateToIssuDisplayPage(String expectedSummaryText) {
-        return ISSUE_DISPLAY_FRONT + expectedSummaryText + ISSUE_DISPLAY_BACK;
+        return issueDisplayFront + expectedSummaryText + issueDisplayBack;
     }
 }

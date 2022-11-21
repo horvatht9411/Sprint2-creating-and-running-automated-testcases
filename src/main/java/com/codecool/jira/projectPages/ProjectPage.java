@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProjectPage extends BasePage {
 
+    private final String projectSummaryUrl = baseUrl + "projects/%s/summary";
+
     @FindBy(xpath = "//*[text()='Key']/following::*")
     public WebElement projectKey;
 
@@ -14,7 +16,7 @@ public class ProjectPage extends BasePage {
     public WebElement errorMessage;
 
     public void navigateToProjectPage(String projectKey) {
-        this.webDriver.get(String.format(PROJECT_SUMMARY_URL, projectKey));
+        this.webDriver.get(String.format(projectSummaryUrl, projectKey));
     }
 
     public String getProjectKey() {

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
+
+    private final String loginUrl =  baseUrl + "secure/Dashboard.jspa";
     @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
 
@@ -27,7 +29,7 @@ public class LoginPage extends BasePage {
     WebElement loginWarning;
 
     public void login(String name, String password) {
-        webDriver.get(LOGIN_URL);
+        webDriver.get(loginUrl);
         wait.until(ExpectedConditions.visibilityOf(userName));
         this.userName.sendKeys(name);
         this.password.sendKeys(password);
@@ -35,7 +37,7 @@ public class LoginPage extends BasePage {
     }
 
     public void loginUsingEnterKey(String name, String password) {
-        webDriver.get(LOGIN_URL);
+        webDriver.get(loginUrl);
         wait.until(ExpectedConditions.visibilityOf(userName));
         this.userName.sendKeys(name);
         this.password.sendKeys(password);
@@ -43,7 +45,7 @@ public class LoginPage extends BasePage {
     }
 
     public void loginSuccessfully() {
-        webDriver.get(LOGIN_URL);
+        webDriver.get(loginUrl);
         wait.until(ExpectedConditions.visibilityOf(userName));
         this.userName.sendKeys(Util.readProperty("username"));
         this.password.sendKeys(Util.readProperty("password"));

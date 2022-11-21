@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Login2Page extends BasePage {
 
+    private final String login2Url = baseUrl + "login.jsp?";
+
     @FindBy(xpath = "//*[@id='login-form-username']")
     WebElement userName;
 
@@ -17,7 +19,7 @@ public class Login2Page extends BasePage {
     WebElement loginButton;
 
     public void login(String name, String password) {
-        webDriver.get(SECONDARY_LOGIN_URL);
+        webDriver.get(login2Url);
         wait.until(ExpectedConditions.visibilityOf(userName));
         this.userName.sendKeys(name);
         this.password.sendKeys(password);
