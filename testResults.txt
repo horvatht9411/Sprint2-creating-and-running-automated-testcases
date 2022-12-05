@@ -83,4 +83,3 @@
 21-11-2022 09:39:21 WARN  TestResultLoggerExtension:37 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
 21-11-2022 09:39:34 WARN  TestResultLoggerExtension:37 - Test Successful for test: Create new issue with blank mandatory fields
 21-11-2022 09:39:34 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=8, SUCCESSFUL=8}
-21-11-2022 11:08:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
