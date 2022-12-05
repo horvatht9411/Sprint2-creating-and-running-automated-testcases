@@ -66,6 +66,30 @@
 09-11-2022 16:21:22 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Check bug issue type for JETI, JETI due to cause: org.openqa.selenium.ElementNotInteractableException
 09-11-2022 16:25:02 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Check bug issue type for JETI, JETI due to cause: org.opentest4j.AssertionFailedError
 09-11-2022 16:25:10 WARN  TestResultLoggerExtension:50 - Test Failed for test: [2] Check task issue type for JETI, JETI due to cause: org.opentest4j.AssertionFailedError
+04-12-2022 15:28:59 WARN  TestResultLoggerExtension:52 - Test Failed for test: Login with Enter key due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: Incorrect Password due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:02 WARN  TestResultLoggerExtension:52 - Test Failed for test: Login on different link with correct credentials due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: Empty Credentials due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:04 WARN  TestResultLoggerExtension:52 - Test Failed for test: Incorrect Username due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:05 WARN  TestResultLoggerExtension:52 - Test Failed for test: Correct username and password due to cause: org.openqa.selenium.InvalidArgumentException
+04-12-2022 15:29:05 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=6}
+05-12-2022 08:59:36 WARN  TestResultLoggerExtension:52 - Test Failed for test: Login with Enter key due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: Incorrect Password due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:39 WARN  TestResultLoggerExtension:52 - Test Failed for test: Login on different link with correct credentials due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:40 WARN  TestResultLoggerExtension:52 - Test Failed for test: Empty Credentials due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:41 WARN  TestResultLoggerExtension:52 - Test Failed for test: Incorrect Username due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:43 WARN  TestResultLoggerExtension:52 - Test Failed for test: Correct username and password due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 08:59:43 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=6}
+05-12-2022 09:25:13 WARN  TestResultLoggerExtension:52 - Test Failed for test: Correct username and password due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 09:25:13 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=1}
+05-12-2022 09:28:51 WARN  TestResultLoggerExtension:52 - Test Failed for test: Empty Credentials due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 09:28:51 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=1}
+05-12-2022 09:31:27 WARN  TestResultLoggerExtension:52 - Test Failed for test: Correct username and password due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 09:31:27 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=1}
+05-12-2022 09:44:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: Empty Credentials due to cause: org.openqa.selenium.InvalidArgumentException
+05-12-2022 09:44:26 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {FAILED=1}
+05-12-2022 09:46:10 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
+05-12-2022 09:46:10 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {SUCCESSFUL=1}
 21-11-2022 09:35:35 WARN  TestResultLoggerExtension:37 - Test Successful for test: [1] Main Testing Project
 21-11-2022 09:35:59 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.NoSuchElementException
 21-11-2022 09:36:34 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
@@ -78,8 +102,4 @@
 21-11-2022 09:38:23 WARN  TestResultLoggerExtension:50 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
 21-11-2022 09:38:35 WARN  TestResultLoggerExtension:50 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
 21-11-2022 09:38:48 WARN  TestResultLoggerExtension:50 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
-21-11-2022 09:38:58 WARN  TestResultLoggerExtension:37 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
-21-11-2022 09:39:09 WARN  TestResultLoggerExtension:37 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
-21-11-2022 09:39:21 WARN  TestResultLoggerExtension:37 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
-21-11-2022 09:39:34 WARN  TestResultLoggerExtension:37 - Test Successful for test: Create new issue with blank mandatory fields
-21-11-2022 09:39:34 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=8, SUCCESSFUL=8}
+
