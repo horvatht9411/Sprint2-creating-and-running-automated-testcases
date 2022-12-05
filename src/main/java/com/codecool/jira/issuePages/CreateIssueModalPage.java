@@ -33,14 +33,10 @@ public class CreateIssueModalPage extends BasePage {
         projectSelector.sendKeys(Keys.BACK_SPACE);
         projectSelector.sendKeys(projectName);
         projectSelector.sendKeys(Keys.ENTER);
-        try {
-            // TODO: wait for some element change eg: projectname or submit button
-        } catch (StaleElementReferenceException e){
-    }
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(submitButton)));
     }
 
     public void fillUpSummary(String summary) {
-        // TODO: check
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(this.summary)));
         this.summary.click();
         this.summary.sendKeys(summary);
@@ -51,9 +47,7 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void submitNewIssue() {
-        //TODO: wait for element not exist
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(submitButton)));
-//        webDriver.findElement(By.xpath("//*[@id=\"labels-textarea\"]")).click();
         submitButton.click();
     }
 
