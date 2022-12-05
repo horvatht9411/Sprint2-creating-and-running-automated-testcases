@@ -23,15 +23,9 @@
 09-11-2022 14:52:41 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Main Testing Project due to cause: java.util.UnknownFormatConversionException
 09-11-2022 14:52:41 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=1}
 09-11-2022 14:56:43 WARN  TestResultLoggerExtension:37 - Test Successful for test: [1] Main Testing Project
-09-11-2022 14:56:43 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {SUCCESSFUL=1}
-09-11-2022 14:57:30 WARN  TestResultLoggerExtension:50 - Test Failed for test: Create new issue with blank mandatory fields due to cause: org.opentest4j.AssertionFailedError
-09-11-2022 14:57:30 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=1}
 09-11-2022 14:59:30 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.opentest4j.AssertionFailedError
 09-11-2022 14:59:30 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=1}
 09-11-2022 15:01:28 WARN  TestResultLoggerExtension:37 - Test Successful for test: [1] Main Testing Project, Story
-09-11-2022 15:01:28 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {SUCCESSFUL=1}
-09-11-2022 15:05:46 WARN  TestResultLoggerExtension:37 - Test Successful for test: [1] Main Testing Project, Story
-09-11-2022 15:05:46 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {SUCCESSFUL=1}
 09-11-2022 15:19:06 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.TimeoutException
 09-11-2022 15:19:06 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=1}
 09-11-2022 15:21:17 WARN  TestResultLoggerExtension:37 - Test Successful for test: [1] Main Testing Project, Story
