@@ -19,7 +19,6 @@
 09-11-2022 14:35:02 WARN  TestResultLoggerExtension:50 - Test Failed for test: [7] Check bug issue type for COALA, COALA due to cause: org.openqa.selenium.TimeoutException
 09-11-2022 14:35:10 WARN  TestResultLoggerExtension:50 - Test Failed for test: [8] Check task issue type for COALA, COALA due to cause: org.opentest4j.AssertionFailedError
 09-11-2022 14:35:17 WARN  TestResultLoggerExtension:50 - Test Failed for test: [9] Check story issue type for COALA, COALA due to cause: org.opentest4j.AssertionFailedError
-09-11-2022 14:35:24 WARN  TestResultLoggerExtension:50 - Test Failed for test: Create new issue with blank mandatory fields due to cause: org.opentest4j.AssertionFailedError
 09-11-2022 14:35:24 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=21, SUCCESSFUL=1}
 09-11-2022 14:52:41 WARN  TestResultLoggerExtension:50 - Test Failed for test: [1] Main Testing Project due to cause: java.util.UnknownFormatConversionException
 09-11-2022 14:52:41 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=1}
