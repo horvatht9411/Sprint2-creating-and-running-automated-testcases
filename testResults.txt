@@ -84,8 +84,3 @@
 21-11-2022 09:39:34 WARN  TestResultLoggerExtension:37 - Test Successful for test: Create new issue with blank mandatory fields
 21-11-2022 09:39:34 WARN  TestResultLoggerExtension:24 - Test result summary for TestCreateIssue {FAILED=8, SUCCESSFUL=8}
 21-11-2022 11:08:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
-21-11-2022 11:08:57 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
-21-11-2022 11:09:29 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
-21-11-2022 11:09:47 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
-21-11-2022 11:10:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
-05-12-2022 09:00:24 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
