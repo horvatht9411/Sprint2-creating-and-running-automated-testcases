@@ -590,5 +590,5 @@
 05-12-2022 11:32:43 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login on different link with correct credentials
 05-12-2022 11:32:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
 05-12-2022 11:32:53 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Username
-05-12-2022 11:33:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: Correct username and password
+
 
