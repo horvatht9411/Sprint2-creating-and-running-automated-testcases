@@ -101,6 +101,446 @@
 21-11-2022 09:38:35 WARN  TestResultLoggerExtension:50 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
 21-11-2022 09:38:48 WARN  TestResultLoggerExtension:50 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
 
+05-12-2022 11:34:37 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:34:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:35:04 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:35:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:35:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:36:02 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:36:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:36:51 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:07 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:38:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:38:11 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 11:38:27 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 11:38:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 11:39:08 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:24 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:41 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 11:40:10 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 11:40:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:40:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 11:40:53 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:08 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:24 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:35 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 11:41:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 11:42:00 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 11:42:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 11:42:12 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {SUCCESSFUL=8, FAILED=8}
+05-12-2022 11:42:22 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 11:42:33 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 11:42:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 11:42:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:43:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:43:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:43:55 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Browse issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Browse issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:49 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Browse issues 1 for COALA project, COALA-1
+05-12-2022 11:45:00 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Browse issues 2 for COALA project, COALA-2
+05-12-2022 11:45:33 WARN  TestResultLoggerExtension:52 - Test Failed for test: [10] Browse issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:45:33 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseIssue {SUCCESSFUL=8, FAILED=4}
+05-12-2022 11:45:43 WARN  TestResultLoggerExtension:39 - Test Successful for test: Log out successfully
+05-12-2022 11:45:43 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogOut {SUCCESSFUL=1}
+05-12-2022 11:45:53 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project, MTP
+05-12-2022 11:46:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Toucan Project, TOUCAN
+05-12-2022 11:46:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse Coala Project, COALA
+05-12-2022 11:46:21 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse Jeti Project, JETI
+05-12-2022 11:46:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project Without Permission, MTP-1
+05-12-2022 11:46:45 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Non-Existing Project, ANIMAL
+05-12-2022 11:46:45 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseProject {SUCCESSFUL=6}
+05-12-2022 11:46:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login with Enter key
+05-12-2022 11:47:06 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Password
+05-12-2022 11:47:14 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login on different link with correct credentials
+05-12-2022 11:47:19 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
+05-12-2022 11:47:26 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Username
+05-12-2022 11:47:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: Correct username and password
+05-12-2022 11:47:36 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {SUCCESSFUL=6}
+05-12-2022 11:56:51 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:57:05 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:57:17 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:57:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:57:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:58:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:58:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:29 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:00:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:00:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 12:00:16 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 12:00:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 12:00:42 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 12:01:15 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:01:30 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:01:45 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:02:01 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 12:02:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 12:02:23 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:02:34 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 12:02:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:27 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 12:03:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 12:03:49 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 12:03:59 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 12:03:59 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=8, SUCCESSFUL=8}
+05-12-2022 12:04:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 12:04:18 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 12:04:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 12:04:42 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 12:04:54 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 12:05:07 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 12:05:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:09 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Browse issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:21 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Browse issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Browse issues 1 for COALA project, COALA-1
+05-12-2022 12:06:43 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Browse issues 2 for COALA project, COALA-2
+05-12-2022 12:07:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [10] Browse issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:07:14 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseIssue {FAILED=4, SUCCESSFUL=8}
+05-12-2022 12:07:25 WARN  TestResultLoggerExtension:39 - Test Successful for test: Log out successfully
+05-12-2022 12:07:25 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogOut {SUCCESSFUL=1}
+05-12-2022 12:07:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project, MTP
+05-12-2022 12:07:46 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Toucan Project, TOUCAN
+05-12-2022 12:07:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse Coala Project, COALA
+05-12-2022 12:08:05 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse Jeti Project, JETI
+05-12-2022 12:08:14 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project Without Permission, MTP-1
+05-12-2022 12:08:23 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Non-Existing Project, ANIMAL
+05-12-2022 12:08:23 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseProject {SUCCESSFUL=6}
+05-12-2022 12:08:33 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login with Enter key
+05-12-2022 12:08:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Password
+05-12-2022 12:08:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login on different link with correct credentials
+05-12-2022 12:08:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
+05-12-2022 12:08:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Username
+05-12-2022 12:09:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: Correct username and password
+05-12-2022 12:09:08 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {SUCCESSFUL=6}
+05-12-2022 13:01:02 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:01:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:01:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:01:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:01:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:02:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:27 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:42 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:04:16 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:04:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:04:32 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 13:04:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:05:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 13:05:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 13:07:01 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 13:07:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:07:34 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 13:07:53 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:31 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 13:09:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 13:09:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 13:09:35 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 13:09:35 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {SUCCESSFUL=8, FAILED=8}
+05-12-2022 13:09:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 13:10:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 13:10:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 13:10:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:10:55 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:11:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:11:50 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:12:54 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:13:13 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:13:30 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:13:46 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:14:02 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:14:41 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:19 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:36 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:16:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:17:07 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:17:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:17:31 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 13:17:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:18:13 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:19:23 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:19:42 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:19:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:20:15 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:20:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:21:10 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:21:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:22:05 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:22:39 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:39 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:23:58 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:24:21 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:24:36 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:26:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:26:30 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:26:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:27:17 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:27:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:28:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:28:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:32 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:51 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:30:30 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:30:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:30:48 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:31:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:31:25 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:32:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:32:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:33:15 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:33:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:33:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:34:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:05 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:21 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:40 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:36:57 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:37:19 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:37:35 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 13:38:13 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:40:29 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:40:29 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=1}
+05-12-2022 13:41:31 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.NoSuchElementException
+05-12-2022 13:41:31 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=1}
+05-12-2022 11:34:37 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:34:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:35:04 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:35:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:35:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:36:02 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:36:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:36:51 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:07 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:37:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:38:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:38:11 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 11:38:27 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 11:38:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 11:39:08 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:24 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:41 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:39:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 11:40:10 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 11:40:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:40:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 11:40:53 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:08 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:24 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:41:35 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 11:41:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 11:42:00 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 11:42:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 11:42:12 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {SUCCESSFUL=8, FAILED=8}
+05-12-2022 11:42:22 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 11:42:33 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 11:42:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 11:42:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:43:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:43:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:43:55 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Browse issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Browse issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:44:49 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Browse issues 1 for COALA project, COALA-1
+05-12-2022 11:45:00 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Browse issues 2 for COALA project, COALA-2
+05-12-2022 11:45:33 WARN  TestResultLoggerExtension:52 - Test Failed for test: [10] Browse issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:45:33 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseIssue {SUCCESSFUL=8, FAILED=4}
+05-12-2022 11:45:43 WARN  TestResultLoggerExtension:39 - Test Successful for test: Log out successfully
+05-12-2022 11:45:43 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogOut {SUCCESSFUL=1}
+05-12-2022 11:45:53 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project, MTP
+05-12-2022 11:46:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Toucan Project, TOUCAN
+05-12-2022 11:46:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse Coala Project, COALA
+05-12-2022 11:46:21 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse Jeti Project, JETI
+05-12-2022 11:46:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project Without Permission, MTP-1
+05-12-2022 11:46:45 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Non-Existing Project, ANIMAL
+05-12-2022 11:46:45 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseProject {SUCCESSFUL=6}
+05-12-2022 11:46:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login with Enter key
+05-12-2022 11:47:06 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Password
+05-12-2022 11:47:14 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login on different link with correct credentials
+05-12-2022 11:47:19 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
+05-12-2022 11:47:26 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Username
+05-12-2022 11:47:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: Correct username and password
+05-12-2022 11:47:36 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {SUCCESSFUL=6}
+05-12-2022 11:56:51 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:57:05 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 11:57:17 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 11:57:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 11:57:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 11:58:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:58:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 11:59:29 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:00:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:00:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 12:00:16 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 12:00:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 12:00:42 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 12:01:15 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:01:30 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:01:45 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:02:01 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 12:02:12 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 12:02:23 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:02:34 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 12:02:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:03 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:03:27 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 12:03:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 12:03:49 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 12:03:59 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 12:03:59 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=8, SUCCESSFUL=8}
+05-12-2022 12:04:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 12:04:18 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 12:04:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 12:04:42 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 12:04:54 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 12:05:07 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 12:05:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:09 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Browse issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:21 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Browse issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:06:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Browse issues 1 for COALA project, COALA-1
+05-12-2022 12:06:43 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Browse issues 2 for COALA project, COALA-2
+05-12-2022 12:07:14 WARN  TestResultLoggerExtension:52 - Test Failed for test: [10] Browse issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 12:07:14 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseIssue {FAILED=4, SUCCESSFUL=8}
+05-12-2022 12:07:25 WARN  TestResultLoggerExtension:39 - Test Successful for test: Log out successfully
+05-12-2022 12:07:25 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogOut {SUCCESSFUL=1}
+05-12-2022 12:07:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project, MTP
+05-12-2022 12:07:46 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Toucan Project, TOUCAN
+05-12-2022 12:07:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse Coala Project, COALA
+05-12-2022 12:08:05 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse Jeti Project, JETI
+05-12-2022 12:08:14 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project Without Permission, MTP-1
+05-12-2022 12:08:23 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Non-Existing Project, ANIMAL
+05-12-2022 12:08:23 WARN  TestResultLoggerExtension:26 - Test result summary for TestBrowseProject {SUCCESSFUL=6}
+05-12-2022 12:08:33 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login with Enter key
+05-12-2022 12:08:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Password
+05-12-2022 12:08:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: Login on different link with correct credentials
+05-12-2022 12:08:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: Empty Credentials
+05-12-2022 12:08:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: Incorrect Username
+05-12-2022 12:09:08 WARN  TestResultLoggerExtension:39 - Test Successful for test: Correct username and password
+05-12-2022 12:09:08 WARN  TestResultLoggerExtension:26 - Test result summary for TestLogin {SUCCESSFUL=6}
+05-12-2022 13:01:02 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:01:16 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:01:28 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:01:40 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:01:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:02:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:27 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:03:42 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:04:16 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:04:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:04:32 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 13:04:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:05:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 13:05:37 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Create subtask for TOUCAN project, TOUCAN, TOUCAN-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:22 WARN  TestResultLoggerExtension:52 - Test Failed for test: [3] Create subtask for COALA project, COALA, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:06:44 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project, Story
+05-12-2022 13:07:01 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Check bug issue type for JETI, JETI, Bug
+05-12-2022 13:07:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [2] Check task issue type for JETI, JETI, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:07:34 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
+05-12-2022 13:07:53 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:31 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:08:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: [7] Check bug issue type for COALA, COALA, Bug
+05-12-2022 13:09:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [8] Check task issue type for COALA, COALA, Task
+05-12-2022 13:09:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [9] Check story issue type for COALA, COALA, Story
+05-12-2022 13:09:35 WARN  TestResultLoggerExtension:39 - Test Successful for test: Create new issue with blank mandatory fields
+05-12-2022 13:09:35 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {SUCCESSFUL=8, FAILED=8}
+05-12-2022 13:09:47 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse non existing issue
+05-12-2022 13:10:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: Browse existing project without permission
+05-12-2022 13:10:20 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Issue, MTP-1
+05-12-2022 13:10:36 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:10:55 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:11:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [4] Browse issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:11:50 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Browse issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:12:54 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:13:13 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:13:30 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:13:46 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:14:02 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:14:41 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:19 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:36 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:15:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:16:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:17:07 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:17:31 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:17:31 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {SUCCESSFUL=6, FAILED=6}
+05-12-2022 13:17:56 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:18:13 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:19:23 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:19:42 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:19:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:20:15 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:20:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:21:10 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:21:48 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:22:05 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:22:39 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:39 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:23:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:23:58 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:24:21 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:24:36 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:26:03 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:26:30 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:26:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:27:17 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:27:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:28:17 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:28:56 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:12 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:32 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:29:51 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:30:30 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:30:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:30:48 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:31:11 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:31:25 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:32:38 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:32:58 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:33:15 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
+05-12-2022 13:33:32 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Edit issues 2 for TOUCAN project, TOUCAN-2
+05-12-2022 13:33:48 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Edit issues 3 for TOUCAN project, TOUCAN-3
+05-12-2022 13:34:26 WARN  TestResultLoggerExtension:52 - Test Failed for test: [4] Edit issues 1 for JETI project, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:05 WARN  TestResultLoggerExtension:52 - Test Failed for test: [5] Edit issues 2 for JETI project, JETI-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:21 WARN  TestResultLoggerExtension:52 - Test Failed for test: [6] Edit issues 3 for JETI project, JETI-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:35:40 WARN  TestResultLoggerExtension:52 - Test Failed for test: [7] Edit issues 1 for COALA project, COALA-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:00 WARN  TestResultLoggerExtension:52 - Test Failed for test: [8] Edit issues 2 for COALA project, COALA-2 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:38 WARN  TestResultLoggerExtension:52 - Test Failed for test: [9] Edit issues 3 for COALA project, COALA-3 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:36:57 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
+05-12-2022 13:36:57 WARN  TestResultLoggerExtension:26 - Test result summary for TestEditIssue {FAILED=6, SUCCESSFUL=6}
+05-12-2022 13:37:19 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Main Testing Project
+05-12-2022 13:37:35 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.StaleElementReferenceException
+05-12-2022 13:38:13 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Create subtask for JETI project, JETI, JETI-1 due to cause: org.opentest4j.AssertionFailedError
+05-12-2022 13:40:29 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.ElementNotInteractableException
+05-12-2022 13:40:29 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=1}
+05-12-2022 13:41:31 WARN  TestResultLoggerExtension:52 - Test Failed for test: [1] Main Testing Project, Story due to cause: org.openqa.selenium.NoSuchElementException
+05-12-2022 13:41:31 WARN  TestResultLoggerExtension:26 - Test result summary for TestCreateIssue {FAILED=1}
 05-12-2022 11:19:50 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Browse Existing Project, MTP
 05-12-2022 11:20:00 WARN  TestResultLoggerExtension:39 - Test Successful for test: [2] Browse Toucan Project, TOUCAN
 05-12-2022 11:20:10 WARN  TestResultLoggerExtension:39 - Test Successful for test: [3] Browse Coala Project, COALA
