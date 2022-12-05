@@ -99,8 +99,6 @@
 21-11-2022 09:38:11 WARN  TestResultLoggerExtension:37 - Test Successful for test: [3] Check story issue type for JETI, JETI, Story
 21-11-2022 09:38:23 WARN  TestResultLoggerExtension:50 - Test Failed for test: [4] Check bug issue type for TOUCAN, TOUCAN, Bug due to cause: org.opentest4j.AssertionFailedError
 21-11-2022 09:38:35 WARN  TestResultLoggerExtension:50 - Test Failed for test: [5] Check task issue type for TOUCAN, TOUCAN, Task due to cause: org.opentest4j.AssertionFailedError
-21-11-2022 09:38:48 WARN  TestResultLoggerExtension:50 - Test Failed for test: [6] Check story issue type for TOUCAN, TOUCAN, Story due to cause: org.opentest4j.AssertionFailedError
-
 05-12-2022 11:34:37 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
 05-12-2022 11:34:52 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] MTP-2507
 05-12-2022 11:35:04 WARN  TestResultLoggerExtension:39 - Test Successful for test: [1] Edit issues 1 for TOUCAN project, TOUCAN-1
