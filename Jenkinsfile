@@ -12,13 +12,13 @@ pipeline{
                      stage("With Chrome"){
                          steps{
                              echo "Running with chrome..."
-                             sh(script: "mvn clean test -Dusername=$username -Dpassword=$password -Durl="$url" -Dlocal=false -Dheadless=true -DremoteBrowser=chrome")
+                             sh(script: "mvn clean test -Dusername=$username -Dpassword=$password -Durl='$url' -Dlocal=false -Dheadless=true -DremoteBrowser=chrome")
                          }
                      }
                      stage("With Firefox"){
                          steps{
                              echo "Running with firefox..."
-                             sh(script: "mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Durl="$URL" -Dlocal=false -Dheadless=true -DremoteBrowser=firefox")
+                             sh(script: "mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Durl='$URL' -Dlocal=false -Dheadless=true -DremoteBrowser=firefox")
                          }
                      }
                  }
