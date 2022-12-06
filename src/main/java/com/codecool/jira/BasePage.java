@@ -13,7 +13,7 @@ public abstract class BasePage {
     protected WebDriver webDriver;
     protected WebDriverWait wait;
 
-    protected String baseUrl = Util.readProperty("url");
+    protected String baseUrl = System.getProperty("url");
     private WebdriverUtil webdriverUtil;
 
 

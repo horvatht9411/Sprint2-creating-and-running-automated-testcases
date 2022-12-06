@@ -45,13 +45,10 @@ public class LoginPage extends BasePage {
     }
 
     public void loginSuccessfully() {
-        System.out.println(loginUrl);
-        System.out.println(Util.readProperty("username"));
-        System.out.println(Util.readProperty("password"));
         webDriver.get(loginUrl);
         wait.until(ExpectedConditions.visibilityOf(userName));
-        this.userName.sendKeys(Util.readProperty("username"));
-        this.password.sendKeys(Util.readProperty("password"));
+        this.userName.sendKeys(System.getProperty("username"));
+        this.password.sendKeys(System.getProperty("password"));
         this.loginButton.click();
     }
 
