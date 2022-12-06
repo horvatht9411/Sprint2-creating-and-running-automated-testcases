@@ -71,10 +71,10 @@ public class WebdriverUtil {
         String remoteBrowser = Util.readProperty("remoteBrowser");
         String password = Util.readProperty("password");
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        if ("firefox".equals(remoteBrowser)) {
-            capabilities.setBrowserName("firefox");
-        } else {
+        if ("chrome".equals(remoteBrowser)) {
             capabilities.setBrowserName("chrome");
+        } else {
+            capabilities.setBrowserName("firefox");
         }
         capabilities.setPlatform(Platform.LINUX);
         try {
