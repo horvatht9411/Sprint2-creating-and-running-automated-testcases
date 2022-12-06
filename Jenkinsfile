@@ -1,15 +1,35 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build Stage') {
-            steps {
-                echo "Building..."
-            }
-        }
-        stage('Testing Stage') {
-            steps {
-                echo "Running test cases..."
-            }
-        }
-    }
-}
+pipeline{
+   agent any
+
+   stages {
+         stage("build"){
+             steps{
+                 echo "Building..."
+                 sh(script: "mvn compile")
+             }
+         }
+         stage("run"){
+             parallel{
+                     stage("With Chrome"){
+                         steps{
+                             echo "Running with chrome..."
+                             sh(script: "mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Dbaseurl='$URL' -Dlocal=true -Dheadless=true -DremoteBrowser=chrome")
+                         }
+                     }
+                     stage("With Firefox"){
+                         steps{
+                             echo "Running with firefox..."
+                             sh(script: "mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Dbaseurl='$URL' -Dlocal=true -Dheadless=true -DremoteBrowser=firefox")
+                         }
+                     }
+                 }
+
+             post {
+                 always {
+                     junit testResults: '*/target/surefire-reports/TEST-.xml', skipPublishingChecks: true
+                     cleanWs()
+                 }
+             }
+         }
+     }
+ }

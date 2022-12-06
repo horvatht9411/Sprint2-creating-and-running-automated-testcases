@@ -173,6 +173,7 @@ public class IssueDisplayPage extends BasePage {
     }
 
     public String getNoIssueErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(noIssueErrorMessage));
         return noIssueErrorMessage.getText();
     }
 
