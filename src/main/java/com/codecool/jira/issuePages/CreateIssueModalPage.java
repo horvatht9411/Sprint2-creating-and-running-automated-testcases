@@ -33,13 +33,17 @@ public class CreateIssueModalPage extends BasePage {
         projectSelector.sendKeys(Keys.BACK_SPACE);
         projectSelector.sendKeys(projectName);
         projectSelector.sendKeys(Keys.ENTER);
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(submitButton)));
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton));
     }
 
     public void fillUpSummary(String summary) {
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(this.summary)));
-        this.summary.click();
-        this.summary.sendKeys(summary);
+        wait.until(ExpectedConditions.elementToBeClickable(this.summary));
+//        this.summary.click();
+        try {
+            this.summary.sendKeys(summary);
+        } catch (StaleElementReferenceException | ElementNotInteractableException e){
+            webDriver.findElement(By.id("summary")).sendKeys(summary);
+        }
     }
 
     public void waitForModal() {
@@ -47,7 +51,7 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void submitNewIssue() {
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(submitButton)));
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton));
         submitButton.click();
     }
 
