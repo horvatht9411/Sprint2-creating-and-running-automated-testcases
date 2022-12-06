@@ -53,7 +53,7 @@ public class CreateIssueLinkPage extends BasePage {
     }
 
     public void clickNextButton() {
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(nextButton)));
+        wait.until(ExpectedConditions.elementToBeClickable(nextButton));
         nextButton.click();
     }
 
