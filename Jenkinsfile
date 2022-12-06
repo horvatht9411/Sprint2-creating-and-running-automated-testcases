@@ -1,11 +1,5 @@
 pipeline{
    agent any
-   parameters {
-     string defaultValue: 'automation33', name: 'username'
-     password defaultValue: 'CCAutoTest19.', name: 'password'
-     string defaultValue: 'https://jira-auto.codecool.metastage.net/', name: 'url'
-   }
-
    stages {
          stage("build"){
              steps{
@@ -18,13 +12,13 @@ pipeline{
                      stage("With Chrome"){
                          steps{
                              echo "Running with chrome..."
-                             sh(script: "mvn clean test -Dusername=${params.username} -Dpassword=${params.password} -Dbaseurl='${params.url}' -Dlocal=false -Dheadless=true -DremoteBrowser=chrome")
+                             sh(script: "mvn clean test -Dusername=$username -Dpassword=$password -Dbaseurl='$url' -Dlocal=false -Dheadless=true -DremoteBrowser=chrome")
                          }
                      }
                      stage("With Firefox"){
                          steps{
                              echo "Running with firefox..."
-                             sh(script: "mvn clean test -Dusername=${USERNAME} -Dpassword=${PASSWORD} -Dbaseurl='${URL}' -Dlocal=false -Dheadless=true -DremoteBrowser=firefox")
+                             sh(script: "mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Dbaseurl='$URL' -Dlocal=false -Dheadless=true -DremoteBrowser=firefox")
                          }
                      }
                  }
