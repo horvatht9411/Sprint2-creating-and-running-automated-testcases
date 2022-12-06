@@ -48,7 +48,7 @@ public class IssueDisplayPage extends BasePage {
     @FindBy(xpath = "//*[@id='edit-issue-submit']/following::*")
     public WebElement cancelButton;
 
-    @FindBy(xpath = "//p[contains('@class', 'no-results-hint')]/preceding-sibling::*")
+    @FindBy(xpath = "//p[contains(@class, 'no-results-hint')]/preceding-sibling::*")
     public WebElement noIssueErrorMessage;
 
     @FindBy(xpath = "//*[@id='opsbar-operations_more']")
