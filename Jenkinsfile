@@ -4,7 +4,6 @@ pipeline{
    stages {
          stage("build"){
              steps{
-                 cleanWs()
                  echo "Building..."
                  sh(script: "mvn compile")
              }
