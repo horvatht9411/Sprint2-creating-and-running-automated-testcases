@@ -30,9 +30,9 @@ public class TestLogOut {
     @DisplayName("Log out successfully")
     public void logout() {
         dashboardPage.logout();
-        assertEquals("Log In", loginPage.getSignInText());
+        assertEquals("Log In", loginPage.getSignInText(), "Login button is visible");
 
         dashboardPage.navigateToProfilePage();
-        assertEquals("You must log in to access this page.", loginPage.getLoginWarningMessage());
+        assertEquals("You must log in to access this page.", loginPage.getLoginWarningMessage(), "Error message is the same");
     }
 }
