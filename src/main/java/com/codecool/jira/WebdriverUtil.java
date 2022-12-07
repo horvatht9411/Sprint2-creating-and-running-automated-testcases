@@ -27,6 +27,7 @@ public class WebdriverUtil {
 
     private WebdriverUtil(){
         if (Boolean.parseBoolean(Util.readProperty("local"))){
+            System.setProperty("remoteBrowser", Util.readProperty("remoteBrowser"));
             webDriver = setupWebdriver();
         } else {
             webDriver = setupRemoteWebdriver();
@@ -34,16 +35,16 @@ public class WebdriverUtil {
         webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
-    private void setSystemProperties() {
-        System.setProperty("username", Util.readProperty("Pusername"));
-        System.setProperty("password", Util.readProperty("Ppassword"));
-        System.setProperty("username", Util.readProperty("Pusername"));
-        System.setProperty("headless", Util.readProperty("Pheadless"));
-        System.setProperty("remoteBrowser", Util.readProperty("PremoteBrowser"));
-        System.setProperty("localConnection", Util.readProperty("PlocalConnection"));
-        System.setProperty("url", Util.readProperty("Purl"));
-
-    }
+//    private void setSystemProperties() {
+//        System.setProperty("username", Util.readProperty("Pusername"));
+//        System.setProperty("password", Util.readProperty("Ppassword"));
+//        System.setProperty("username", Util.readProperty("Pusername"));
+//        System.setProperty("headless", Util.readProperty("Pheadless"));
+//        System.setProperty("remoteBrowser", Util.readProperty("PremoteBrowser"));
+//        System.setProperty("localConnection", Util.readProperty("PlocalConnection"));
+//        System.setProperty("url", Util.readProperty("Purl"));
+//
+//    }
 
     public static WebdriverUtil getInstance(){
         if(INSTANCE == null) {
