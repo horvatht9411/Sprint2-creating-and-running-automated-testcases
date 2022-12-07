@@ -18,7 +18,7 @@ pipeline{
                      stage("With Chrome"){
                          steps{
                              echo "Running with chrome..."
-                             sh(script: "mvn clean test -DremoteBrowser=chrome")
+                             sh(script: "mvn clean test -Dusername=$username -DremoteBrowser=chrome")
                          }
                      }
                      stage("With Firefox"){
