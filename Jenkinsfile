@@ -12,7 +12,6 @@ pipeline{
                         echo "local = false" >> src/main/resources/init.properties
                         echo "headless = true" >> src/main/resources/init.properties
                   '''
-                 )
              }
          }
          stage("run"){
