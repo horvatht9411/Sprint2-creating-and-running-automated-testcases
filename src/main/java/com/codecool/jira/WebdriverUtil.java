@@ -1,16 +1,21 @@
 package com.codecool.jira;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class WebdriverUtil {
 
-    private final boolean headless = Boolean.parseBoolean(Util.readProperty("headless"));
+    private final boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
 
     private final int SECONDS = 15;
 
@@ -21,11 +26,15 @@ public class WebdriverUtil {
     private static WebdriverUtil INSTANCE;
 
     private WebdriverUtil(){
-        webDriver = setupWebdriver();
+        if (Boolean.parseBoolean(System.getProperty("local"))){
+            webDriver = setupWebdriver();
+        } else {
+            webDriver = setupRemoteWebdriver();
+        }
         webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
-    public static WebdriverUtil getInstance() {
+    public static WebdriverUtil getInstance(){
         if(INSTANCE == null) {
             INSTANCE = new WebdriverUtil();
         }
@@ -41,21 +50,39 @@ public class WebdriverUtil {
         return webDriverWait;
     }
 
-    private WebDriver setupWebdriver() {
-        WebDriverManager.chromedriver().setup();
-        if (headless) {
-            // Run in background
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("headless");
-            webDriver = new ChromeDriver(options);
-        } else {
-            //Open browser
-            webDriver = new ChromeDriver();
-            webDriver.manage().window().maximize();
-        }
-        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    private WebDriver setupWebdriver(){
+            WebDriverManager.chromedriver().setup();
+            if (headless) {
+                // Run in background
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("headless");
+                webDriver = new ChromeDriver(options);
+            } else {
+                //Open browser
+                webDriver = new ChromeDriver();
+                webDriver.manage().window().maximize();
+            }
+            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 //        webDriver.get(BasePage.LOGIN_URL);
         return webDriver;
+    }
+
+    private WebDriver setupRemoteWebdriver(){
+        String remoteBrowser = System.getProperty("remoteBrowser");
+        String password = System.getProperty("password");
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        if ("chrome".equals(remoteBrowser)) {
+            capabilities.setBrowserName("chrome");
+        } else {
+            capabilities.setBrowserName("firefox");
+        }
+        capabilities.setPlatform(Platform.LINUX);
+        try {
+            return new RemoteWebDriver(new
+                    URL("https://selenium:" + password + "@seleniumhub.codecool.metastage.net/wd/hub"), capabilities);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void shutDown(){
