@@ -40,8 +40,8 @@ public class TestLogin {
     @Test
     @DisplayName("Correct username and password")
     public void correctCredential(){
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         loginPage.login(userName, password);
         assertTrue(dashboardPage.isLogoutButtonVisible());
 
@@ -59,7 +59,7 @@ public class TestLogin {
     @Test
     @DisplayName("Incorrect Username")
     public void wrongUsername() {
-        loginPage.login("incorrect", System.getProperty("password"));
+        loginPage.login("incorrect", Util.readProperty("password"));
         assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
 
         loginPage.loginSuccessfully();
@@ -68,7 +68,7 @@ public class TestLogin {
     @Test
     @DisplayName("Incorrect Password")
     public void wrongPassword() {
-        loginPage.login(System.getProperty("username"), "incorrect");
+        loginPage.login(Util.readProperty("username"), "incorrect");
         assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
 
         loginPage.loginSuccessfully();
@@ -77,8 +77,8 @@ public class TestLogin {
     @Test
     @DisplayName("Login with Enter key")
     public void loginEnter() {
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         loginPage.loginUsingEnterKey(userName, password);
         assertTrue(dashboardPage.isLogoutButtonVisible());
 
@@ -89,8 +89,8 @@ public class TestLogin {
     @Test
     @DisplayName("Login on different link with correct credentials")
     public void correctCredentialII() {
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         login2Page.login(userName, password);
         assertTrue(dashboardPage.isLogoutButtonVisible());
 

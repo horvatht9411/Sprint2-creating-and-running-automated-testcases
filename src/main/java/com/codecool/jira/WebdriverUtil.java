@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class WebdriverUtil {
 
-    private final boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
+    private final boolean headless = Boolean.parseBoolean(Util.readProperty("headless"));
 
     private final int SECONDS = 15;
 
@@ -26,8 +26,7 @@ public class WebdriverUtil {
     private static WebdriverUtil INSTANCE;
 
     private WebdriverUtil(){
-        if (Boolean.parseBoolean(Util.readProperty("PlocalConnection"))) setSystemProperties();
-        if (Boolean.parseBoolean(System.getProperty("localConnection"))){
+        if (Boolean.parseBoolean(Util.readProperty("local"))){
             webDriver = setupWebdriver();
         } else {
             webDriver = setupRemoteWebdriver();
@@ -80,8 +79,8 @@ public class WebdriverUtil {
     }
 
     private WebDriver setupRemoteWebdriver(){
-        String remoteBrowser = System.getProperty("remoteBrowser");
-        String password = System.getProperty("password");
+        String remoteBrowser = Util.readProperty("remoteBrowser");
+        String password = Util.readProperty("password");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         if ("chrome".equals(remoteBrowser)) {
             capabilities.setBrowserName("chrome");
