@@ -5,11 +5,13 @@ pipeline{
              steps{
                  echo "Building..."
                  sh(script: "mvn compile")
-                 sh(script: echo "username = $username" > src/main/resources/init.properties
-                            echo "password = $password" >> src/main/resources/init.properties
-                            echo "url = $url" >> src/main/resources/init.properties
-                            echo "local = false" >> src/main/resources/init.properties
-                            echo "headless = true" >> src/main/resources/init.properties
+                 sh'''
+                        echo "username = $username" > src/main/resources/init.properties
+                        echo "password = $password" >> src/main/resources/init.properties
+                        echo "url = $url" >> src/main/resources/init.properties
+                        echo "local = false" >> src/main/resources/init.properties
+                        echo "headless = true" >> src/main/resources/init.properties
+                  '''
                  )
              }
          }
