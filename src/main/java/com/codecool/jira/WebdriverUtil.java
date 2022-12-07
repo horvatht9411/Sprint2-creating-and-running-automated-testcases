@@ -26,7 +26,7 @@ public class WebdriverUtil {
     private static WebdriverUtil INSTANCE;
 
     private WebdriverUtil(){
-        setSystemProperties();
+        if (Boolean.parseBoolean(Util.readProperty("PlocalConnection"))) setSystemProperties();
         if (Boolean.parseBoolean(System.getProperty("localConnection"))){
             webDriver = setupWebdriver();
         } else {
