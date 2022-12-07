@@ -26,12 +26,24 @@ public class WebdriverUtil {
     private static WebdriverUtil INSTANCE;
 
     private WebdriverUtil(){
-        if (Boolean.parseBoolean(System.getProperty("local"))){
+        setSystemProperties();
+        if (Boolean.parseBoolean(System.getProperty("localConnection"))){
             webDriver = setupWebdriver();
         } else {
             webDriver = setupRemoteWebdriver();
         }
         webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
+    }
+
+    private void setSystemProperties() {
+        System.setProperty("username", Util.readProperty("Pusername"));
+        System.setProperty("password", Util.readProperty("Ppassword"));
+        System.setProperty("username", Util.readProperty("Pusername"));
+        System.setProperty("headless", Util.readProperty("Pheadless"));
+        System.setProperty("remoteBrowser", Util.readProperty("PremoteBrowser"));
+        System.setProperty("localConnection", Util.readProperty("PlocalConnection"));
+        System.setProperty("url", Util.readProperty("Purl"));
+
     }
 
     public static WebdriverUtil getInstance(){
