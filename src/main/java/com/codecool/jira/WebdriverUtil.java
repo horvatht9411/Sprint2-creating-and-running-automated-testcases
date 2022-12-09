@@ -65,12 +65,11 @@ public class WebdriverUtil {
             webDriver.manage().window().maximize();
         }
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-//        webDriver.get(BasePage.LOGIN_URL);
         return webDriver;
     }
 
     private WebDriver setupRemoteWebdriver() {
-        String remoteBrowser = Util.readProperty("remoteBrowser");
+        String remoteBrowser = System.clearProperty("remoteBrowser");
         String password = Util.readProperty("password");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         if ("chrome".equals(remoteBrowser)) {
