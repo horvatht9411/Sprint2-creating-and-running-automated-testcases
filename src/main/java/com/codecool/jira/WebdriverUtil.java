@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class WebdriverUtil {
 
-    private final boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
+    private final boolean headless = Boolean.parseBoolean(Util.readProperty("headless"));
 
     private final int SECONDS = 15;
 
@@ -25,9 +25,9 @@ public class WebdriverUtil {
 
     private static WebdriverUtil INSTANCE;
 
-    private WebdriverUtil(){
-        setSystemProperties();
-        if (Boolean.parseBoolean(System.getProperty("localConnection"))){
+    private WebdriverUtil() {
+        if (Boolean.parseBoolean(Util.readProperty("local"))) {
+            System.setProperty("remoteBrowser", Util.readProperty("remoteBrowser"));
             webDriver = setupWebdriver();
         } else {
             webDriver = setupRemoteWebdriver();
@@ -35,19 +35,9 @@ public class WebdriverUtil {
         webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(SECONDS));
     }
 
-    private void setSystemProperties() {
-        System.setProperty("username", Util.readProperty("Pusername"));
-        System.setProperty("password", Util.readProperty("Ppassword"));
-        System.setProperty("username", Util.readProperty("Pusername"));
-        System.setProperty("headless", Util.readProperty("Pheadless"));
-        System.setProperty("remoteBrowser", Util.readProperty("PremoteBrowser"));
-        System.setProperty("localConnection", Util.readProperty("PlocalConnection"));
-        System.setProperty("url", Util.readProperty("Purl"));
 
-    }
-
-    public static WebdriverUtil getInstance(){
-        if(INSTANCE == null) {
+    public static WebdriverUtil getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new WebdriverUtil();
         }
 
@@ -62,26 +52,26 @@ public class WebdriverUtil {
         return webDriverWait;
     }
 
-    private WebDriver setupWebdriver(){
-            WebDriverManager.chromedriver().setup();
-            if (headless) {
-                // Run in background
-                ChromeOptions options = new ChromeOptions();
-                options.addArguments("headless");
-                webDriver = new ChromeDriver(options);
-            } else {
-                //Open browser
-                webDriver = new ChromeDriver();
-                webDriver.manage().window().maximize();
-            }
-            webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+    private WebDriver setupWebdriver() {
+        WebDriverManager.chromedriver().setup();
+        if (headless) {
+            // Run in background
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("headless");
+            webDriver = new ChromeDriver(options);
+        } else {
+            //Open browser
+            webDriver = new ChromeDriver();
+            webDriver.manage().window().maximize();
+        }
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 //        webDriver.get(BasePage.LOGIN_URL);
         return webDriver;
     }
 
-    private WebDriver setupRemoteWebdriver(){
-        String remoteBrowser = System.getProperty("remoteBrowser");
-        String password = System.getProperty("password");
+    private WebDriver setupRemoteWebdriver() {
+        String remoteBrowser = Util.readProperty("remoteBrowser");
+        String password = Util.readProperty("password");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         if ("chrome".equals(remoteBrowser)) {
             capabilities.setBrowserName("chrome");
@@ -97,7 +87,7 @@ public class WebdriverUtil {
         }
     }
 
-    public void shutDown(){
+    public void shutDown() {
         webDriver.quit();
         INSTANCE = null;
     }

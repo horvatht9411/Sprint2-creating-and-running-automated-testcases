@@ -40,27 +40,27 @@ public class TestLogin {
     @Test
     @DisplayName("Correct username and password")
     public void correctCredential(){
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         loginPage.login(userName, password);
-        assertTrue(dashboardPage.isLogoutButtonVisible());
+        assertTrue(dashboardPage.isLogoutButtonVisible(), "Logout button is visible");
 
         dashboardPage.navigateToProfilePage();
-        assertEquals(userName, userPage.getUserName());
+        assertEquals(userName, userPage.getUserName(), "Username is equals with a logged in username");
     }
 
     @Test
     @DisplayName("Empty Credentials")
     public void emptyCredentials() {
         loginPage.login("", "");
-        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage(), "Error message is the same");
     }
 
     @Test
     @DisplayName("Incorrect Username")
     public void wrongUsername() {
-        loginPage.login("incorrect", System.getProperty("password"));
-        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
+        loginPage.login("incorrect", Util.readProperty("password"));
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage(), "Error message is the same");
 
         loginPage.loginSuccessfully();
     }
@@ -68,8 +68,8 @@ public class TestLogin {
     @Test
     @DisplayName("Incorrect Password")
     public void wrongPassword() {
-        loginPage.login(System.getProperty("username"), "incorrect");
-        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage());
+        loginPage.login(Util.readProperty("username"), "incorrect");
+        assertEquals(ERROR_MESSAGE, loginPage.getErrorMessage(), "Error message is the same");
 
         loginPage.loginSuccessfully();
     }
@@ -77,24 +77,24 @@ public class TestLogin {
     @Test
     @DisplayName("Login with Enter key")
     public void loginEnter() {
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         loginPage.loginUsingEnterKey(userName, password);
-        assertTrue(dashboardPage.isLogoutButtonVisible());
+        assertTrue(dashboardPage.isLogoutButtonVisible(), "Login button is visible");
 
         dashboardPage.navigateToProfilePage();
-        assertEquals(userName, userPage.getUserName());
+        assertEquals(userName, userPage.getUserName(), "Username is equals with a logged in username");
     }
 
     @Test
     @DisplayName("Login on different link with correct credentials")
     public void correctCredentialII() {
-        String userName = System.getProperty("username");
-        String password = System.getProperty("password");
+        String userName = Util.readProperty("username");
+        String password = Util.readProperty("password");
         login2Page.login(userName, password);
-        assertTrue(dashboardPage.isLogoutButtonVisible());
+        assertTrue(dashboardPage.isLogoutButtonVisible(), "Login button is visible");
 
         dashboardPage.navigateToProfilePage();
-        assertEquals(userName, userPage.getUserName());
+        assertEquals(userName, userPage.getUserName(), "Username is equals with a logged in username");
     }
 }

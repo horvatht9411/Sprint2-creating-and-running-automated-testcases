@@ -37,9 +37,10 @@ public class CreateIssueModalPage extends BasePage {
     }
 
     public void fillUpSummary(String summary) {
-        wait.until(ExpectedConditions.elementToBeClickable(this.summary));
+//        wait.until(ExpectedConditions.elementToBeClickable(this.summary));
 //        this.summary.click();
         try {
+            wait.until(ExpectedConditions.elementToBeClickable(this.summary));
             this.summary.sendKeys(summary);
         } catch (StaleElementReferenceException | ElementNotInteractableException e){
             webDriver.findElement(By.id("summary")).sendKeys(summary);

@@ -66,7 +66,7 @@ public class TestCreateIssue {
         createIssueModalPage.clickOnNewIssueLink();
         String actualSummaryText = issueDisplayPage.getSummaryDisplayText();
 
-        assertEquals(expectedSummaryText, actualSummaryText);
+        assertEquals(expectedSummaryText, actualSummaryText, "Summary is the same");
 
     }
 
@@ -83,7 +83,7 @@ public class TestCreateIssue {
         createIssueLinkPage.submitNewIssue();
         String actualSummaryText = issueDisplayPage.getSummaryDisplayText();
 
-        assertEquals(expectedSummaryText, actualSummaryText);
+        assertEquals(expectedSummaryText, actualSummaryText, "Summary is the same");
     }
 
     @Test
@@ -96,7 +96,7 @@ public class TestCreateIssue {
         String expectedErrorMessage = "You must specify a summary of the issue.";
         String actualErrorMessage = createIssueModalPage.getWarningMessageToFillSummary();
 
-        assertEquals(expectedErrorMessage, actualErrorMessage);
+        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message is the same");
     }
 
     @ParameterizedTest
@@ -113,7 +113,7 @@ public class TestCreateIssue {
         String expectedErrorMessage = "No issues were found to match your search";
         String actualErrorMessage = issueDisplayPage.getNoIssueErrorMessage();
 
-        assertEquals(expectedErrorMessage, actualErrorMessage);
+        assertEquals(expectedErrorMessage, actualErrorMessage, "Error message is the same");
     }
 
     @ParameterizedTest
@@ -126,7 +126,7 @@ public class TestCreateIssue {
         createIssueLinkPage.clickNextButton();
         String actualIssueType = createIssueLinkPage.getSelectedIssueTypeText();
 
-        assertEquals(issueType, actualIssueType);
+        assertEquals(issueType, actualIssueType, "Issue type is the same");
 
     }
 
@@ -136,11 +136,11 @@ public class TestCreateIssue {
     public void createJetiSubtask(String description, String projectName, String issueId) {
         issueDisplayPage.navigateTo(issueId);
         String actualIssueId = issueDisplayPage.getIssueIdText();
-        assertEquals(issueId, actualIssueId);
+        assertEquals(issueId, actualIssueId, "Issue id is the same");
         issueDisplayPage.openMoreMenu();
         String expected = "Create sub-task";
         String actual = issueDisplayPage.getCreateSubTaskText();
 
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, "Create sub-task is visible");
     }
 }

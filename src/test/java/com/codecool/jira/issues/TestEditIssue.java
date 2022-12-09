@@ -48,13 +48,13 @@ public class TestEditIssue {
     public void editIssueSuccessfully(String issueName){
         issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
+        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName), "Issue id is the same");
         String expectedSummaryText = Util.generateRandomSummary();
         issueDisplayPage.editIssueSuccessfully(expectedSummaryText);
         issueDisplayPage.waitForChangingSummary(expectedSummaryText);
 
-        assertEquals(expectedSummaryText, issueDisplayPage.getSummaryDisplayText());
-        assertEquals(issueName, issueDisplayPage.getIssueIdText());
+        assertEquals(expectedSummaryText, issueDisplayPage.getSummaryDisplayText(), "Summary is the same");
+        assertEquals(issueName, issueDisplayPage.getIssueIdText(), "Issue id is the same");
     }
 
     @ParameterizedTest
@@ -63,9 +63,9 @@ public class TestEditIssue {
     public void editIssueWithBlankFields(String issueName) {
         issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
+        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName), "Issue id is the same");
         issueDisplayPage.leaveSummaryEmpty();
-        assertEquals("You must specify a summary of the issue.", issueDisplayPage.getErrorBoxTest());
+        assertEquals("You must specify a summary of the issue.", issueDisplayPage.getErrorBoxTest(), "Error message is the same");
         issueDisplayPage.cancelEditIssueModal();
     }
 
@@ -75,10 +75,10 @@ public class TestEditIssue {
     public void cancelIssueScreenBeforeUpdating(String issueName) {
         issueDisplayPage.navigateTo(issueName);
         issueDisplayPage.openEditIssueModal();
-        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName));
+        assertTrue(issueDisplayPage.editIssueDialogHeaderText().contains(issueName), "Issue id is the same");
         String canceledSummary = issueDisplayPage.cancelEditIssue();
-        assertEquals(issueName, issueDisplayPage.getIssueIdText());
-        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryDisplayText());
+        assertEquals(issueName, issueDisplayPage.getIssueIdText(), "Issue id is the same");
+        assertNotEquals(canceledSummary, issueDisplayPage.getSummaryDisplayText(), "Summary is the same");
     }
 
     @ParameterizedTest
@@ -88,7 +88,7 @@ public class TestEditIssue {
         issueDisplayPage.navigateTo(issueName);
         String actualIssueName = issueDisplayPage.getIssueIdText();
         boolean editIssueButtonVisibile = issueDisplayPage.editIssueButtonIsDisplayed();
-        assertTrue(editIssueButtonVisibile);
-        assertEquals(issueName, actualIssueName);
+        assertTrue(editIssueButtonVisibile, "Edit issue button is visible");
+        assertEquals(issueName, actualIssueName, "Issue id is the same");
     }
 }

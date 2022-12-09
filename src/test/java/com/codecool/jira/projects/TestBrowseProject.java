@@ -41,7 +41,8 @@ public class TestBrowseProject {
     @CsvFileSource(resources = "/browseProject.csv", numLinesToSkip = 1, delimiter = ';')
     public void browseExistingProject(String description, String projectKey) {
         projectPage.navigateToProjectPage(projectKey);
-        assertEquals(projectKey, projectPage.getProjectKey());
+        assertEquals(projectKey, projectPage.getProjectKey(), "Project key is the same:");
+
     }
 
     @ParameterizedTest
@@ -49,7 +50,7 @@ public class TestBrowseProject {
     @CsvFileSource(resources = "/browseProjectWrong.csv", numLinesToSkip = 1, delimiter = ';')
     public void browseOtherProject(String description, String projectKey) {
         projectPage.navigateToProjectPage(projectKey);
-        assertEquals("You can't view this project", projectPage.getErrorMessage());
+        assertEquals("You can't view this project", projectPage.getErrorMessage(), "Error message is the same:");
     }
 
 }

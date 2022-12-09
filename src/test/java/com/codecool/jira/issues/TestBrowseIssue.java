@@ -42,7 +42,7 @@ public class TestBrowseIssue {
         issueDisplayPage.openPage(issueName);
         String actualIssueName = issueDisplayPage.getIssueIdText();
 
-        assertEquals(issueName, actualIssueName);
+        assertEquals(issueName, actualIssueName, "Issue id is the same");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestBrowseIssue {
     public void browseNonExistingIssue() {
         issueDisplayPage.openPage("ANIMAL-X");
         String errorMessage = issueDisplayPage.getNotExistingErrorMessageText();
-        assertEquals("Cannot open project/issue", errorMessage);
+        assertEquals("Cannot open project/issue", errorMessage, "Error message is the same");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class TestBrowseIssue {
     public void browseProjectWithoutPermission() {
         issueDisplayPage.openPage("MTP-1-1");
         String errorMessage = issueDisplayPage.getNoPermissionErrorMessage();
-        assertEquals("You can't view this issue", errorMessage);
+        assertEquals("You can't view this issue", errorMessage, "Error message is the same");
     }
 
 }
